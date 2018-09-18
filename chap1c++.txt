@@ -1,0 +1,307 @@
+expression is x+5,a+b,a-b
+
+an expression becomes an statement when we add an semicolon after the expression
+
+Function is a group of statements that executes sequentially
+library is collection of functions which are packaged for future use
+
+Library is a collection of precompiled code that can be used in differet programs.
+
+#include<iostream> --> it is a special type of statement called a preprocessor directive. Preprocessor directives tell the compilter to perform a special task.
+In this case we tell the compiler to add the contents of the iostream header to our program. 
+
+Every program starts with a main function.
+<< is called the output operator or(extraction operator)
+Return statement is responsible for sending a value back to the operating system to indicate sucessfull exceution or not. return 0 is sucessfull whereas non zero values mean un sucessfull.
+
+the rules that govern how statements are constructed in a language is call syntax
+
+
+for single line comment // is used
+and for multi line comment /* */ is used
+
+when we declare a varable like int x then it is an definition
+when this statement is executed a piece of memory in ram is reserved, this is called instantiation.
+
+L value and R values.-->
+L values are values that has a persistent address in memory like int x
+x is a L values;
+R values are values that does not have an persistent address in memory 
+for eg int x=5;
+5 is a R value as 5 does not have its own memory instead it is x in whose memory 5 is placed
+
+
+initialization vs assignment
+After a variable is defined, a value may be assigned to it via the assignment opertor.
+When during definition we assign a value to a variable then it is known as initialization.
+
+default value of variable is garbage.
+
+the function that calls another function is an caller whereas the other is called the called function
+
+
+The return value at the end of the main function is called the status code. it tells whether the program is executed sucessfully or not
+It is not compulsory to right return 0 at the end because if we do not write it then the compiler will put that on our behalf.
+
+
+*********functions cannot be nested***********
+
+****if we try to print a void value (returned by a function ) it will cause compile error
+***function name have to be continous. they cannot be like add number()
+
+
+*******difference between parameter and argument.
+arguments are the values which we send, whereas parameters are the variables in which the arguments are recieved.
+
+
+pass by value--> 
+when the arguments are passed and they are received in variables at the function.
+
+we can writw statements like add(1+add(3+4));
+
+
+main reasons why we should use functions
+1) prevents code rewritibility
+2)abstraction--> the user is not needed to know the implementation, he can jut call the function and take its beneits
+3) error detection is easy
+4)organisation
+
+
+
+An identifier cannot contain spaces, tabs, or any other special symbols other than "_"
+the identifier should begin with alphabet or _
+it is an convention in c++ to begin variable names with small letters
+
+expresssions are a combination of literals,variables,functions and operators
+literal is a harcoded values like 4,4.6
+
+
+operators tell the expression how to combine two or more operands to give the result.like +,-,*
+
+Three types of operators are:
+unary-->act on only one operand like -5 where - is the operator is used to modify the sign of operand
+binary-->acts on two operands like a+b
+terenary--> there is one one terenary operator
+
+
+
+
+
+
+
+
+
+whitespaces in c++ is the space left white like spacebar, tab
+
+cout<<"helloword"<<endl;
+can be written as
+
+cout<<
+"hello world"<<
+endl;
+
+but can't be written as
+cout<<"hello
+world"<<endl;
+will not compile and will give error
+ 
+
+so the outcome is that strings can't be written in different lines.
+
+
+Function prototypes are used to tell the compiler that there is a function that exists and is made in the bottom.
+
+if a function prototype is there and if we do not provide the body the program will compile but the linker will give error that it can't resolve the function call.
+
+declaration  and definition
+
+declaration--> which are only declared but their implementation is not provided
+for eg extern int b;
+	class f;
+	void func(int c);
+definition --> here the implementation is provided
+for eg
+class f{};
+void func(int x)
+{}
+int x
+
+
+a definition can used in place of an declaration.
+for eg a function implementation on top of the code/
+
+
+
+************************************function prototype and forward declration*****************************
+Main can call a function which resides in another file of the same project. for eg main  can call the add function of add.cpp file if they are of the same project and if the forward declaration of add function is done in main.
+
+if we write #include "add.cpp", it copies the entire code of add.cpp to the main.cpp
+
+**************try compiling two files
+
+
+****name collisiong
+when two identifiers have the same name and the compiler can't decide which function to link with function call
+
+
+ways of resolving conflicts in c++ are:
+1)local scope
+2)namespaces
+
+
+
+C++ code FILES  are not the only place where we store code, there are some other places like header files
+header files store the declaration of some functions
+extension .h,no extension or .hpp
+
+the purpose of header files is to hold declarations for other files to use. 
+like cout is defined in another header file.
+
+header files only contains declarations they generally do not define things.
+The implementation of these function come from the c++ runtime support library whcih is linked to the program during linking
+
+
+
+
+main.cpp + #include<iostream --> compile --> main.o.   main.o+standard runtime library ---> linking ->> main.exe
+
+
+
+
+writing own header files.
+header files consist of two parts:
+1)header guard--> the use of header guard is to prevent usage of  #include of same header file twice.
+2)actual content of the header file.
+
+header file should have extension .h
+
+
+#ifndef ADD_H
+#define ADD_H
+
+declaration 
+int add(int x, int y);
+#endif
+
+
+#include" add.h" this will only put in the declaration of the function.
+I have to write the definition of the function
+
+Difference between the angle brackets and quotes in #include
+
+<> brackets are used to tell the compiler that we are including in header files which came with the compiler, so it should look for the header files in the system directories. and "" means that we are supplying this header file so it should look for the header file in the current directory, if it does not find it there then it should look into other include paths which we specified with our ide and if it does not find them there are then it will look into system directoires.
+
+
+header files can #include other header files
+
+
+why iostream does not have an .h extension
+iostream.h still exists and is different from iostream
+the original verion of cout and cin lived in iostream.h header file
+
+when c++ was standardized by the ansi comitte they decided to move all the fuctions in the runtime library into the std namespace.but if they moved to the std namespace non of the earlier function would have been usefull.So a new header file was introduced which was iostream and it had functionality with std namespace. 
+
+other libraries which were inherited from c are named as cstdlib with std namespace.
+
+
+ways of including header files from different paths are
+1)#include "headers/myHeader.h"--bad way
+2)tell your ide about the location.this is done by setting a include path
+
+
+we should not put in our function definition in header files as it creates linker error.
+
+
+
+do not #include".cpp" files
+
+
+
+Preprocessor-->
+it runs before the compiler.
+it scans from up to down directives(instructions starting with #)
+output of preprocessor is sent to compiler.
+when we #include the preprocessor copies the entire code of file to .cpp file.
+
+
+#define directive is used to create a macro
+wherever the macro is used the preprocessor changes it by its value.
+2 types
+1)object like
+2)function like macros.
+function like macros are not used because their use is dangerous.
+
+
+object like macros.
+#define identifier here all the identifers are substituted with nothing
+#define identifier substitution_text #define x 5--> these macros should not be used
+
+
+
+condtional compilation --> this defines under which condition something will or will not compile.
+#ifndef, #ifdef, #endif
+
+#ifdef is used to check if the value has been #defined.
+if so then the code between #ifdef and #endif will compile
+if not hthe code is ignored.
+
+#ifndef sees if the variable is not defined.
+
+Duplicate definition problem.
+Suppose I define a function in one header file. I include it in main
+some other header file has included the previous header file into itself
+
+now I include this header file into main
+two defintion(although same) will be there in the program whicih causes compilation error.
+
+TO prevent this we have header guards.
+
+#ifndef SOME_UNIQUE_NAME_HERE
+#define SOME_UNIQUE_NAME_HERE
+ 
+// your declarations and definitions here
+ 
+#endif
+
+
+
+header files in # files are written as #ifndef MATH_H(if header file name is math.h)
+
+
+math.h
+#ifndef MATH_H
+#define MATH_H
+ 
+int getSquareSides()
+{
+    return 4;
+}
+ 
+#endif
+
+
+
+#ifndef GEOMETRY_H
+#define GEOMETRY_H
+ 
+#include "math.h"
+ 
+#endif
+
+
+main.cpp
+
+#include "math.h"
+#include "geometry.h"
+ 
+int main()
+{
+    return 0;
+}
+
+
+
+
+
+
+

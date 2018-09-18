@@ -1,0 +1,42 @@
+be carefull with declaring some variables inside the if,else blocks
+the if statement without block runs the only line of code(comments are ignored but white spaced line is note ignored)
+
+null statement is a statement with only a semicolon
+x=0 evaluates to zero inside a if statement
+
+switch(expression) the expression has to evalaute to a int type 
+float or doubles for expression are not allowed
+
+you cannot write initiazlization statements int b = 5 in the swittch block, alothough you can write int b;
+b=5;
+
+variables defined in one case statement can be used in other
+
+goto statement
+
+label:
+code
+
+goto label
+
+goes to the label
+
+
+the label can't be ahead of the goto statement.
+
+
+loops
+the ways to get out of a infinite loop are 
+break
+return 
+exit()
+exception
+
+for(;;) is an infinite loop
+
+
+continue is used to premature incrementation 
+using continue statement in while or do while makes them infiniete
+
+last 2 are not complete
+

@@ -1,0 +1,62 @@
+modulus operator only works on integers
+++x changes the value of x immediately
+ int value = add(x, ++x);
+so here if x=5 we don't know whether add(5,6) or add(6,6) runs
+because c++ does not define how the pramters are used(from left or right)
+if the parametrs were evaluated from left to right thrn it will be add(5,6) else (6,6)
+sizeof operator tells the variable size in bytes
+
+
+comma operator
+it evaluates the rightmost operand.
+eg if 
+int x=0;
+int y=2;
+int z=(++x,++y)
+cout z will return 3 
+z=(a,b) returns b;
+z=a,b; returns return "a" as precedence of , is even less that a equal to sign
+
+**in function declaratoin and variable declaration the "," used is not the actual "," operator it is just acting as a seperator
+
+conditional operator
+(condition) ? expression : other_expression;
+if the condition is true the first expression runs else the second one runs.
+
+the terenary operator has very low precendence hence if we are doing anything else than asssigning the value of result to an variable, we must put the complete operator in ();
+
+cout << (x != 5 ? x : "x is 5");
+this does not compile as both the expressions of the terernary operator must be of same type, or the second one should be convertable into the first one
+
+two double numbers.
+double d1(10-9.99)
+double d2(100-99.99)
+are not equal but are very close to each other
+
+! operator has more precendence than ==
+
+
+*******SHORT CIRCUIT EVALUATIONS.
+if the first statement of the "&&" is false then c++ returns false irrespective of the second statement for optimization process.
+similary if first statement is true then the "||" does not evaluate the second once
+
+logical and has more precendence than OR
+the +- and /* have same precendence
+so the expression is evaluaated from the left
+signed inetegers are stored as two complement of the original number
+leftmost bit decides the sign, 1 means negative else positive
+to convert, invert all the bits and add 1 to the number
+
+that is why data types are needed because,numbers are stored as binary in memory, but if it is unsigned it has to be directly converted to the decimal number else if it is a negative number then it has to be converted into after taking its two complement.
+
+
+
+******************bitwise operators
+number<<shift by bits
+number>>shift by bits
+the number is represented in binary and it's digits are shifted by the number of bits given in right side
+
+~number inverts all the bits of the binary number
+
+apart from this we have & | and ^ operations 
+  

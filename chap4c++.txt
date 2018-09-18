@@ -1,0 +1,232 @@
+name hiding or shadowing-----the nested variable hides the outer variable
+it means I can declare a variable in a if statement which is already declared in the main function but if the nested variable is not defined then the inner variable use refers to the outer block variable.
+
+we can have empty block as well in c++
+int main()
+{
+    int y(5); // we're declaring y here because we need it in this outer block later
+ 
+    {
+        int x;
+        std::cin >> x;
+        // if we declared y here, immediately before its actual first use...
+        if (x == 4)
+            y = 4;
+    } // ... it would be destroyed here
+ 
+    std::cout << y; // and we need y to exist here
+ 
+    return 0;
+}
+
+
+global variables
+name hiding or shadowing also occurs in case of global variables
+the same name variable defined in a block hides the global variable
+by default the local variable is used in a block, to refer to the global variable :: is used before the variable name.
+
+do chapter 4.2
+
+static variable have only one copy of them .
+remember function (increment) static variables are different from the global ones in the way that they are limited to their local scope only.
+
+
+
+
+4.3B namespaces
+
+If i declare two functions with same signature in two different header files and I include those header files in a single program, then I will encounter an error. both the functions weew in global namespace.
+to sove such errors we have namespaces.
+
+A namespace defines an area of code in which all identifiers are guaranteed to be unique
+by default global variables and normal functions are having global namespace (::)
+So as to prevent the upper error we write the function in a namespace 
+
+synatax
+
+namespace namespace_name
+{
+write your code 
+}
+
+do the same in both the header files
+Now accessing the varibales using scope resolution operator(::)
+to accesss a veriable namespace_name::function or variable name
+
+
+you can have same namespace in two differrent files as well if the functions or variables inside them are not have the same name 
+
+nested namespaces-->
+namespaces can be nested 
+syntax
+namespace namespace_name1
+{
+namespace namespace_name2
+{
+code
+}
+}
+
+to refer to code write namespace_n1::namespace_n2::code
+we can declare nested namespace as:
+namespace n1::n2
+{
+code
+}
+this exactly means the same as above
+
+we may have so many layers of nested namepace
+so we can interchangably write it in another way
+for n1::n2::n3::n4::n5::code
+we can write it as boo=n1::n2::n3::n4::n5
+boo::code
+
+
+using statements
+if I write using std::cout
+then instead of writing std::cout everywhere I can write cout
+if we had declared two cout's then the compiler would have chosen the one with std::
+
+using namespace std--using directive statement
+we can write this statement in main function as well
+writing two using statement in the main function will cause error
+if we had declared two couts then it would have caused an error
+
+using namespace std should be always used in a block (like main function)
+
+directives should be avoided
+if we write two using namespace statements then the one which is written below will be executed. 
+
+using namespace n1
+code1
+using namespace n2
+code2
+n1 will expire after code1 
+and then n2 will be used
+
+this is the only way to cancel the effect of a namespace.
+
+
+
+
+implicit type conversion
+the compilter often converts the variables to the same data type so that it can do the operations between them.
+
+for arithmatic operations if two short ints are added then then both the short's are converted to integer (promoted)
+if suppose we are adding a double and a short
+then first the short will be converted to integer, then out of integer and double, double has more priority so the integer is converted to double and the final result is a double
+
+the priority table is as follows
+
+long double (highest)
+double
+float
+unsigned long long
+long long
+unsigned long
+long
+unsigned int
+int (lowest)
+
+explicit casting
+In C++, there are 5 different types of casts: C-style casts, static casts, const casts, dynamic casts, and reinterpret casts.
+reinterpret cast and const cast should be avoided
+
+cstyle casts-->
+writing (datatype)variable casts the variable to the provided datatype
+cstyle casts are not checked by the compiler at the compile time, so they are often misused, they let us get rid of the const as well.
+**should be avoided
+
+static cast
+static_cast<datatype>(variable)
+this cast is checked at compile time making it difficult for us to do things like converting const to a variable
+static cast is less powerfull than c style cast but is better
+
+
+string-->>
+string input terminates at whitespaces and anything else given as input stays in cin and waits for the next extraction.
+for ex 
+cin>>name
+cin>>age
+we write name as satinder singh
+then we get name as satinder 
+and age as singh.
+
+to read a complete line we shoudl use getline
+why I used to write getline two time
+this was because whenver we getline a number , the input is actually the number + newline, so c++ removes that new line character and puts it back in the cin stream, which is taken as the second input, to prevent this we can write getline two times or use std::cin.ignore(32767, '\n');
+
+32767 because it is largest thing that an integer of size 2 byte can store.
+
+
+enumerated types/
+these are the simplest user defined data types
+to define an enum 
+enum enum_name
+{
+a,b,v,c,
+};
+we have a comma after the last element as well
+to use 
+enum_name obj=a;
+
+each enumerator is assigned a value 1 greater than the previous item 
+count starts from 0
+
+enumerators can be be defined explicit values as well
+like
+enum enum_name
+{
+a=1,b,c,
+};
+best practice is not to assign values to enumerators
+
+enumerators can be assigned to integers as well
+but assigning int value to a enum object is not allowed
+but this is possible
+enum_name obj=static_cast<enum_name>(any int value like 3)*******
+
+enumerators of one enum cannot be assigned to another one
+enum variables have same size as of int
+
+enum objects are assigned enum's enumerators only/
+enums are used for error handling like we return -1 for an error, here -1 can be represnted by an enumerator with a good name.
+
+
+enum classes
+syntax
+enum class name
+{};
+the only differnce being than the enumerators of two different enum classes cannot be compared with each other.
+
+
+typedef 
+these are aliases they can be used in place of a data type
+for eg typedef double x;
+wherever I have to write double now I can write x;
+
+newer version of this type alias
+
+using c=double;
+
+
+structs--incomplete
+
+
+
+auto datatype
+before c++ 11 the meaning of auto keyword was to tell that the memory allocated for the variable will be deallocated automatically
+for eg auto int x, as soon as the local scope finished the variable also dies
+
+but now the meaning of the keyword has changed
+
+now auto keyword helps the language decide which data type is suitable for the variable
+for eg auto c=1.5
+c=double
+the auto keyword has to be used with initialization 
+
+int add(int x, int y);
+auto add(int x, int y) -> int;
+the above two statements are same.
+S
+

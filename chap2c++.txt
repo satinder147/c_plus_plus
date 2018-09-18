@@ -1,0 +1,174 @@
+variable memory is assigned in ram
+memory is organized sequentially into units called moemory addresses
+byte is the smallest addresable unit
+
+3 types of initializations
+copy int x=5
+direct int x(5)
+uniform int x{} x is intializaed to zero or x{5} x is intialized to 5
+direct and uniform can be only used at initialization.
+two different types of initializations can be combined together.
+
+
+variables can't be defined of void type;
+in c writing void in the parenthesis of a function defintion means that the function takes no parameters.
+we can write this in c++ as well but is not recommended.
+sizeof(void) gives 1
+
+although short int is valid ,long int is valid long long int is valid but it is prefered to write it as short,long,long long
+if a integer is of 1 byte then it can store upto 256 
+if we write signed before it then it i divided into 128 to -127 
+else 0 to 255
+default of int, float is signed 
+
+cahr can be signed or unsigned by default but genrally are signed.
+overflow occurs when we try to allocate a number which requires more number of bytes to represtn.
+
+suppose I make an unsigned int 
+this variable can have values upto 65535
+if we store 65536 in it then the value in variable becomes 0; as it wraps up
+if we write unsigned short int x=0 and x--;
+then x=65535
+
+
+
+size_t    ?????????
+
+in c the size of an integer varibale is dependent upon the architecture of the system but we can have fixed width integers which will have the same size irrespective of the architecture of the system.
+
+
+for eg int8_t avoid this and the below one as they are often treated as chars
+uint8_t
+int16_t
+uint16_t 
+till uint64_t
+
+********but these fixed width integers are a part of the cstdint
+ library
+
+
+
+fast and least representation of variables --??
+
+
+floating point numbers
+ 1.2 x 104 would be written as 1.2e4 e4 means 10 to the power 4
+in c++ 87 and 87.000 means the same.
+
+The precision of a floating point number defines how many significant digi
+
+
+
+
+
+ts it can represent without information loss.
+for floating point number default precission is 6
+if we write float 10.8 then the varible is of type double to make it of type float the we hve to write 10.8f
+this is double by defualt as the precision of double is more.
+
+
+we can change the precision of the the cout using iomanip library 
+include this librayr and write cout<<setprecision(16) to set precision of cout as 16
+
+
+    double d1(1.0);
+    std::cout << d1 << std::endl;
+	
+    double d2(0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1); // should equal 1.0
+
+
+
+here d1 not equal to d2 d1=1.0 whereas d2 =0.99999999999999999999989
+
+
+two more types of doubles are INF AND IND
+INF =infinite if you divide a number by zero you get INF 
+and if you divide 0 by 0 you  get IND or -nan
+- inf and inf are different
+
+it works only when atleast one numerator or denominator are float or double
+
+
+
+boolean variables
+they can be initialized direct,copy or uniformaly
+boolean variables are stored as integers
+when we print a bool it shows 1 or 0
+to make print true or false 
+we have to write 
+cout<<boolalpha
+cin accepts only 1or - for boolean variables not true or false
+
+
+
+characters
+char generally hold a one value integer
+characters are placed between single quotes
+
+The fixed width integer int8_t is usually treated the same as a signed char in C++, so it will generally print as a char instead of an integer
+
+static cast syntax static_cast<new_type>(expression)
+to convert between fundamental data types we use static cast. eg from char to int
+char ch(97)
+cout<<static_cast<int>(ch)
+suppose I type cast 355 into char then I will get c as cahr overflows and again start from 0.
+suppose I cin a char and enter abcd
+then on my fist print of char a will be printed bcd will be stored in buffer
+on my next 3 cin and cout b, c ,d will be printed, and if I enter cin a integer then in the integer 0 will be stored.
+
+if char is used to store small integer values then signed char should be used other wise unisgned should be used.
+
+
+Alert		\a	Makes an alert, such as a beep
+Backspace	\b	Moves the cursor back one space
+Formfeed	\f	Moves the cursor to next logical page
+Newline		\n	Moves cursor to next line
+Carriage return	\r	Moves cursor to beginning of line
+Horizontal tab	\t	Prints a horizontal tab
+Vertical tab	\v	Prints a vertical tab
+Single quote	\’	Prints a single quote
+Double quote	\”	Prints a double quote
+Backslash	\\	Prints a backslash
+Question mark	\?	Prints a question mark
+Octal number	\(number)	Translates into char represented by octal
+Hex number	\x(number)	Translates into char represented by hex number
+Here are some examples:
+
+endl  gives the output immediately, wheras \n may delay it.
+text between single quote =char
+text between double quote =string
+
+
+char16_t and char32_t were added to C++11 to provide explicit support for 16-bit and 32-bit Unicode characters (8-bit Unicode characters are already supported by the normal char type).
+
+
+Literals and const (2.8,2.9)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

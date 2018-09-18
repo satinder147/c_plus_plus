@@ -1,0 +1,120 @@
+arrays
+we can initialize an array using an array list 
+int a[5]={1,2,3,4,5};
+if the number of initializations are more than 5(int the above example) then we get an error and if they are less, then the number of elements which are left are initialized with zero
+
+to initialize all the elements to zero 
+a[5]={}
+here in place of number there cannot exist any value 'n' whose value we are going to input from the user
+
+int prime[5] { 2, 3, 5, 7, 11 };
+uniform initialization is also allowed
+
+we can also write like a[]={1,2,3,4,5}
+array size is updated according to the number of elements
+enumerators can be used for indexing of array, so that we have information about the indexs(like what they represent)
+
+
+two dimensionsal array 
+initialization a[2][2]={{1,2},{3,4}}
+the leftmost length can be omitted as well
+we can write it like a[][2]={{1,2},{3,4}}
+
+two dimensional array can be initialized to zero using a[3][5]={0}
+
+c style string is an array of characters
+
+
+
+************POINTERS********************
+
+&X GIVES the address of the variable
+* is called the derefernece operator and gives the value at a particular addresss
+
+*&x gives the value stored in x.
+pointer is a variable that holds a memory location as it's value
+pointer declaration
+int *ptr declares a pointer to a int 
+for declaring multiple pointer we can write int *ptr1,*ptr2,,
+
+int *ptr=&x
+puts adress of x in ptr
+*ptr will give its value
+mind that int pointer can point to only a int value, not to a double,char or any other
+
+int *ptr=5; is not a valid statement;
+
+double *dPtr = 0x0012FF7C this is also not valid since the address is considered to be an int only
+
+the &x operation does not return the address of x instead it returns a pointer to x;
+
+pointers are required to have a type because otherwise we will have problem at the time of dereferncing.
+
+
+
+int *p=&x;
+*p=8
+changes the value of x as well
+
+the sizeof pointer is constant for all datatype and is dependent upon the system architecture. so for a 32 bit machine pointer size is 4 bytes 
+
+null pointers
+
+a pointer beside storing the address,can also hold a null value.
+int *p(0), *p{0}, are null pointers
+
+dereferencing a null pointer or a garbage pointer leads to undefined bahavior
+
+c has a macro called null so we have #define Null 0;
+
+a null pointer in c++ is represented using nullptr
+
+for a function to hold a null pointer variable it has to be of type 
+nullptr_t
+
+pointer and arrays
+int a[5]
+cout a and "&a[0] " are same 
+
+*a will give the value of a[0]
+
+a and pointer p are not same as 
+sizeof(a) gives the size of the array whereas the sizeof(p) gives the size of pointer which ais architecture dependent/
+
+taking & of pointer returns the address of the pointer but for an array it returns an pointer to the complete array. This pointer points to the first element of the array
+
+
+passsing of the arrays
+arrays are not copied when passed to functions.
+when an arrays is passed the array decays to a pointer and the pointer is passed.
+
+while passing arrays 
+
+1
+2
+void printSize(int array[]);
+void printSize(int *array);
+
+both of these operation are identical because the array is decayed into a pointer which is passed.
+
+
+***********Arrays in structs and classes don’t decay
+
+Finally, it is worth noting that arrays that are part of structs or classes do not decay when the whole struct or class is passed to a function. This yields a useful way to prevent decay if desired, and will be valuable later when we write classes that utilize arrays.
+
+pointer arithmatic
+if ptr points to arr[0]
+*(ptr+1) will point to arr[1]
+ptr+1 is the address of arr[1]
+
+
+6.8 is left 
+
+we have 3 types of allocations available
+static --> memory is allocated only once
+automatic --> memory is allocated and deallocated automatically .i.e in case of local variables.
+dynamic memory allocation
+
+the size of variable has to be defined before fed to the compiler, in both of the above cases.
+
+
