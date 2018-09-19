@@ -1,0 +1,236 @@
+--------------------------------python-----------------------------
+######################################################################
+----------------------------------------------------------------------
+######################################################################
+
+jupyter notebook
+jupyter was named after julia R and python 
+consists of two things kernal and dashboard
+kernal runs and interprets user code.every kernal has corresponding programming language
+Dashboard shows the notebook documents we have created and can be used to run and stop kernals
+
+shift+enter runs a cell
+alt+enter runs and makes a new cell
+
+to delete a cell press esc and then dd two times.
+a backslash(\) removes the effect of ' ot " in string
+
++ concateneates two strings
+string.upper(), string.lower(), string.count('a') counts a in string
+
+slicing in python
+
+slicing is taking a part of a list
+we have to specify the begining and the ending of the list
+1-8 means 1-7
+2:10 means from index 2 to 9
+if we do not write the start index then the start index in 0
+:10
+
+if we leave the stop index then stop is last index
+
+if we write only : --> this means the complete list
+
+
+mutability --> if an object can be changed without creating new object then it is called mutable
+
+lists are mutable whereas strings are not
+
+
+"-".join(list) then this will output all the list elements with "-" in between
+
+
+'this person is {}, {} and {}'.format('tall','slim','shy')
+it will place tall slim and shy in place of the respectiv curly brackets
+
+
+Tuples
+immutable ordered sequence of elements
+we cannot add or remove elements from a tuple 
+tuples can be used like list but cannot be changes
+for eg x=('1','2','3')
+x[0]=1
+it could have been written like this 
+one,two,three=x it is called tuple unpacking
+
+
+
+
+
+set(list) leaves only unique elements
+
+dictionaries
+keys can be string number and unique
+dictionaries are denoted by {}
+eg  inventory={'banana':1.29,'apples':2.57}
+values in dictionary can be changed like list(mutable)
+
+compund data structures 
+inventory={'banana':{'price':21,'origin':'india'}}
+
+to loop through key value pairs of a dictionary
+
+for (key,value) in dict.items():
+	print('the key is {} and the value is {}'.format(key,value))
+
+
+doc strings are a type pf comment which is used to describe all about a function and how it has to be used
+'''write about function '''
+x**2 means x square in python
+
+lambda,map,reduce---learn about them
+
+
+__________________________________numpy-------------------------------
+#####################################################################
+----------------------------------------------------------------------
+#####################################################################
+
+difference between list and array is:
+array contain homogenous data
+array represnetation does not contain ',' in between elements
+
+import numpy as np
+array=np.arange(1,4)**2
+makes an array of squares
+
+np.power(np.array([1,2,3]),4)
+np.negative(np.array([1,2,3])) return negative
+np.exp(array) takes exponent
+np.log(array) takes natural log
+np.sin(array)
+np.cos(),np.tan()
+
+np.random.unimform(-1.5,1.5,10) returns uniform values with mean=0 ,stddev =1 between -1.5,1.5 and number of such values are 10
+
+np.random.randn(number of values or shape or size) returns random values.
+np.random.randint(min_value,max_value,size=number of elements)
+
+multi dimensional arrays
+1d arrays shape (n,)
+2d array shape(n,m)
+
+
+print(np.linspace(1,10,50))
+return 50 number from 1 to 10 that are evenly spaced
+for linspace 10 will be included, so as to not include 10 we have to pass another parameter as false 
+
+print(np.arange(1,10)) will give all the numbers between 1 and 10
+array.dtype gives the data type of the array
+while making the array we can define its data type as well 
+like x=np.array([1,2,3],dtype=np.int16)
+
+
+
+slicing arrays
+there are three integers [start:stop:step]
+
+reshaping arrays
+array.reshape(n,m) reshapes the array to n,m 
+the new shape must have the same number of elements
+if the the second parameter is give as -1 then it will automatically figure out the second paramters given the first one
+for eg suppose I have 9 elements and I reshape the array to (3,-1)
+then the array will have shape 3,3
+
+multidimensional slicing
+x[x>5] gives all the elements with x>5
+x.max() and x.min 
+
+
+reshaping arrays
+array.ravel() reshapes the array into 1 dimensional array
+array.flatten() also flattens the array
+
+the difference is that 
+if we use ravel any change made to the ravelled array will change the original array as well 
+whereas the flatten function returns a copy of flattened array
+array.tranpose() gives an tranpose of the array
+array.T also tranpose the array
+
+
+resizing if we resize then if my current array was of small shape and I was trying to reshape it into a bigger array then the data is repeated to fill in the space
+
+np.zeros((m,n),dtype=int) default =float64
+np.ones(()) give an array with ones in it
+
+np.eye(3) gives an identity matrix
+
+np.random.rand(4,4) return an array of 4,4 with elements between 0,1
+
+matrix multiplication
+np.dot(arr1,arr2)
+
+or for np.matrix 
+matriix1 @ matrix2 gives the dot product
+
+
+array stacking 
+
+horizontal stacking 
+
+we can stack two arrays together
+for eg array1 of shape 2,2
+array2 of shape 2,2
+then z= np.hstack((arr1,arr2))
+z is of shape 2,2,2
+but for this the shape of the arrays has to be same in 0 axis
+it concatenates the arrays in the second axis
+so if we have 2 arrays od 2,2 and stack them together then we will get 2,4 arrays
+
+vertical stacking
+np.vstack()
+concatenates along the first axis, so the second axis has to be same
+this can also be performed using w=np.concatenate((x,y),axis=1)
+
+
+
+
+####################################################################
+finding lanes
+bluring is done using kernal convolution
+
+we have a image and we have a kernal that is very small than the image
+we do the convolution operation and multiply the number under the kernal with the repective values and take a mean(sum of weights of the kernal values) of that to values to get a value which we replace with the center value
+
+1) if all the values of the kernal are 1 then it is called mean blur
+because it is a weighted average
+we should ignore the values for the corners
+2)gaussian blur
+in gaussian blur we keep the weights the points which are further from the center less so we do not blow out the edges much
+if we apply mean filter 4 times we get a gaussian filter
+
+finding edges
+cv2.canny(img,threshold1,threshold2)
+treshold1:threshold2 should be 1:2 or 1:3
+
+
+hough line transform
+a line can be represented using y=mx+b in normal coordinates
+if we plot the graph as a function of m and b
+then that graph is known as hough space
+and in hough space a line can be represented by a point.
+
+also if I have a single point in normal coordninate system then I can have infinite number of lines passing through that point. All these lines can be represented by a line in hough space.
+Suppose I am told that there a group of points that form a line and I have to find that line. Then through 1 point there are infinite number of lines and through other also there are infinite number of points. Now both of these points in hough space can be represented by using a line. The point at which these two equations interesect is the equation of the line that pass through both the points. 
+
+As sometimes it is not possible that a line exactly passes through the points. SO we split the hough space into a coarse grid and each grid is assigned a m,b. now we cast votes for each intersection of any number of lines, the grid with the maximum number of votes is chosen
+but this method does not work out for vertical lines because there we have m= infinity
+so we represent our line in parametric coordinates.
+ro=xcos(theta)+ysin(theta)
+ro is perpendicular distane from the origin to the line
+and theta is the clockwise angle that the perpendicular line make with the x axis
+now for a given point, it is represented as a line in hoigh space(sinosoidal curve)
+above concept can be used in parameteric equation as well
+lines=cv2.HoughLinesP(img,ro_size,theta_size,threshold,placeholder array,minimum line length, maxgap in between line)--> minimum number ofvotes neaded for choseing ro and theta
+
+cv2.addWeighted(img1,0.8,img2,1,gamma)
+
+
+
+We will draw lines with average slope
+np.polyfit((first_coordinates),(secondcoordinates),1)
+
+returns the lines slope and intercept 
+then we can seperate the line using their slope
+and then we can take their averge.
+np.average(kiska,axis)

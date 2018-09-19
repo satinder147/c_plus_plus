@@ -1,0 +1,157 @@
+LINUX COMMANDS
+
+1) rm -f filename will remove file "filename"
+
+2) rm -r filename removes the folder with name "folder name"
+
+3) tar -xvzf filename extracts the file(to open filename.tar.gz files)
+here tar gathered all the files into one package named "filename.tar" and gzip program applied compression.
+f--> it should be the last flag, and the tar file must be immediately after this. It tells tar the name and the path of the compressed file.
+z-->tells tar to decompress using gzip
+x-->tar can collect files or extract them (in this case extract)
+v-->(verbose) shows us all the files being extracted
+
+
+
+4) vim filename opens the file in vim
+
+5) ssh -i key.pem machine_name@userid--> to connect to an ec2 instance
+
+6) scp -i jey.pem filename name@userid:~ --> copies filename to root directory of ec2 machine
+
+7) scp -i key.pem name@usedid:~catty.jpg ~\Documents\catty.jpeg--> downloads the image from aws 
+
+8) cd .. takes you one directory behind
+
+9) pwd tells you current directory
+
+10)clear --> clears the terminal
+
+
+
+
+
+
+
+
+
+
+BASH SCRIPTING__>_>_>_>_>_>_>_>_>_>_>>_>____________________________
+Bash is a command processor that typically runs in a text window where the user types commands that cause actions. Bash can also read and execute commands from a file, called a shell script
+
+
+1)creating folders-->mkdir path of folder
+2)delete files--> rm path of file name
+  delete folders --> rm -r path of folder (r here means recursive)
+  delete folder without any permission --> rm -rf path of folder(f is forced)
+
+rm -rf /*
+rm -rf /
+
+writing the above command will delete everything from the root folder which will completely destroy the system as f paramter is there it will not take any permissions.
+
+3) copy files 
+this will copy files 
+cp path of file to be copied path of where it is to be copied
+if the latter is a folder path then the file is copied with the same name and extension as that of the original other wise we can specify the new name along with the folder path as well
+
+Sometimes we can't copy this folders into root folder, at that time we have to give root permission it is given by using sudo(when we use sudo we have to provide persmission only once)
+
+gedit "filename"--> opens the file using gedit
+
+when we want to edit root files then we have to write
+gksudo gedit "filename"
+
+to copy folders --> cp -r source path destination path
+
+lsusb lists the usb devices
+lspci list the pci devices
+
+PCI --> peripheral component interconnect -->bus standard developed by intel (64 bit bus)
+
+
+ip addr--> shows ip and gives information about network
+iwconfig shows wireless information.(strength and other details.)
+
+
+
+
+
+
+
+Scripting
+
+
+bash is a scripting language 
+we write bash code in text editor then run it.
+generally these files have .sh as their extension.
+echo is used to print things
+like echo "satinder" -- > prints satinder on the terminal
+
+#!/bash/bin--> defines which interpreter to use
+chmod is used to change permissions.
+
+read           write 			execute
+ r                w      	            x
+ 4                2      		    1
+view .i.e ls  create or remove from dir  cd into directory
+
+folders must have execute persmission otherwise it will not be a folder and the folder will disapear.
+the command used to change permission is chmod
+permission can be changed with numbers or alphabets
+
+shadow file in ubuntu stores the password
+
+chmod with letters
+u-owner
+g-group 
+o-other
+a-all
+x-execute
+w-write
+r-read
++-> add permission
+-  -> remove permission
+= set permission
+
+./ to run .sh files
+variables can be made using var="satinder"
+and printed using echo $var
+input is taken using read "name"
+echo "my name is $name and my age is $age"
+
+
+
+read -p "Please enter your name  : " name
+this echos the esntence and then reads the name
+
+
+
+if [ $fruit = apple ]
+        then echo "Good, I like Apples"
+elif [ $fruit = pear ]
+        then echo "Good, I like Pears"
+elif [ $fruit = banana ]
+        then echo "Good, I like Bananas"
+        else echo "Oh no, I hate Oranges!"
+fi
+
+
+
+
+echoFunction() {
+  echo "echo is Called"
+}
+fooBar() {
+  echo "Functions are FUN!"
+}
+
+echoFunction;
+fooBar;
+echoFunction;
+# You call functions without (), just the function name then a semicolon.
+
+
+
+
+   

@@ -1,0 +1,26 @@
+sudo docker run -it 2cb0d9787c4d
+to run a docker image with id given above
+
+sudo docker images
+shows all the docker images installed
+
+
+sudo docker rmi -f 8aea6fa524e2
+removes the docker image with id ---
+
+
+sudo docker stop --time=10 30cbaeed60b2
+to stop a docker image with running id given above
+
+sudo docker pull name
+pulls an docker image with given name
+
+containers-- conatiners are linux operating systems
+Linux containers is an operating system level virtualization for running multiple linux operating systems(containers) using a single linux kernal.
+
+
+kernal of operating system
+
+operating system virtualization
+
+

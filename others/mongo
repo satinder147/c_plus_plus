@@ -1,0 +1,118 @@
+basic queries
+
+collections are like tables
+enteries into the table are known as documents
+the cli of mongodb is written in javascript
+
+db-> shows your current database
+use NAME -- we start using name databse and if that db is not present it is first created and and then used
+cls clears the screen
+db.createCollection("NAME of COLLECTION")
+shows dbs -- shows you all the database list
+show collections-> shows the collections
+
+
+db.collection_name.insert(json document format)
+for  eg
+db.collection_name.insert({name:"satinder",age:31})
+
+
+db.collection_name.find() shows all your data enteries
+
+db.collection_name.find().pretty() shows them properly organized
+
+we can even pass a list of json objects while inserting data
+this adds the columns in the same manner as above but in one go
+
+db.collection_name.update({unique id},{things with which we want to change})
+
+for eg if name field is unique
+db.collection_name.update({name:"satinder"},{name:"karan"})
+this thing changes the entire datafield of satinder with only karan,rest of the field of satinder are not preserved
+so the 2nd field has to be completely discriptive
+
+
+if the name field is not unique only the first record will be updated
+
+
+while updating if we want to change only a particular filed without writing others
+then we have to use set
+
+db.col.update({name:"unique id",{$set:{field_to_change:update value}})
+*******in the same way if the placeholder for unique field is not unique then only the first field in updated
+
+if the field we are setting is already not present then it is added
+
+
+to increment a integer value
+db.col.update({name:"unique"},{$inc:{age:5}})--> increments the age field of name by 5
+
+to remove a field
+db.col.update({name:"satinder"},{$unset:{age:1}})
+
+if during update the first field is not present
+then nothing happens
+but we can say like "if it is not present then add it" 
+it is done by setting upsert:true as third parameter in the update command
+
+we can rename the field using the rename command
+db.col.update({name:"raghab"},{$rename:{"age":"age(in_years)"}})
+
+
+to remove a document
+db.col.remove({name:"satinder"})--> this removes all the documents with name satinder
+to remove only one we have to pass on another parameter 
+db.col.remove({name:"satinder"},)******************
+
+
+if we try to pass on two fields in a document with same name then only the later one is used
+
+
+we can add field under field as well
+db.col.insert({name:"satinder",age:23,roll:32,address:{location:"ait",street:"alandi"}})
+
+to find only a specific result
+db.col.find({name:"satinder"})-->it will find all the documents with name as satinder
+
+to find multiple documents
+db.col.find({$or:[{name:"karan"},{name:"panda"}]})
+
+
+
+to find documents with certain value lower or equal to the provided value
+db.col.find({age:{$lt:10}})--> this shows only those documents which have age less than 10
+ we can use gt for greater than as well
+
+for nested information like the address we have to provide the field also in quotes 
+for eg db.col.find({"address.location":"ait"})
+
+to insert array just write db.col.insert({mdf:[values,values]})
+if the data type of list is string then it has to be in quotes, if integers then it can be without quotes
+
+db.col.find({memberships:324})
+this give all the documents with one of the member of array as 324
+
+
+to sort the data while showing
+db.col.find().sort({name:1})
+this sort according to the names in ascending order
+if the parameter is -1 then data is sorted in descending data
+in ascending order, the documents which don't have the field according to which the data is sorted are placed ahead of all
+and in descending order, the ''                                                                    are place below all
+
+I think  those enteries which don't have the field according to which the data is sorted are thought to be as zeros
+
+
+we have count operation--> this is used to count the number of documents
+db.col.find().count()
+
+db.col.find().sort({name:1}).limit(5)
+gives the top 5 values only
+
+for each loop 
+db.col.find().forEach(function(doc){print("customer "+doc.name)})
+
+
+
+
+

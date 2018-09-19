@@ -1,0 +1,34 @@
+pandas
+
+import pandas as pd
+
+creating data frame
+x_df=pd.DataFrame(data=x_data,columns=['X'])--columns = name of column
+y_df
+
+concatanating two data frames
+pd.concat([x_df,y_df],axis=)
+
+df.head() shows top five elements
+
+df.sample(n=250) gives randomly chosen 250 values
+
+df.plot(kind="scatter",x="name of x column in df",y="same as x")
+
+
+
+
+
+
+tf
+
+tf.Variable(inital value)
+tf.placeholder(dtype,shape)
+error=tf.reduce_sum(tf.square(y_ph-y_predited))
+
+optimizer=opt=tf.train.GradientDescentOptimizer(learning_rate=0.001)
+init=tf.global_variables_initializer()
+train=opt.minimize(error)
+for training we write 
+with tf.Session() as sees:
+	sess.run(train,feed_dict)

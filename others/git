@@ -1,0 +1,148 @@
+git is used for version control. it keeps track of the entire history of the things we are trying to do on our computer
+
+
+git is the actual version control software
+github is a webservice to do git things on a web server
+
+
+by clicking on history I can have a look at the complete history of the commits of a particular file.
+
+we have a commit hash for each of our commit
+
+branching****
+we can make different branches which have different version of the same file 
+but whenever we want we can merge the branch into the master branch
+
+pull request is the request to allow thw newer branch to merge his changes into the master branch or some other branch
+
+fork 
+it means to have a instance of someone elses repo in your account
+it is an exact replica
+we can do anything with the repo and it does not effect the main branch
+
+
+pull request is ask the main account holder to accept my changes to the repo .i.e pull my changes
+
+the master branch of a forked repo refers to the master branch of the copy not the branch from where we have forked our repo
+
+while making an commit if we add #issure number we can then refer to that issue
+
+wrting this fixes #10 also closes the issue
+fixes word is the key to closing the isssues
+
+
+git clone http address clones the repo
+git status --> this command tells which all files are changed or modified. THis command can be fired after getting into to repo directory
+before we could commit changes through git
+we have to login first
+
+commands for that are 
+git config --global user.email email_adress
+git config --global user.name "user name"
+
+git config --list show us the configuration settings
+
+git commit -a(a means add all files  and commit them) -m "commit message"
+git commit -a -m "I changed this" 
+
+git log -2 shows you the last two commits
+
+push
+push your local machine data to the github server
+
+pull
+some else made changes to our online repo and now I want those changes. then I will do git pull
+
+remote
+duplicate instance of repo that lives on some remote server
+
+git remote
+shows me all the remotes
+git remote gives me the name of the remote
+
+
+
+
+git remote -v (v means the verbose)
+this shows their real names
+
+
+git push origin branch_name is used to push the commimt
+
+to make a new repo--> go to the directory and write git init
+git status on this repo says that there are untracked files.
+till now we changed the files downloaded from github
+the first thing we have to do is to make this directory a repo
+
+new files has to be added first
+
+so we have take those files to the staging area from where they are commited
+so now we have to perform two steps, first add and then commit
+
+to add files we write git add filename
+this adds the files to the staging area.
+
+git add . adds all the files to the staging area.
+
+if we clone a repo from github them the remote comes along with it and if we make a repo on local machine then I have to make a remote.
+
+git remote add origin https://github.com/satinder147/trial.git
+is used to add a remote named origin
+we can name the remote anything else as well
+
+
+
+git is a powerfull version controll system.
+
+3 benefits from git
+colloboration
+history
+branching
+
+repository is the project
+repo is a place where we store all our code,data,history,all the changs which git tracks for the project
+
+commit
+it is like way by which git saves it's files
+
+
+staging
+in git before we are allowed to commit our changes, we have to stage the changes
+staging area is like choosing files that I want to commit, review them and then send them for committing
+
+git add -A --> adds all the changes to the staging area
+
+if we accendently delete the code, we could revert back to our last commit
+by writing git checkout -- .
+
+git stores all of its history data in a hidden folder stored in the root of our repo
+
+push--> commiting our changes to github
+pull--> if some one else made changes to the repo, and I want to update my copy to the changed one,  I have to use the pull operation.
+
+
+git init creates a repo
+but make sure we are in that directory
+
+
+git add name_of_file adds the file to the staging area
+
+
+git commit -m "message" commits the changes
+
+
+git checkout -- . restores our files back to the last commit
+
+git clone add
+clones an repo from online github 
+
+
+git remote set-url origin address
+setsthe remote origin as the address
+
+staging area is also known as index
+
+commit objects are immutable
+
+
+A branch is a named pointer to a commit. Selecting a branch in Git terminology is called to checkout a branch. If you are working in a certain branch, the creation of a new commit advances this pointer to the newly created commit.
