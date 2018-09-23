@@ -1,0 +1,13 @@
+LINUX COMMANDS
+
+1) rm -f filename will remove file "filename"
+2) rm -r filename removes the folder with name "filename"
+3) tar -xvzf filename extracts the file
+4) vim filename opens the file in vim
+5) ssh -i key.pem machine_name@userid--> to connect to an ec2 instance
+6) scp -i jey.pem filename name@userid:~ --> copies filename to root directory of ec2 machine
+7) scp -i key.pem name@usedid:~catty.jpg ~\Documents\catty.jpeg--> downloads the image from aws 
+8) cd .. takes you one directory behind
+9) pwd tells you current directory
+
+
