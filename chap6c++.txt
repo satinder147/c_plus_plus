@@ -117,4 +117,158 @@ dynamic memory allocation
 
 the size of variable has to be defined before fed to the compiler, in both of the above cases.
 
+dynamic memory allocation
+int *ptr=new int
+allocates a memory of size int and gives it to ptr
+int *ptr=new int(4) or int{4} initializes the variables
+
+delete ptr deletes the memory allocated to the variable
+
+a pointer pointing to a deallocated memory is called the dangling pointer
+dereferencing it leads to unknown bahavior
+in codeblocks ide after deleting the pointer to the value , if I was again printing the contents of the dereferenced pointer I was getting 0;
+
+if new fails to allocate memory a badd_alloc exception is generated
+
+int *value = new (std::nothrow) int; returns a null pointer instead of a exception
+
+null pointer is a pointer which points to address 0
+
+allocated dynamic memory has no scope, although the pointers pointing to it have a local scope.
+
+memory leak***
+when the program allocates dynamic memory and the variable which was storing the addresss of that varibale gets lost or deleted then
+that peice of memory cannot be used by anything. These memory can be reused by the system only after the program exits.
+then the system runs it routines to capture all the leaked memory
+
+
+dynamic allocation of array
+
+arrays are allocated using
+int *array=new int[4]
+
+size of dynamically allocated array can be more than the arrays to whom the memory is allocated at compile time
+to delete the memory allocated we can use
+delete[] array;
+but how does delete know how much memory to delete
+at the time of allocation new keeps a record of the allocated memory, so it passes it to delete but this size is not user accessible
+
+	
+int *array = new int[length](); this after dynamically allocating memory initializes all the elements to 0
+
+the allocated array is accessible as
+array[0]=5;
+
+int *array = new int[5] { 9, 7, 5, 3, 1 };  to initializ an array
+rules of array follow here as well
+
+for keeping the syntax same fixed array can also be allocated in the same way -->  int fixedArray[5] { 9, 7, 5, 3, 1 };
+int c++11
+we cannot initialize a dynamically allocated character array
+like char *array = new char[14] { "Hello, world!" };-->not possible
+but we can initialize dynamically allocated string
+
+
+dynamic array should be declared with an explicit size
+int *dynamicArray2 = new int[3] {1, 2, 3}; 
+int *dynamicArray2 = new int[] {1, 2, 3};--> not correct
+
+
+const int value = 5; // value is const
+int *ptr = &value; // compile error: cannot convert const int* to int*
+*ptr = 6; 
+thhis is because if could assign a const to a pointer then technically we shoudl be able to change the contents og the pointer by dereferencing it but a constant value can't cahnge
+
+but a const pointer can hold the value of a variable
+like val=5
+const int *p=&val
+
+this is possible
+int value = 5;
+const int *ptr = &value; // ptr points to a "const int"
+value = 6;  
+
+but this is not
+int value = 5;
+const int *ptr = &value; // ptr points to a "const int"
+*ptr=6;
+
+so if we write const int *p=&value
+then p can be modified but *p not. ************ const int *ptr means *ptr is constant
+int *const p means p is constant
+so *p can be modified but not p
+
+const int *const p =&value
+neither can p be modified nor *p
+
+
+
+Reference variables
+if value=7
+and int &p=value;
+then p act as alias to the variable value
+any change to variable p will affect on value;
+if &value or &p is printed we get the same value;
+so p is called an refernce to varible value
+
+refernces are required to be initialized at the time of declaration
+there does not exist anything like a null refernce
+
+References to non-const values can only be initialized with non-const l-values. They can not be initialized with const l-values or r-values.
+just keep in mind one thing that only constant refernce can be reference to a constant variable
+other 2 cases are not possible
+
+references once initialized cannot be re assigned
+
+these references are genrally useed while passing parameters to a function 
+
+viod add(int &p)
+{}
+p acts as an alias to the sent argument
+
+
+if I have to access variables which is in one class in a second class
+so we write something like other.something.value1;
+then we can write int &ref = other.something.value1; 
+and conveniently use ref instead of the big term.
+
+have a look at 6-11a again
+
+
+for each loop in c++
+
+void pointers
+
+it is a special type of pointer and can be pointed at object of any datatype
+void *ptr = object of class , int x,int y
+
+but void pointer can't be dereferenced directly, to derefernce them they have to be first type casted
+
+for example
+
+int value = 5;
+void *voidPtr = &value;
+ 
+//cout << *voidPtr << endl; // illegal: cannot dereference a void pointer
+ 
+int *intPtr = static_cast<int*>(voidPtr); // however, if we cast our void pointer to an int pointer...
+ 
+cout << *intPtr << endl; // then we can dereference it like normal
+
+there is nothing as void reference
+
+
+
+#include<array>
+std::array<double, 5> myArray { 9.0, 7.2, 5.4, 3.6, 1.8 };
+it declares an array of size 5, all normal rules are followed except 1 .i.e while initialization of array we have to always give the size, we cannot ommit it 
+
+Because std::array doesn’t decay to a pointer when passed to a function, the size() function will work even if you call it from within a function:
+
+Rule: Always pass std::array by reference or const reference
+because we don't want to make its copy
+
+
+
+
 
