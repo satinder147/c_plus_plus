@@ -269,6 +269,6 @@ Rule: Always pass std::array by reference or const reference
 because we don't want to make its copy
 
 
-
+vector is remaining
 
 
