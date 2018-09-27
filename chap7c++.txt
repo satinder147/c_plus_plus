@@ -1,0 +1,76 @@
+arguments== actual paramters==funct(a,b)
+parameter=formal parameter== void func(int a,int b) --> here a &b 
+
+pass by values is func(a,b) --> void func(int a, int b)--> here the data is copied into new variables--> this should be not used when passing classes or structs because their size is comparitively large and making their copies decreases the performance
+
+passing arguments by reference
+
+pass by refernce
+void addOne(int &y) // y is a reference variable
+{
+    y = y + 1;
+}
+
+addone(x)
+y is an alias to x; any change made to y will be reflected in x as both of them are pointing to the same address
+no need to return the results
+
+using this indirectly helps you returns  multiple parameters
+
+the downside of using references is that your data from the mani function changes. This can be solved by sending the refernce as constant
+
+so we write it something like this
+  
+void foo(const int &x) // x is a const reference
+{
+    x = 6;  // compile error: a const reference cannot have its value changed!
+}
+
+passing arguments by address*****
+
+
+in this method we pass the address of a variable and store this in a pointer. Then that variable can be used by dreferncing the pointer
+eg
+
+void add(int *a,int *b)
+{
+
+return *a+*b;
+}
+
+add(&p,&q);
+
+
+*****************
+
+dereferencing a null pointer crashes the system
+
+
+if we send a ptr to a function which receives this in a pointer then dereferncing that pointer and changing its value will affect *ptr but changing the address to which the paramter points will have no affect on ptr
+
+now to change even this 
+we write 
+void p(int *&ptr)
+
+p(ptr);
+
+
+*************************
+
+there are three types of returns 
+1)return by value---> evaluates the expression makes a copy of the result and returns it
+2)return by address
+
+int* doubleValue(int x)
+{
+    int value = x * 2;
+    return &value; // return value by address here
+} // 
+
+the problem with return with address is that if the variable we are returning has local scope then the variable will be destroyed and the address returned will be pointing to a invalid segment of memory or called a dangling pointer
+
+Return by address is often used to return dynamically allocated memory to the caller:
+
+3)return by reference
+
+

@@ -1,0 +1,32 @@
+mongodb is an open source database written in c++.
+
+MongoDB works on concept of collection and document.
+
+database is a physical container of collections
+
+A collection is a comparable to a sql table. It is a group of mongodb documents. A collection resides in one database only.
+
+It is analogous to a row of data.A document is a set of key pair values. A collection contains a lot of documents.
+Documents have dynamic schema which means that the documents in a collection are not needed to contain similar fields
+primary key is provided my mongodb database only.
+
+_id is a hexadecimal number which assures the uniqueness of all the documents keys.
+We can provide the _id.If we do not provide then mongodb will provide by it's own
+
+first 4 bytes for the current timestamp, next 3 bytes for machine id, next 2 bytes for process id of MongoDB server and remaining 3 bytes are simple incremental VALUE.
+
+db.stats()-->it gives the statistics of the current database-->like it's name, type and number of collection and much more
+
+show dbs--> show's all the dbs
+db --> shows the current db
+use db_name--> create a new db with name db_name if the db does not exist else returns the previous one
+db.dropDatabase--> drops the current database
+default database for mongodb is test
+
+when a database is dropped, if at that time I write db then it shows the db which is dropped
+recently
+
+db.createCollection("collection_name",options) a collection(table) is created 
+db.collection_name.insert({name:"satinder"})
+show collections--> shows the collections
+db.collection_name.drop()-->drops the collection
