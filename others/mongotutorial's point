@@ -29,4 +29,157 @@ recently
 db.createCollection("collection_name",options) a collection(table) is created 
 db.collection_name.insert({name:"satinder"})
 show collections--> shows the collections
-db.collection_name.drop()-->drops the collection
+db.collection_name.drop()-->drops the collection-->returns true or false 
+
+db.collection_name.insert(documents)
+document can have parameter  _id: ObjectId(7df78ad8902c)--> if not given mongodb will assign the id else the one given is used.
+db.collection_name.save(documents) works similar to the insert if object id is not given
+
+db.collection_name.find() shows the records
+db.collection_name.find().pretty() shows them in well formatted way
+
+to find all record which contains a particular field -->db.collection_name.find({name:"satinder"})--> returns the document where the name==satinder
+greater than
+db.col.find({name:{$gt:"karan"}}) we can even have a number instead of karan
+it gives all the documents with name greater than karan alpabetically
+
+db.col.find({name:{lt:"karan"}})-->same as above
+for lower than equal use lte
+for greater than equal use gte
+for not equal use ne
+
+and operation 
+db.col.find({$and:[{name:satinder},{age:21}]})
+or operation
+db.col.find({$or[{name:satinder},{name:karan}]})
+
+
+using "and" and "or" together
+db.mycol.find({"likes": {$gt:10}, $or: [{"by": "tutorials point"},
+   {"title": "MongoDB Overview"}]}).pretty()
+
+
+Mongodb update
+db.COLLECTION_NAME.update(SELECTION_CRITERIA, UPDATED_DATA)
+
+for eg
+db.col.update({"name":"satinder"},{$set:{age:30}})
+this updates only age
+
+but if we write 
+db.col.update({"name":"satinder"},{"age":30})
+then only age is left
+
+by default mongodb updates only the first document 
+to update multiple set multiple:true
+
+db.pa.update({name:satinder},{$set:{age:3}},{multi:true})
+
+
+save method
+db.COLLECTION_NAME.save({_id:ObjectId(),NEW_DATA})
+this changes this with the new data
+
+
+deletion of a document
+db.COLLECTION_NAME.remove(DELLETION_CRITTERIA)
+it removes all the enteries having the criteria
+if we set another parameter after critera(',' seperated) then mongo deletes only the first document
+
+if we do not specify any criteria all the documents are deleted but this does not work in my laptop
+
+
+the second parameter of mongodb database decides which all keys will be visible to in find
+0 mean hidden
+1 mean appear
+
+db.pa.find({},{_id:0,name:1})
+this will only show name
+other enteries which are not included are skipped
+and if some entry has 1 but is not there in some document, then that document is also skipped. but the presence of that document is shown using empty braces.
+
+limit
+this accepts the number of documents you want to show
+this can be written like db.pa.find().limit(4)
+this will show only first 4 documents
+but if left empty will show all of them 
+
+skip()
+used in similar way
+default value in 0--> skip 0 values
+if we pass x for example. THen the first x values are skipped
+
+sorting 
+db.pa.find().sort({"name":1})
+1 means sorting in ascendin gorder
+-1 for descending order
+it sorts the collection according to name in ascending order
+the documents which do not have name collumn are there in the first
+default sortin in ascending order-> but I do not know how to write it
+
+indexing -->
+data which is found using the find command in done iteratively, which means that each and every document is searched for the required field 
+and then that document is printed
+
+But indexing helps us find those fields by keeping and index to them 
+
+by writing db.pa.find({name:"satinder"}).explain("executionStats")
+we can have a look at the number of documents which were searched for finding that index
+
+but if I implement db.pa.ensureIndex({"name":1) then it creates and index with names in ascending order( -1 for descending order) which is used for faster navigation
+by writing db.pa.getIndexes() we can have look at the complete index sheet
+
+
+the ensure index function has a lot of parameters which can change thing significantly
+like we have v--> version, nname of index, etc
+
+
+
+
+
+aggregating--> this is like group by function
+db.pa.aggregate([{$group:{_id:"name",count:{$sum:1}}}])
+sum,1 means that on each occurence of a group count it as 1
+if sum,2 then if the count of name satinder is 1 then it will show me 2
+
+db.pa.aggregate([{$group:{_id:"name",likes:{$sum:"$likes"}}}])
+this sums up the likes
+$likes use the variable value
+_id is necessary
+
+we have avg-->average
+min
+
+max
+push-->this stores the likes in an array
+db.pa.aggregate([{$group:{_id:"$name",count:{$push:"$age"}}}])
+addToSet--> the difference btw push and addToSet is that this stores the age in an array which does not include duplicates
+first-->only the first age is used
+db.pa.aggregate([{$group:{_id:"$name",count:{$first:"$age"}}}])
+last 
+only last age is used(last entry containing age)
+
+
+Mongodb utilizes a feature known as replication 
+replication of data is done for a variety of purposes
+to keep data safe
+disaster recovery
+no downtime for maintanince
+read scaling
+
+
+How replication works in mongodb
+For replication to happen we need replica sets
+A replica set has to have a minimum size of 3 . all the nodes in the set contain the same data. 2 nodees are primary and the others are secondary. All the operations(read and write) occur on the primary one.All the secondaries keep them synced with the primary node. In case of failure or maintainance of the primary node, voting procedure occurs between the nodes and a new primary is chosen .
+
+
+Sharding
+As data bases are generally very large it is very difficult to scale them. 
+So sharding uses a method for horizontal scaling.
+In sharding we make different shards(shards contain different data). THere are config servers which contain all the meta data .i.e they contain data like "in which shard is my particular data stored in". In production environment there are exactly 2 config servers. These config server are help for the routers (know as mongo s) Each router is like an instance of a mongodb service. THese routers receive queries from the clients, process them and send back the decisions. In production environments all these shards are also replica sets.
+The routers are called query router.
+
+
+"mongodump" command is used to store all the data in a dummy directory(this command is to be written in terminal give the mongodb service is already started.
+"mongorestore" in the same directory where the dump folder is stored is used to fetch back that stored data.
+
