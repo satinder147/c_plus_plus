@@ -1,0 +1,18 @@
+TMUX
+terminal multiplexer
+
+tmux creates a new session
+ctrl +b then press d to exit
+ctrl +b then % divides screen into left and right pane
+ctrl +b then " divides screen into top and bottom
+ctrl +b then arrow key to move between panes
+ctrl to exit+ kill session
+
+to attach back tmux attach(if we have only one session)
+else we can specify by tmux attach -t <name of session>
+
+tmux ls  lists all the sesssions
+
+tmux new -s <name> makes a new session with name=<name>
+
+for tmux.conf refer https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/
