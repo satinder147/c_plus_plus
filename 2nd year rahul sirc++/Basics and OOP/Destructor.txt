@@ -1,0 +1,17 @@
+Destructor
+------------
+A destructor is a special member of the class.
+It resembles a member function and has following specialities:
+1) It has a special name that begins with a ~ followed by the name of the class.
+2) It has no return type specification.
+3) It cannot take parameters, hence cannot be overloaded.
+4) It is auto invoked as life of an object is about to get over.
+
+Ideally a destructor reverses the actions of the constructor.
+i.e. deallocation of memory or other resources, closing files etc.
+
+FYI
+-----
+If a class doesnt define a destructor then while code generation, 
+the compiler would auto generate a destructor that would be public, 
+parameterless and with empty body.

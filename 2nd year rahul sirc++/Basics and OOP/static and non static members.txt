@@ -1,0 +1,29 @@
+ Members of a class can be classified as :
+ 1) non static (default)
+ 2) static 
+ 
+ non static member variables
+-------------------------- 
+ Member variables of a class are by default non static.
+ A non static member variable is allocated as a member inside every object of the class.
+ Its life is equal to the life of the object. 
+ It is usable through the object.
+ 
+ static member variables
+------------------------- 
+ Member variables of a class can be declared as static.
+ A static member variable is allocated once for a class. It is not found as a member inside any object of the class.
+ Its life is equal to the life of the class that happens to be the life of the program. 
+ It is usable through class reference.
+
+ non static member functions
+------------------------ 
+ Member functions of the class are by default non static.
+ A non static member function requires an object for invocation.
+ It can access all members (non-static and static) of the class.
+ 
+ static member functions
+---------------------- 
+ Member functions of the class can be declared as static.
+ A static member function doesn't require any object for invocation.
+ It can access only static members of the class.

@@ -1,0 +1,36 @@
+Return By Value
+-----------------
+C++ allows a function to return, local variable or object.
+Being local their life is confined to the scope of the function.
+On return of a local variable or an object, C++ system needs to :
+1) Create a copy of the variable/object being returned.
+2) Destroy the local variable/object.
+3) Return the copy.
+4) After use at the point of function call, destroy the copy as well.
+
+This approach of returning data is termed as "Return By Value". 
+
+Whenever a function set a datatype (primary or secondary) as
+its return type, the default approach used in return is "Return By Value".
+Example :
+ int add(int a,int b,int c){ ... }
+ Time operator + (Time &r) { ... }
+
+Return By Reference
+---------------------
+C++ allows a function to return, non local variable or object.
+Being non local their life is beyond the scope of the function.
+On return of a non local variable or an object, C++ system need 
+not create any copy and can directly return the variable or 
+object itself.
+(Thus saving memory and process).
+
+This approach of returning data is termed as "Return By Reference". 
+
+Whenever a function sets a reference of primary or secondary type
+as its return type, the approach used in return is "Return By Reference".
+
+Example :
+ Time& operator++ () { ... return *this; }
+ Time& operator =(int x) { ... return *this; }
+ ostream& operator <<(ostream &o, Time &r) {.... return o; }

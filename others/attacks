@@ -1,0 +1,39 @@
+ dos attack type -> slow loris
+sql injection
+cookie stealing
+cross site scripting 
+XSS
+
+password cracking --> hashcat is used to crack the passwords
+brute force
+what it does is --> suppose someone knows your password hash. And if the password is suppose of length 7, only lower case letters, no symbols, no digits. then someone can try all the 26 to the power 7 cases and find the hask that matches yours.
+
+new way--> we have a dictionary of common words, we try all combinations,changing case, changing letters in betweens so that we can find the password.
+
+./hashcat -a 3(brute force) filename
+0 for dictionary attack but only checks if the password is in the dictionary
+for changing the words in the dictionary we can have slight modifcations. FOr this we add rules
+./hashcat -a 0 -r dive.rules example0.txt
+
+
+onion routing
+in onion routing suppose I am the client and I don't want anyone know that I have done a transaction(encryption helps with protecting data if it gets into the hands of anybody)
+So the client encrypts the message using 3 keys k1,k2,k3
+first it is encrypted using k3 then k2 and then k1
+so it becomes like layers of onion
+the client the passes this message to the next router k1
+the router decrypts its part and sees the data under it still does not make any sense
+it forwards the message to the next node k2
+k2 then decrypts its part and forwards the message to k1
+k1 then decrypts its part and suddenly it sees the data now makes sense. It then requests the server for the data
+and while coming back each of the router encrypts the data using their keys. And this data can be decrypted by the initial client
+in the complete process each node knows only the address of node from which it has got data and the node to which it will send data
+
+tor uses onion routing
+this routing is slow. The nodes are situated at large distance from each other.
+tor messages are called cells and they are always 512 bytes in size.
+all these layers of encryption does not change the file size, because if it would have then anyone can figure out by seeing the size of the file that how many steps have the message gone,how was the source, what is the destination
+
+
+
+Crypto-jacking--> instead of showing someone ads, website use your computation  power to mine bitcoin

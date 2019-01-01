@@ -1,0 +1,89 @@
+Standard Template Library
+
+STL provides general-purpose, template classes and 
+template functions that implement many popular and 
+commonly used algorithms and data structures.
+
+Three core items of the  STL are 
+1) containers
+2) algorithms 
+3) iterators
+
+Containers are objects that hold data.
+
+Examples of Containers are
+Stack, Queue, Vectors, Deque, List, Map, etc
+
+Algorithms are template functions that act on containers. 
+They provide support for initialization, sorting, searching 
+and changing the contents of containers.
+
+Iterators are objects that act like pointers. They give 
+the ability to cycle through the contents of a container.
+
+-------------------------------------
+List of some popular containers
+-------------------------------------
+
+Container  : deque
+Description : A double-ended queue.
+Required Header : <deque>
+
+Container  : list
+Description : A linear list.
+Required Header : <list>
+
+Container  : priority_queue 
+Description : A priority queue. 
+Required Header : <queue>
+
+Container : queue 
+Description : A  queue. 
+Required Header : <queue>
+
+Container : set 
+Description : A set in which each element is unique. 
+Required Header : <set>
+
+Container : stack 
+Description : A stack. 
+Required Header : <stack>
+
+Container : vector 
+Description : A dynamic array. 
+Required Header : <vector>
+
+-----------------------
+List of Algorithms
+-----------------------
+
+binary_search 
+	Performs a binary search on an ordered sequence.
+copy 
+	Copies a sequence.
+count 
+	Returns the number of elements in the sequence.
+equal 
+	Determines if two ranges are the same.
+fill  
+	Fills a range with the specified value.
+find 
+	Searches a range for a value and returns an iterator to the first occurrence of the element.
+max 
+	Returns the maximum of two values.
+merge 
+	Merges two ordered sequences, placing the result into a third sequence.
+min 
+	Returns the minimum of two values.
+remove
+	Removes elements from a specified range.
+replace
+	Replaces elements within a range.
+reverse 
+	Reverses the order of a range.
+search 
+	Searches for subsequence within a sequence.
+sort 
+	Sorts a range.
+swap 
+	Exchanges two values.

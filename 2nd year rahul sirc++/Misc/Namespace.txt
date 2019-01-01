@@ -1,0 +1,35 @@
+A namespace defines a declarative region 
+that contains definitions of classes, functions, 
+variables, nested namespaces, etc.
+
+Namespaces 
+* Allows keeping related classes, functions, variables together.
+* Provide resolution to name conflicts.
+
+To create a namespace
+---------------------
+namespace <anyName>
+{
+  classes 
+  functions
+  variables
+}
+
+To use a class/function/variable that is inside a namespace
+--------------------------------------------------
+Simply apply namespace prefix to the member used.
+As:
+
+  namespace::className object;
+  namespace::variable = value;
+  namespace::function();
+
+If the classes/functions/variables of a 
+namespace are to be used frequently then 
+instead of repeated application of 
+namespace :: to every member, the 
+namespace can be set as the default 
+namespace for the code.
+
+To do so :
+  using namespace <nameOfNamespace>;

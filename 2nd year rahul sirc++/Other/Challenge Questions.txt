@@ -1,0 +1,35 @@
+Find the next prime number
+================================================
+Implement Bucket Sort in C++
+================================================
+Implement a Queue Using Array
+================================================
+Using singleton pattern design a Logger classes. 
+It serves a global logging access point.
+(Log messages using cerr or ahead use files).
+ 
+Design 2 more classes that use the common
+object of Logger for outputting errors while
+their operations (functions) is performed (run).
+===========================================
+Find the permutations of a n letter string
+===========================================
+Find the combinations of a n letter string
+===========================================
+Define a String class with operations implemented 
+by overloaded operators.
+= string copy
+==, >, < string comparison
+~ toggle case 
+! string length
+===========================================
+Write a program to read a file and display it in uppercase
+===========================================
+Write a program to count the number of vowels in a text file
+===========================================
+Update RMS to support sort operation. (Use sorting technique of choice, if not sure then use bubble sort.)
+===========================================
+Read a file to fetch names from n animals from a file. Arrange them vertically, horizontally and diagonally in a maze. Output the maze on monitor.
+===========================================
+Implement template class matrix with any 4 generic operations. (scan, display, transpose and search).
+===========================================

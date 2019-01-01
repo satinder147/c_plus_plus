@@ -1,0 +1,62 @@
+Q) Size of a C++ program expands? Yes/No, explain.
+A) C++ API (library) is defined in header files.
+C++ program uses preprocessor directive "include"
+to access the library (header files).
+As the C++ program is built the preprocessor tool
+expands the included header files into the current
+program. Hence the size of current program expands
+by the size of the header file.
+
+Q) What is hiding or shadowing?
+A) When more than one variables/objects take
+the same name then usage of the name maps with
+a particular variable and causes hiding or
+shadowing of the other.
+To overcome shadowing one may apply namespace ::
+to the variable or caller object in case of
+member functions.
+
+Why does a class need a constructor?
+If a class defines a constructor, then it is 
+auto invoked by the system as object of the 
+class is created.
+Its code initializes the object to a default 
+or a specific value. 
+
+i.e. A constructor is an intializer for the 
+objects of the class.
+
+Q) What is a default constructor?
+A) Default constructor is a the parameterless
+constructor of the class.
+It takes no input while object creation.
+It uses preset data (default data) to
+initialize the members of the object.
+
+If for a class there is no constructor defined 
+then C++ system would auto define a default 
+constructor that is public and is with empty body.
+
+Because by this object creation process is completed.
+
+Q) What is destructor overloading?
+A) There is no such concept.
+Because a destructor is always parameterless
+and cannot be overloaded.
+
+Q) Does system auto provide a destructor for a class?
+A) Yes, if for a class no destructor is defined.
+System provided destructor would be public and
+with empty body.
+
+Q) Can a non member function create object of a class?
+A) Yes, if the constructor, that gets invoked, is public. 
+
+Q) Can destructor be overloaded?
+A) No. As destrcutor is one for the class
+and is always parameterless.
+
+Q) Why no header file to be included for use of new and delete?
+In C++, new and delete are operators.
+All operator are by default available for use, hence no explicit 
+inclusion required.

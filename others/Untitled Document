@@ -1,0 +1,24 @@
+[{
+“roll_no" : 1,
+"name" : "amit",
+"addr" : "Loni"
+}
+{
+{
+"roll_no" : 2,
+"name" : "shashir",
+"addr" : {
+"At" : "Loni",
+"Tal" : "Rahata",
+"Dist" : "Ahemadnagar"
+}
+}
+“roll_no" : 11,
+"name" : "sachin",
+"percent_marks" : 60.23
+"addr" : "Pune"
+}
+{
+"name" : "Rahul",
+"Address”: "Kolhar"
+}]

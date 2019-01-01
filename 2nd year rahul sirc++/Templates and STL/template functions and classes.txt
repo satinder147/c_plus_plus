@@ -1,0 +1,50 @@
+         Template functions and classes 
+
+Template functions
+-------------------
+Template functions, also called as generic functions,
+are functions that using a common code (logic) can
+process data of multiple different types (primary and
+secondary).
+
+By defining template functions the developer can
+have one function to act on many types, thus saving
+up on explict overloading.
+
+General Case:
+void swap(int, int) { }
+void swap(double, double) { }
+void swap(Student, Student) { }
+
+Template Function:
+template <class X> void swap(X, X) {}
+
+Note : A template function can be a replacement
+to overloaded functions only in case the logic to
+act on multiple different data types is common. 
+
+Consider the syntax of template function :
+  template <class X> functionSignature( X )
+
+Here a "generic type : X" is defined to handle or
+represent any primary or secondary datatype.
+
+How it works?
+Considering the calls to the template function, the
+compiler enlists the datatypes used as parameters.
+Then per datatype compiler defines "generated functions"
+from the generic function.
+The generated functions serve the calls.
+
+
+Template class
+-----------------
+Template classes, also called as generic classes,
+are classes objects of which can store and process
+data of multiple different types (primary and
+secondary).
+
+Template classes can have generic and non generic
+data members.
+All the functions of the template class must be 
+generic functions.

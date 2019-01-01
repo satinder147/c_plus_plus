@@ -1,0 +1,37 @@
+Object Oriented Programming
+OOP is a programming paradigm that
+implements:
+* Encapsulation
+* Polymorphism
+* Inhertiance
+* Abstraction
+for application development.
+
+Encapsulation
+-------------------
+Encapsulation is binding the operations
+(code) and the attributes (data) of an 
+entity into one unit.
+
+The unit, so formed, is termed as a class.
+
+Polymorphism
+-----------------
+Polymorphism is the ability of an object
+to implement a task (operation) in multiple  
+ways.
+
+Inheritance
+---------------
+Inheritance is a mechanism that allows
+derivation of new entities from existing
+ones.
+By inheritance the abilities of an object
+get extended.
+
+
+Abstraction
+---------------
+Abstration is the applications ability
+to expose its operations but hide the
+implementations.

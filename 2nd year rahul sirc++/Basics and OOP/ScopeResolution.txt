@@ -1,0 +1,19 @@
+As per C++ coding conventions, a class is a collection of declarations
+of member variables and functions,constructors, destructor, etc.
+
+The definitions of member functions, constructors, ... must be 
+provided outside the class.
+
+But when the members are defined outside the class then 
+they resemble non members.
+
+Hence in C++, the signature of the members is modified to host 
+class name as well.
+
+Updated syntax :
+returnType className :: fnName(parameters)
+{}
+
+Observe the use of operator :: along with the class name.
+It is termed as the Scope Resolution Operator.
+Its means the member function belongs to a class.

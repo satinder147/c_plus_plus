@@ -1,0 +1,16 @@
+friend function
+----------------
+By the rules of access specifiers the usage of the members of 
+the class or struct is controlled.
+
+C++ supports declaration of non member functions as "friend".
+
+By this the function is granted access of all (private, protected and public) 
+members of the class/struct .
+
+
+FYI
+------
+The feature of granting access of private and protected members of 
+the class violates abstraction.
+Hence C++ loses Object Orientation.

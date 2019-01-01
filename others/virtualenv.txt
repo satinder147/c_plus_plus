@@ -1,0 +1,17 @@
+python3 -m venv <env-name>
+ will create a virtual environment
+pip install -r requirements.txt will installl all the requirements
+
+to activate a environment we use
+source <env name>/bin/activate
+
+deactivate is used to deactivate the environment
+
+
+virtualenvwrapper is used for managing the environments
+now I can do mkvirtualenv <name>
+deactivate-> to deactiavte it 
+rest remains the same
+workon <name> to work on a specific env
+workon -> lists all the avilable environment
+

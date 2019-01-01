@@ -1,0 +1,13 @@
+Operator new :
+1) Dynamically allocates a memory memory
+block of a particular type.
+2) Allocation is in HEAP segment of RAM.
+3) Such a memory block has custom life.
+4) Such a memory block is accessible through its address.
+
+Operator delete:
+1) Dynamically deallocates the memory blocks
+that were allocated using Operator new.
+2) After deallocation the pointer that referred
+to the memory block must not be dereferenced.
+It would cause illegal memory access.

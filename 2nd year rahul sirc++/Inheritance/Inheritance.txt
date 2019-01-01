@@ -1,0 +1,207 @@
+Inheritance
+=================
+Inheritance is an OOP technique of forming
+new entites (derived classes) from existing 
+ones (base classes).
+
+The derived class gets:
+ * Code
+ * Data
+ * Compatibility
+from the base classes.
+
+The derived class hosts extended code and data.
+
+Syntax :
+---------
+class Base
+{
+ ...
+};
+class Derived : <access specifier> Base
+{
+ ...
+};
+
+Operator : is used to apply inheritance in C++.
+The possible list of access specifiers are :-
+  1) private (default)
+  2) protected 
+  3) public
+
+For details refer
+* private inheritance.png
+* protected inheritance.png
+* public inheritance.png
+
+Inheritance of Data
+-------------------------
+C++ implements inheritance of data 
+(member variables) of the class as 
+object of the derived class is created.
+
+The object of the derived class is a 
+composite block in memory.
+It is formed by :
+ 1) Data members of the base class.
+ 2) Data members of the derived class.
+
+To initialize it system invokes constructors
+of the base and the derived class.
+
+The order of constructor execution is
+the base class constructor first and 
+the derived class constructor next.
+
+It is important to know that by default
+system invokes :
+* Parameter matching constructor of the
+derived class
+* Default constructor of the base class.
+
+Inorder to change this behaviour and invoke
+parameter matching constructor of the base
+class, the derived class constructor must
+pass appropriate parameters to the base
+class constructor. (See the code).
+
+After use, when the object destructs 
+then destructors of the both the classes
+would execute in the order:
+the derived class destructor first and
+the base class destructor next.
+
+
+Inheritance of Code
+------------------------
+C++ allows inheritance of member functions.
+
+By this the object of derived class is allowed
+to invoke the member functions of the base 
+class.
+
+The derived class may :
+ * define new functions (extend code)
+ * redefine inherited functions (overridden code)
+
+Function Overriding
+--------------------
+Function overriding is redefining an 
+inherited function in the derived class,
+keeping the functions signature same.
+
+
+Type Compatibility
+--------------------
+Inheritance creates type compatibility 
+between the base and the derived class.
+
+It allows the base class reference or 
+pointer to refer to an object of the 
+derived class.
+(Reverse is not true).
+
+A base class reference or a pointer that
+refers to an object of the derived class
+can be used to access :
+ 1) The inherited members.
+ 2) The overridden members.
+The extended members are not accessible
+using such a reference/pointer.
+
+Upcasting
+-----------
+When a base class pointer is assigned an
+address of the object of the derived class
+then upcasting occurs.
+
+Downcasting
+-------------
+When a base class pointer, that has an
+address of the object of the derived class,
+is assigned to a derived class pointer then
+downcasting occurs.
+
+Binding
+---------
+Binding is linking a function call with its definition.
+It is the role of the compiler to bind.
+For this compiler uses signature matching technique.
+As compiler does the binding so it is termed
+as compile time binding or early binding.
+Examples:
+ Calls to member functions (using an object)
+ Calls to overloaded functions
+ Calls to static functions
+ Calls to non member functions
+ Calls to constructor and destructor
+ Calls to operator functions
+
+Runtime or Late Binding
+-------------------------
+When an application uses a function call that fits following criteria:
+ 1) The function is overridden
+ 2) The function is called using a base class pointer. 
+ 3) The function is declared as "virtual" in the base class.
+
+Then, the compilers doesnt cause binding.
+At execution time, system encounters an
+unbound function call.
+
+So system activates RTTI (run time type identification)
+mechanism to detect the type (class) of the 
+object being referred by the base class pointer.
+
+As per the type (class) of the object use the
+function dispatch table and bind the call.
+
+This behaviour is termed as run time binding
+or late binding.
+
+virtual function
+-----------------
+"virtual" attribute applied to a function enables 
+run time binding for it when it is overridden and 
+is called using a base class pointer.
+
+
+
+pure virtual function
+---------------------
+A pure virtual function is a function:
+ 1) with signature only and no definition.
+ 2) that makes the class an abstract class.
+ 3) that is compulsory for the derived class to override.
+
+abstract class
+------------------
+An abstract class is a class that:
+ 1) cannot be instantiated.
+ 2) contains a pure virtual function.
+ 3) is inherited for use.
+
+virtual destructor
+------------------
+virtual attribute applied to a base class
+destructor allows execution of the destructors
+of derived and the base classes when
+"delete" is called on a base class pointer
+that refers to a dynamically allocated
+derived class object.
+
+Multilevel Inheritance
+----------------------
+C++ allows implementation of multi level inheritance.
+
+Multi level inheritance is formation of a hierarchy 
+of classes by making a derived class act as a base 
+class for another class.
+
+When multi level inheritance is applied then the 
+derived most class ( class down in the hierarchy) 
+gets :
+ * CODE
+ * DATA
+ * COMPATIBILITY
+from all the base classes (classes above in the hierarchy).
+

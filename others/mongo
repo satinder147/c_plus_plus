@@ -112,7 +112,32 @@ gives the top 5 values only
 for each loop 
 db.col.find().forEach(function(doc){print("customer "+doc.name)})
 
+save:
+the save method acts as insert operation if _id parameter is not provided , if id is passed then it works like update operation with upsert set to true
 
 
+
+
+
+
+
+
+insert
+createCollection
+use db
+update, upsert:true,multi:true
+remove
+sort
+limit
+gt
+gte
+lt
+lte
+eq
+remove for field removal proves strings
+db.collection_name.drop(); --> drops collection
+sort
+count
+save 
 
 

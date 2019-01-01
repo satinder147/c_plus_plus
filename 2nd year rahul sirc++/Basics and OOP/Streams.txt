@@ -1,0 +1,60 @@
+Stream
+===========
+A stream is a channel of data transfer
+between interconnected devices.
+
+A stream may be unidirectional or bidirectional
+and accordingly it would allow transfer
+of information.
+
+For data transfer a stream needs to
+be opened, utilized and closed.
+
+3 streams that are managed by the OS.
+They are :
+1) stdin : a channel of data transfer between the keyboard and the applicaiton.
+2) stdout : a channel of data transfer between the applicaiton and the monitor.
+3) stderr : a channel of data transfer between the applicaiton and the monitor.
+
+OS makes these streams avaiable to the
+active application.
+When C++ application is active then these
+are available for use.
+A C++ application represents these streams
+through predefined objects.
+
+ cout refers to stdout.
+ cin refers to stdin.
+ cerr refers to stderr.
+
+This means when a C++ application uses
+the above objects, it is utilizing the
+underlying streams.
+
+About cout 
+------------
+* cout is a global object defined in iostream.
+* Its datatype is class ostream.
+* It is auto initialized to refer to stdout.
+* It supports use of operator << (insertion)
+for outputting program data to stdout, which
+ahead takes the data to the monitor.
+
+
+About cerr
+-------------
+* cerr is a global object defined in iostream.
+* Its datatype is class ostream.
+* It is auto initialized to refer to stderr.
+* It supports use of operator << (insertion)
+for outputting program data to stderr, which
+ahead takes the data to the monitor.
+
+About cin
+-------------
+* cin is a global object defined in iostream.
+* Its datatype is class istream.
+* It is auto initialized to refer to stdin.
+* It supports use of operator >> (extraction)
+for fetching keyboard data via stdin.
+

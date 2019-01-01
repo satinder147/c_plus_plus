@@ -1,0 +1,256 @@
+sql structured query language
+
+select *from satinder-- will show the complete table satinder;
+select column_name from satinder --> selects specific columns;
+select distinct column name from satinder --> selects distinct values of a column
+if written select distinct* from satinder --> then unless there are 2 rows which are completely identical it will show the complete data;
+select * from employees where emp_id=1 select row with emp_id=1; instead of * we can mention the specific rows as well;
+
+And or not can be used within the where clause to select rows based on specific conditions
+we can combine these condition as well
+for ex 
+select * from employees where salary =6500 and dept_id =1;
+
+select * from employees order by salary is identical to select * from employees order by salary asc;--> shows data in ascending order according to salary;
+if instead of asc we write desc it sorts the data in descending order;
+we can provide multiple columns for sorting as well;
+
+for eg select *from employees order by salary , dept_id asc;
+the second column will be used in case two rows contain the same salary ; other wise the order of insertion is followed;
+
+we can even write select *from employees order by salary , dept_id desc;
+
+if a column is is a normal column then you have a option to leave entering data into it;
+null values are compared using "is null" or "is not null"
+
+update set emp_id=11 where salary =3440
+as emp_id in my case was primary I have to make sure that the salary is unique;
+if the where clause is omitted then all the column will be updated
+
+
+delete form employees where dept_id=2; it deletes the row in which the dept_id =2;
+if we write delete from employees then all the data from the table is removed-- This is the only possible way we can delete all the data of table keeping the structure of the table intact;
+
+
+selecting some top columns from a table
+select * from employees limit 3; it selects the top 3 columns from the table employees;
+
+select min(salary) from employees selects the minimum salary from table employees;
+similarly max(salary) selects the max
+this even works on strings and for max it chooses the string starting with the alphabet that is grater in term of order;
+
+
+select count(emp_id) from employees--> gives the number of rows for a given condition;
+select avg(salray) gives the avg salary --> it even works for strings and gives 0 pllus warning;
+select sum(salary) gives the sum, functionality is same as avg;
+
+
+finding string sequences
+_ means 1 character whereas % means any numbre of characters;
+
+for example if I write 
+select * from employees where emp_name like '_a%'
+this will choose all the rows with emp_name having second character as "a";
+select *from employees where em_name like 'a%_%_%' it selects all the strings starting with "a" and having atleat 3 characters;
+
+suppose I want the string to start with any of a,s or p then I can write 
+select * from employees where emp_name like '[asp]%'******does not work##################333*****************
+
+
+select *from employees where emp_name in ('karan','Martin blank'); is self explaintory;
+we can even write it like
+select *from employees where emp_name in (select emp_name from employees where salary>3000)
+
+
+between 
+select *from employees where salary between 5000 and 7000;
+
+SELECT * FROM Orders
+WHERE OrderDate BETWEEN '1996-07-01' AND '1996-07-31';
+
+
+alias 
+using some other name for a variable 
+select max(salary) as s from employees;
+
+if the alias has space in between then the alias name has to between "" 
+
+we can concat data in columns using concat;
+select emp_id as e, concat(emp_name," ",salary," ",dept_id) as f from employees;
+we can concat using the + operator as well;
+
+
+Joins
+it is used to combine rows from two or more tables;
+basic syntax
+select t1.column1,t2.column2 from table1 as t1 inner/left/right join table2 as t2 on t1.column1=t2.column21
+
+select t1.emp_id,t1.emp_name,t1.salary,t2.dept_name from employees as t1 inner join departments as t2 on t1.dept_id=t2.dept_id;
+in inner join the common portion is there
+
+in left join the left region exists completely + matching columns in right table
+visa versa in right join 
+
+we don't have full outer join
+
+self join is the join with itself
+
+
+union combines the result of two select statments
+
+for eg
+for making full outer join we have to do the union of left and right join
+
+ select t1.emp_id,t1.emp_name,t1.salary,t2.dept_name from employees as t1 right join departments as t2 on t1.dept_id=t2.dept_id union select t1.emp_id,t1.emp_name,t1.salary,t2.dept_name from employees as t1 left join departments as t2 on t1.dept_id=t2.dept_id;
+
+
+the union operation gives normal union, to get all the elements we have to do union all 
+
+group by--> aggregation function 
+select emp_name,count(emp_name) as count from employees group by emp_name;
+
+having is added because where cannot be used with aggregate functions like sum avg count
+
+
+******where can be used before group by 
+
+sequence is 
+
+where --> group by --> having -->order by;
+
+
+any and all 
+
+any is used where even one condition is met
+for eg
+select * from employees where salary =(operator all standart operators can be used) any (select salary form employee where salary=5000)
+
+all gets triggered if there is even one match
+
+select * from employees where salary = all (select salary from employees);
+this yielded empty set because all the salaries are not equal
+
+
+SQL IFNULL(), ISNULL(), COALESCE(), and NVL() Functions
+some time a record can have null value in any column
+to solver this problem we have Ifnull function, in this we can use a alternate value instead of null 
+for eg 
+select ifnull(dept_id,007) from employees;
+
+is null returns 0(false) or 1 (true);
+select isnull(dept_id) from employees;
+
+single line comment are made using --
+multiline are /*   */
+
+
+data base is created using create database_name;
+use database_name to use it
+
+drop database_name
+
+
+a table can be created using another table as well
+ create table new as select * from employees;
+
+you can even add where conditions after "as"
+
+drop table_name drops the table
+trucate table_name deletes the data inside the table but keeps it's format;
+
+
+alter table employees add new varchar(20);
+alter table employees drop new;
+alter table employees modify new int; --> changes the datatype of the existing column;
+
+while creating a table if we specify
+create table satinder (name carchar(20) not null) then this column is mandatory to be addeed;
+if we write not null unique then that column only accepts unique values;
+
+or we can write it after declaring all the columns as well
+for eg create table satinder (name carchar(20) not null,unique(name))
+
+to add a unique column we write
+alter table sat add unique(id);
+
+while creating table inplace of unique if we write primary key then that column becomes one;
+
+
+ALTER TABLE Persons
+ADD PRIMARY KEY (ID); for adding new primary keys;
+
+ALTER TABLE Persons
+DROP PRIMARY KEY; for dropping primary keys;
+
+
+foreign key, check ,default,index  ********************not done *******************    *********do them
+
+
+auto increment
+create table satinder (id int auto_increment,name varchar(20) not null,unique(name))
+by default this id will start with 1 
+but to start it with some other number we have to write
+alter table satinder auto_increment=10;
+
+
+dates format = yy-mm-dd
+we can compare dates only if there is no time component involved;
+they are compared as strings;
+
+
+
+Views 
+
+create or replace view view_name as select *from satinder;
+Any change in a view(updation ) is reflected in the actual table also;
+if the original table changes the view also changes;
+
+dropping a view is same as dropping a table;
+drop view view_name;
+
+
+
+
+triggers 
+create trigger trig before update on employees for each row  begin insert into audit set id=old.emp_id,emp_name=old.emp_name,salary=old.salary,dept_id=old.dept_id; end/
+
+
+
+//cursor
+
+create procedure abc()
+begin
+declare flag int default 0;
+declare done boolean default false;
+declare a,b int;
+declare c,d varchar(40);
+declare cur1 cursor for select rollno, name from old;
+declare cur2 cursor for select rollno, name from new;
+declare continue handler for not found set done = true;
+open cur1;
+loop1 : loop
+fetch cur1 into a,c;
+if done then
+close cur1;
+leave loop1;
+end if;
+open cur2;
+loop2 : loop
+fetch cur2 into b,d;
+if done then
+set done = false;
+close cur2;
+leave loop2;
+end if;
+if a = b then
+set flag = 1;
+end if;
+close loop loop2;
+if flag = 0 then
+insert into;
+end if;
+set flag = 0;
+close loop loop2;
+end //
+
+

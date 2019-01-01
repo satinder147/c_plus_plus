@@ -1,0 +1,48 @@
+Encapsulation
+--------------
+Encapsulation is binding operations (code) and
+attributes (data) of an entity into one unit.
+
+The unit, so formed, is termed as a class.
+
+class
+-------
+A class is a unit that combines methods (code)
+and data of an entity.
+A class defines a secondary data type in C++.
+
+Being a data type is ideally usable through its
+instances (objects).
+
+object
+--------
+An object is an instance of a class.
+It can store and process data.
+
+The storage ability of an object is defined by
+the non static data members of the class.
+The processing ability of an object is defined 
+by the non static functions of the class.
+
+Invoking Non Static Member Functions
+-----------------------------------
+Non static member functions require an object
+of the respective class for invokation.
+
+By compilation, the call to the non static member
+function gets the address of caller object as
+the first actual parameter.
+
+Even the definition of the function converts to
+receive the address of the caller object into a
+formal parameter pointer "this".
+
+this
+------
+this is a system defined formal parameter for
+non static member functions of the class.
+It is a pointer of type current class.
+It gets the address of the caller object of the function.
+It is implicitly used to access other members of the class.
+It is a constant pointer, cannot be modified.
+
