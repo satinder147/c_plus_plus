@@ -1,0 +1,477 @@
+By default python lives in /usr/local/bin/pythonX.X in linux 
+python can be closed by ctrl+d or exit()
+
+python is case senstive
+
+in python a statement end by a end line
+to write multiline statemens end the state by \
+amount of indentation is upon us but it should be consistent for each block
+
+python is a type infered language, meaning it can automatically detect the datatype of the variable
+
+
+we can have a else at the end of an for loop or an while loop
+
+pass command is used in places where we don't have a body for a function or we don;t have abody for a loop. it just means skip. If we don;t write anything under it the compiler will give error
+
+while defining a function if we write something between """ """ then that is known as the doc string
+
+
+arguments
+default arguments
+if we a default arguments in the function definition, then all the arguments to its right must be default arguments
+
+greet(name = "Bruce",msg = "How do you do?")
+in this we can ensure that we can pass in the variables in any order
+
+we can pass any number of parameters to a function, given they are received by (*at)
+then before sending the arguments, python packs them in a tuple, which can unpacked or read using a for loop
+
+
+anonymous function 
+functions without a name--> they instead of def are defined using the lambda keyword.
+
+lambda arguments: expression-->syntax
+it can have any number of arguments but only one expression.
+ d=lambda x:x*2 --> eg
+it is called using d(2)
+
+This function has no name. It returns a function object which is assigned to the identifier d
+
+
+
+filter function 
+takes argument lambda function and a list
+my_list = [1, 5, 4, 6, 8, 11, 3, 12]
+
+new_list = list(filter(lambda x: (x%2 == 0) , my_list))
+
+# Output: [4, 6, 8, 12]
+print(new_list)
+result is a list of only even numbers
+
+
+map function
+
+my_list = [1, 5, 4, 6, 8, 11, 3, 12]
+
+new_list = list(map(lambda x: x * 2 , my_list))
+
+# Output: [2, 10, 8, 12, 16, 22, 6, 24]
+print(new_list)
+
+
+
+although we can print a global varibale inside a function but we can;t modyfy it.
+
+
+nonlocal keyword is used to use to make a non local variable
+
+^^^^^^^^^^^read about nested functions
+see global in nested function again
+
+import module 
+then use functions using module.function_name()
+
+we can do import module as m and use m in place of module
+or we can do from module import * --> but not a goood practice
+
+python looks for the modules in the following order
+1) current directory
+2) path variable
+3) then the place where python in installed
+
+import sys
+sys.path provides all the paths where python looks for modules
+
+
+python imports modules only once in a entire session()
+if we have to reload the module we have to use reload function 
+
+import imp
+imp.reload(moudle_name)
+
+dir(module name) --> gives the name of all the names(function names and bulit in attributes(default)--> start with _ ) inside a module
+
+__name__ gives the name of the module 
+
+that is why it is written like if(__name__=="__main__") then execute things 
+because main should not run if the module is imported in some other file
+
+
+5+3j is a complex number
+
+(1.1+2.2)==(3.3) evaluates as false 
+floating point number are only accurate upto 15 digits, then the 16th is inaccurate
+
+binary numbers can be written with a prefix 0b or 0B
+hexadecimal numbers can be written with prefix 0x or 0X
+octal number can be written with 0o or 0O prefix
+
+
+Floating point operations are carried out must faster than Decimal operations.
+
+python has two modules namely decimal and fraction which are used to solve ambiguaties with addition and multiplication.
+
+
+
+
+python math module has function like 
+cos,cosh,sin,sinh,factorial 
+
+lists
+they can have different datatypes
+they can have hetrogenous datatypes
+n_list = ["Happy", [2,0,1,5]]
+
+del a[0] deltes 1 elemetns
+del a deletes complete list
+
+list=[] empty list
+append(x) appends to the end 
+
++ can be used to combine two lists
+* 10 will generate a list have the list 10 times in it
+
+a[:2]=[1,2,3,4] this works replacing 2 numbers with four
+append can only add one elements
+whereas extend([1,2,3]) appends three numbers to the end
+
+remove(1) will remove 1 from the list (only first one)
+pop can be used to remove a particular element
+
+list.clear() clears the list
+
+we can even clear a portion of list like a[2:5]=[]
+
+apart from these list have a copy method that returns a shallow copy 
+
+pow2 = [2 ** x for x in range(10)]--> such statement are called list comprehension
+
+any(list_name) returns true if any 1 element in the list is true
+all(list_name) returns true if all elements in the lists are true
+
+
+Return an enumerate object. It contains the index and value of all the items of list as a tuple. --> enumerate .i.e it returns (index,elements) tuple
+
+tuple
+similar to list but we cannot change the elements of a tuple once assigned
+
+Since tuple are immutable, iterating through tuple is faster than with list. So there is a slight performance boost.
+
+If you have data that doesn't change, implementing it as tuple will guarantee that it remains write-protected.
+tuples can have hetrogenous data
+
+my_tuple = (1, 2, 3)
+or my_tuple=1,2,3,4 is similar to above
+a,b,c,d=my_tuple --> tuple unpacking
+
+to make a tuple with one element we have to end the tuple with a ","
+indexing,slicing is similar to lists
+tuple elements are immutable, meaning they can't be changed, but if one element of the tuple is a list(or any other mutable thing) then that element can be cahnged
+
++ and * work for tuples work similar to lists
+del tuple_name deletes it
+
+
+strings
+""" """ is used for multiline strings
+slicing and indexing works similar to lists
+strings are immuatble 
+
+strings can be indexed,sliced simlar to lists
+
+strings have methods like lower(), upper(), join(), split(), find(), replace()
+
+
+
+\newline	Backslash and newline ignored
+\\	Backslash
+\'	Single quote
+\"	Double quote
+\a	ASCII Bell
+
+\b	ASCII Backspace
+\f	ASCII Formfeed
+\n	ASCII Linefeed
+\r	ASCII Carriage Return
+\t	ASCII Horizontal Tab
+\v	ASCII Vertical Tab
+\ooo	Character with octal value ooo
+\xHH	Character with hexadecimal value HH
+
+
+
+
+
+placing a r , R in front of string ignore escape sequences 
+r"This is \x61 \ngood example"
+This is \x61 \ngood example
+
+format method
+a="my name is {} and I live in {}".format("satinder","pune")
+
+a="my name is {0} and I live in {1}".format("satinder","pune")
+indexed formatting
+
+
+
+even this works
+eyword_order = "{s}, {b} and {j}".format(j='John',b='Bill',s='Sean')
+
+"Binary representation of {0} is {0:b}".format(12)
+binary of 12 is printed
+
+round off
+"One third is: {0:.3f}".format(1/3)
+
+
+set is mutable
+my_set = {1, 2, 3}
+set can have different types of elements but cannot have mutable elements like lists
+
+list can be converted into list my_set = set([1,2,3,2])
+
+a={} creates a empty dictionary 
+to make a set we have to use a=set()
+
+We cannot access or change an element of set using indexing or slicing
+
+
+
+set_name.add() is used to add one elements
+whereas set_name.update() is use to add multipl eelements
+
+my_set.update([2,3,4])
+
+
+A particular item can be removed from set using methods, discard() and remove().
+
+The only difference between the two is that, while using discard() if the item does not exist in the set, it remains unchanged. But remove() will raise an error in such condition.
+clear is used to remove all elements
+
+A.union(b) gives aub
+A.intersection(B)
+a.difference(b)
+A.symmetric_difference(B)
+
+for i in set_name:
+	print(i)
+
+dictionaries
+a={} to create empty dictionary
+they are mutable
+del is used to delete elements
+dic_name.get(key) returns the values. If we used dic_name[key] then it would have caused key error if the key was not found 
+
+clear is ued to claer the dictionary
+
+dic_name.pop(key) will return the value and pop the key,value pair
+
+
+files
+open(filepath,w or r or a) 
+default is read mode for text mode and for binary mode it returns number of bytes
+
+
+'r'	Open a file for reading. (default)
+'w'	Open a file for writing. Creates a new file if it does not exist or truncates the file if it exists.
+'x'	Open a file for exclusive creation. If the file already exists, the operation fails.
+'a'	Open for appending at the end of the file without truncating it. Creates a new file if it does not exist.
+'t'	Open in text mode. (default)
+'b'	Open in binary mode.
+'+'	Open a file for updating (reading and writing)
+
+open(path,r+b)
+reads in binary mode
+r+b is read and write in binary mode
+
+
+
+
+Unlike other languages, the character 'a' does not imply the number 97 until it is encoded using ASCII (or other equivalent encodings).
+
+Moreover, the default encoding is platform dependent. In windows, it is 'cp1252' but 'utf-8' in Linux.
+
+So, we must not also rely on the default encoding or else our code will behave differently in different platforms.
+
+Hence, when working with files in text mode, it is highly recommended to specify the encoding type.
+
+f=open()
+f.close() --> to close the file
+
+with open() as f: 
+	operations on file
+it ensures that the file is closed when the with block exits
+
+or we can use try finally 
+
+try:
+	f=open()
+finally:
+	f.close()
+
+write mode overwrites the file , so use append mode
+
+
+f.read() will read file from beginning to end
+f.read(4) will read from beginning till 4 characters
+then the pointer advances and if we write f.read() then it will read from 4 till end
+f.tell() tells the current position
+f.seek(0) takes it to the beggining
+
+f.readline() returns the line for the current position
+f.readlines() returns a  list of lines.
+
+
+
+close()			Close an open file. It has no effect if the file is already closed.
+detach()		Separate the underlying binary buffer from the TextIOBase and return it.
+fileno()		Return an integer number (file descriptor) of the file.
+flush()			Flush the write buffer of the file stream.
+isatty()		Return True if the file stream is interactive.
+read(n)			Read atmost n characters form the file. Reads till end of file if it is negative or None.
+readable()		Returns True if the file stream can be read from.
+readline(n=-1)		Read and return one line from the file. Reads in at most n bytes if specified.
+readlines(n=-1)		Read and return a list of lines from the file. Reads in at most n bytes/characters if specified.
+seek(offset,from=SEEK_SET)	Change the file position to offset bytes, in reference to from (start, current, end).
+seekable()		Returns True if the file stream supports random access.
+tell()			Returns the current file location.
+truncate(size=None)	Resize the file stream to size bytes. If size is not specified, resize to current location.
+writable()		Returns True if the file stream can be written to.
+write(s)		Write string s to the file and return the number of characters written.
+writelines(lines)	Write a list of lines to the file.
+
+
+
+
+exceptions
+Whenever these type of runtime error occur, Python creates an exception object. If not handled properly, it prints a traceback to that error along with some details about why that error occurred.
+
+When these exceptions occur, it causes the current process to stop and passes it to the calling process until it is handled. If not handled, our program will crash.
+
+try :	
+	error prone code
+catch: 
+	print(sys.exc_info()
+
+
+catch excepts all the errors
+
+we can catch specific exception as well
+like 
+
+try:
+   # do something
+   pass
+
+except ValueError:
+   # handle ValueError exception
+   pass
+
+except (TypeError, ZeroDivisionError):
+   # handle multiple exceptions
+   # TypeError and ZeroDivisionError
+   pass
+
+except:
+   # handle all other exceptions
+   pass
+
+
+after except we use a finally statement as well, this ensures that any allocated resources are freed if there is an error in the execution of the try block
+
+
+raise ValueError("That is not a positive number!") --> can be used to raise a error forcebally
+
+User defined exceptions
+
+to make our own exceptions we have to inherit the Exception class
+class Error(Exception):
+	pass
+class value_small(Error):
+	pass
+
+now we can raise value_small errors
+try:
+	something
+except value_small:
+	print(small occured)
+
+
+OOP*********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+print("""sdfad adf adf afsd df
+ adfd fdf asdf  f
+ asdfdf""")
+print everything
+
+
+ a=input("enter age")
+
+''' ''', """ """ areused for both multiline comments and printing multiple lines
+if a u is getting printed in front of words use %s
+
+pydoc input --> shows input documentation
+press q to exit
+
+
+from sys import argv 
+print(argv) prints the command line arguments
+the args are in a list
+
+
+close --> closes the file
+read --> reads the files
+readline --> reads only 1 line at a time
+truncate --> clears the file
+write(x) --> writes to the files
+
+DEF ADD(*argv):
+	function---- 
+*argv will take all the arguments as an tuple
+it can be unrolled using x1,x2,.....=argv
+
+readline return a '\n'
+
+we can write functions in python file, import the complete file into antoher file, and use the functions from the previous file.
+for eg if a.py has function add
+then in another file we have to write import a, a.add(1,2)
+or we can have from a import *
+and we can use the function as if they were in the same file
+
+we can even write help(a) to get to know about all the function
+we can even write help(a.add) to know about add function
+
+
+cardinal and ordinal numbers
+
+a={name:"satinder",age:20}
+the above is a dictionary, to remove key value pairs from it we do 
+del a["name"] and it will remove the name --> satinder value from the dictionary
+or we can even delete the complete dictionary as well by writing del a
+
+dictionary.items returns key value pairs which can be used to iterate through the dictionary
+dictionary.key() will return an list of dict_keys
+and dictionary.values() returns the values 
+
+print("-"*10) prints "-" 10 times
+del works in the similar way with lists as well
+
+1)	ex 17 why the file had t obe closed
+20 DICTIONARY GET()
