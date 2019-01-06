@@ -400,11 +400,126 @@ except value_small:
 
 
 OOP*********************************************************************
+object has attributes(variables) and behaviour(functions)
+class too can have doc strings
+
+class_name.__doc__ gives the doc of the class
+There are two types of variables 
+1) class variables
+class s_class:
+	parrot=None
+def __init__(self):
+	self.nose=False
+here parrot is the class variable
+it can be accesed python class.parrot
+2) instance variables 
+obj=s_class()
+obj.nose
+
+class variables are same for all the instances
+
+inheritance
+class is inherited by 
+class new(old):
+	pass
+
+in the new class __init__()
+we have to write super().__init__() --> this will instantiate the variables of the parent class or we can write parent_class.__init__() but super is preferred
+
+
+the definition of the parent class are inherited in the child class, and the functions which are similar their implemnetation for the child class is the one provided in the child class. .i.e child class modifies the behaviour of parent class
+
+
+encapsulation --> prevent direct access of data
+any attribute in the class with a leading "_" or "__" is a private variable and can't be accessed from outside the class
+if a access is tried nothing happens
+The value of these variables can be changed only by calling a class function.
+
+polymorphism --> providing a common interface to two classes
+suppose I have a function 
+
+def b(bird):
+	bird.fly()
+this function is not in any class
+but as both the classes will have function fly, this function can call the functions of both the classes
+
+
+obj.func() translates into MyClass.func(ob).
+that is why self is used.
+
+instead of self other variables can be used.
+
+attribute of a particular object can be deleted
+del obj.name
+similary functions can also be deleted
 
 
 
+On the command del c1, this binding is removed and the name c1 is deleted from the corresponding namespace. The object however continues to exist in memory and if no other name is bound to it, it is later automatically destroyed.
+
+This automatic destruction of unreferenced objects in Python is also called garbage collection.
 
 
+
+ Function isinstance() returns True if the object is an instance of the class or other classes derived from it. Each and every class in Python inherits from the base class object.
+isinstanceof(object,class with which it has to be checked)
+
+**       isinstanceof(current_object,object)--> also shows true because all the classes inherit the object class
+
+
+issubclass(2 arguments) is trianlge a sublclass of polynomial, or is bool sublclass of int shows true
+
+class MultiDerived(Base1, Base2):
+    pass 
+can be used to inherit multiple classes at a single time.
+
+
+
+In the multiple inheritance scenario, any specified attribute is searched first in the current class. If not found, the search continues into parent classes in depth-first, left-right fashion without searching same class twice.
+This order is also called linearization of MultiDerived class and the set of rules used to find this order is called Method Resolution Order (MRO).
+class_name.__mro__()
+
+operators in python are overloaded, + behaves differently for string,int,float etc meaning + is overloaded 
+
+If we try to print a object in python we get some address, to print this we have to use a special function __str__()
+
+ def __str__(self):
+        return "({0},{1})".format(self.x,self.y)
+if now we print(obj)(if obj has only two attributes x and y) then these will be properly printed
+
+
+def __add__(self,other):
+        x = self.x + other.x
+        y = self.y + other.y
+        return Point(x,y)
+
+add works in the similar way
+
+
+Addition			p1 + p2	p1.__add__(p2)
+Subtraction			p1 - p2	p1.__sub__(p2)
+Multiplication			p1 * p2	p1.__mul__(p2)
+Power				p1 ** p2	p1.__pow__(p2)
+Division			p1 / p2	p1.__truediv__(p2)
+Floor Division			p1 // p2	p1.__floordiv__(p2)
+Remainder (modulo)		p1 % p2	p1.__mod__(p2)
+Bitwise Left Shift		p1 << p2	p1.__lshift__(p2)
+Bitwise Right Shift		p1 >> p2	p1.__rshift__(p2)
+Bitwise AND			p1 & p2	p1.__and__(p2)
+Bitwise OR			p1 | p2	p1.__or__(p2)
+Bitwise XOR			p1 ^ p2	p1.__xor__(p2)
+Bitwise NOT			s~p1	p1.__invert__()
+
+using __lt__(self,other) we can overload comparison operators as well
+
+
+	
+Less than			p1 < p2	p1.__lt__(p2)
+Less than or equal to		p1 <= p2	p1.__le__(p2)
+Equal to			p1 == p2	p1.__eq__(p2)
+Not equal to			p1 != p2	p1.__ne__(p2)
+Greater than			p1 > p2	p1.__gt__(p2)
+Greater than or equal to	p1 >= p2	p1.__ge__(p2)
 
 
 
