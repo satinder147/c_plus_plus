@@ -523,6 +523,323 @@ Greater than or equal to	p1 >= p2	p1.__ge__(p2)
 
 
 
+python iterator
+iterator are used for iterating data structures like lists,tuples etc
+a=iter(data structure) returns a iter object
+now using the function next() we can iterate a data structure
+when we reach the end StopIteration exception is raised by which we can break out from the loop
+
+Technically speaking, Python iterator object must implement two special methods, __iter__() and __next__(), collectively called the iterator protocol.
+The iter() function (which in turn calls the __iter__() method) returns an iterator from them.
+
+for loop implementaion in python
+
+a=iter(list) (or any data structure
+while 1:
+	try:
+		print(next(a))
+	except StopIteration:
+		break
+
+
+
+next(obj) is same as obj.__next__()
+
+building your own iterators
+to make our own iterator we have to make a class and implement some functions like __init__() and __next__(),__iter__()
+
+
+ class pow:
+...     def __init__(self,max=0):
+...             self.max=max
+...     def __iter__(self):
+...             self.n=0
+...             return self
+...     def __next__(self):
+...             if(self.n<=self.max):
+...                     res=2**self.n
+...                     self.n=self.n+1
+...                     return res
+...             else:
+...                     raise StopIteration
+... 
+>>> 
+>>> a=pow(5)
+>>> for i in a:
+...     print(i)
+
+
+python infinite iteratorss
+
+
+
+
+python generator
+
+iterators in python are very lengthy to implement
+python generators are simple way to create iterators
+
+It is fairly simple to create a generator in Python. It is as easy as defining a normal function with yield statement instead of a return statement.
+a generator function uses a yield statement along with return 
+a yield function pauses the function and stores it's state, when the function is called again, the function resumes from the previous stopped state.
+when all the yield operations finish then Stop Iteration is raised.
+
+
+def my_gen():
+    n = 1
+    print('This is printed first')
+    # Generator function contains yield statements
+    yield n
+
+    n += 1
+    print('This is printed second')
+    yield n
+
+    n += 1
+    print('This is printed at last')
+    yield n
+
+
+if this function runs, on first call first print statement exceutes and others on subsequent calls.
+this is called by c=my_gen()
+next(c)
+when it iterates over all the elements, StopIteration is raised
+to restart it again we again have to write c=my_gen()
+this can also be iterated using for i in mygen():
+					print(i) (as StopIteration is already implemented inside for loop)
+
+
+
+
+def rev_str(my_str):
+    length = len(my_str)
+    for i in range(length - 1,-1,-1):
+        yield my_str[i]
+
+# For loop to reverse the string
+# Output:
+# o
+# l
+# l
+# e
+# h
+for char in rev_str("hello"):
+     print(char)
+the above generator function reverses the string 
+
+
+Python Generator Expression
+
+The syntax for generator expression is similar to that of a list comprehension in Python. But the square brackets are replaced with round parentheses.
+
+The major difference between a list comprehension and a generator expression is that while list comprehension produces the entire list, generator expression produces one item at a time.
+
+They are kind of lazy, producing items only when asked for. For this reason, a generator expression is much more memory efficient than an equivalent list comprehension.
+
+
+a = (x**2 for x in my_list)
+# Output: 1
+print(next(a))
+
+# Output: 9
+print(next(a))
+
+# Output: 36
+print(next(a))
+
+# Output: 100
+print(next(a))
+
+# Output: StopIteration
+next(a)
+
+
+generators benefit
+easy implement
+memory effiecient
+ Represent Infinite Stream
+Generators are excellent medium to represent an infinite stream of data. Infinite streams cannot be stored in memory and since generators produce only one item at a time, it can represent infinite stream of data.
+
+def all_even():
+    n = 0
+    while True:
+        yield n
+        n += 2
+
+
+read about pipeline generators
+
+
+
+python nonlocal
+def outside()
+ msg = "Outside!"
+        def inside():
+            msg = "Inside!"
+            print(msg)
+        inside()
+        print(msg)
+printing the msg in inside will print the value "outside"
+if outside is run then msg is inside for the inner scope and outside for the outer scope this is because python created 2 different msg variables
+to prevent this we add nonlocal before msg in inside. This will diable python from making a new variable
+nonlocal is like global
+
+python closures
+
+def print_msg(msg):
+# This is the outer enclosing function
+
+    def printer():
+# This is the nested function
+        print(msg)
+
+    return printer  # this got changed
+
+# Now let's try calling this function.
+# Output: Hello
+another = print_msg("Hello")
+another()
+
+This technique by which some data ("Hello") gets attached to the code is called closure in Python.
+
+conditions for closure
+We must have a nested function (function inside a function).
+The nested function must refer to a value defined in the enclosing function.
+The enclosing function must return the nested function.
+
+
+
+
+def make_multiplier_of(n):
+    def multiplier(x):
+        return x * n
+    return multiplier
+
+# Multiplier of 3
+times3 = make_multiplier_of(3)
+
+# Multiplier of 5
+times5 = make_multiplier_of(5)
+
+# Output: 27
+print(times3(9))
+
+# Output: 15
+print(times5(3))
+
+# Output: 30
+print(times5(times3(2)))
+
+All function objects have a __closure__ attribute that returns a tuple of cell objects if it is a closure function. Referring to the example above, we know times3 and times5 are closure functions.
+
+
+decorators
+
+they can add functionality to existing code
+This is also called metaprogramming as a part of the program tries to modify another part of the program at compile time.
+
+def first(msg):
+    print(msg)    
+
+first("Hello")
+
+second = first
+second("Hello")
+
+Such function that take other functions as arguments are also called higher order functions. 
+
+for eg
+def inc(x):
+    return x + 1
+
+def dec(x):
+    return x - 1
+
+def operate(func, x):
+    result = func(x)
+    return result
+we can call operate(inc,3)
+or operate(dec,3)
+
+functions can be returned also
+def is_called():
+    def is_returned():
+        print("Hello")
+    return is_returned
+
+new = is_called()
+
+#Outputs "Hello"
+new()
+
+
+any object which implements the special method __call__() is termed callable. So, in the most basic sense, a decorator is a callable that returns a callable.
+
+def make_pretty(func):
+    def inner():
+        print("I got decorated")
+        func()
+    return inner
+
+def ordinary():
+    print("I am ordinary")
+
+>>> pretty = make_pretty(ordinary)
+>>> pretty()
+I got decorated
+I am ordinary
+
+here make_pretty was the decorator
+
+
+@make_pretty
+def ordinary():
+    print("I am ordinary")
+
+is same as
+
+def ordinary():
+    print("I am ordinary")
+ordinary = make_pretty(ordinary)
+
+
+
+
+
+
+implementation with parameters
+def smart_divide(func):
+   def inner(a,b):
+      print("I am going to divide",a,"and",b)
+      if b == 0:
+         print("Whoops! cannot divide")
+         return
+
+      return func(a,b)
+   return inner
+
+@smart_divide
+def divide(a,b):
+    return a/b
+
+do decorator last part again
+
+
+
+@property
+_a will be a private variable in a class
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
