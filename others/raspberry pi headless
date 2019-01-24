@@ -1,0 +1,31 @@
+install the os using etcher into the memory card
+in the boot partition create a file ssh
+install putty in your laptop
+
+install vnc in your machine
+download link https://www.realvnc.com/en/connect/download/viewer/
+cd ~/Downloads
+chmod +x VNC-Viewer-6.17.1113-Linux-x64
+mv VNC-Viewer-6.17.1113-Linux-x64 ~
+cd ~
+./VNC-Viewer-6.17.1113-Linux-x64  ->run
+
+now find ip address of your raspberry pi using 
+$ arp -na | grep -i b8:27:eb
+
+now enter into putty and put the ip address you found
+in the window you can login using pi and raspberry
+
+passwd --> is used to change your password
+
+in the pi terminal enter vncserver
+and then using the vnc management console login into it and use the gui
+
+
+
+A link to a good tutorial https://medium.com/coinmonks/run-raspberry-pi-in-a-true-headless-state-cfb3431667de
+
+
+ip address finding https://raspberrypi.stackexchange.com/questions/13936/find-raspberry-pi-address-on-local-network
+
+
