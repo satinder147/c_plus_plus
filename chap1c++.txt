@@ -23,6 +23,71 @@ and for multi line comment /* */ is used
 when we declare a varable like int x then it is an definition
 when this statement is executed a piece of memory in ram is reserved, this is called instantiation.
 
+copy initialization int x=5
+direct initialization int x(5);
+uniform intialization int x{4} . if we write int x{} then x is initialized to 0;
+uniform initalization should be favoured because it raises a error if we pass float value to a integer x
+
+we have copy, direct and uiform initialization but we do not have direct or uniform assignment
+
+
+
+cout<<endl; moves the cursor to the next line and clears the stdout buffer
+whereas cout<<"\n" only moves cursor to next line
+as cout already clears the buffer so writing cout<<endl; clears the buffer once more. which is redundant and not required. 'so we should use cout<<"\n" which is more efficienet.
+
+when we only want to write \n write them in single quotes
+
+C++ uses buffers. When it needs to write things it stores them in buffers and only when the it feels that the size of the buffer is almost full it clears the buffer .i.e it outputs the contents of the buffer to the file. 
+
+
+
+#include<bits/stdc++.h>
+#include<unistd.h>
+using namespace std;
+int main()
+{
+for(int i=0;i<5;i++)
+{
+cout<<".";
+sleep(1);
+}
+return 0;
+}
+
+the above given program will print all the dots in the end. To explicitly flush the buffer use endl or cout.flush()
+
+
+
+
+
+#include<bits/stdc++.h>
+#include<unistd.h>
+using namespace std;
+int main()
+{
+int x=0;
+cin>>x;
+cout<<x;
+return 0;
+}
+
+
+if you will give input a alphabet output will be 0 only
+
+
+c++17 has 84 keywords
+
+
+Older C compilers forced users to define all of the variables in a function at the top of the function:
+
+
+
+A literal (also known as a literal constant) is a fixed value that has been inserted directly into the source code.
+for eg "hello world" in cout<<"hello world"<<endl;
+
+or 5 in int x=5;
+
 L value and R values.-->
 L values are values that has a persistent address in memory like int x
 x is a L values;

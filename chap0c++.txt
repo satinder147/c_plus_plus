@@ -1,4 +1,37 @@
+compiler vs interpreter
+compilers can see the complete code, so they can make optimizations
+compiled code is faster because the intructions executed are of only the executable and there is no overhead from the interpreter
+
+compilers generally have a startup time because of all the optimization they have to do.
+compilers cannot always predict what will happen during runtime so a compiler cannot always generate optimized code.
+
+
+interpreter
+they startup faster than compilers because they do not do any analysis and optimzation.
+code runs line by line
+can be easily debugged
+
+Runs slow because there is a overhead of the running the interpreter as well
+
+
+
+As both the compiler and the interpreter have advantages of their own, so these days languages combine the strength of both of them.
+Line Javascript is interpreted, but if it is observed that the code runs frequently then some js engines compile that code or atleast ccompile bits and pieces of the code.
+
+
+c code is interpreted during debugging
+js code was thought to be interpreted but now some js engines compile it as well.
+
+
+
+It's worth noting that languages are not interpreted or compiled, but rather language implementations either interpret or compile code.
+
+
+
+
 c++
+files can be saved using .cpp and .cc or .cxx format
+header files can have extension  .h, .hpp, or .hxx
 
 it was developed by Bjarne Stroustrup
 
@@ -85,4 +118,15 @@ cin.get();
 
 
 
+complete compilation process
+each file is compiled into a .obj or .o file. All these files are then linked together using the linker to make a .exe file
 
+
+1) preprocessor
+only source code files are passed to the compiler. Header files are not passed.
+for each c++ source file the preprocesser makes a translation unit. In this translation unit the source code from the headers is copied along with the original source code. Apart from this the preprocessor also do some macro replacements and also some conditional #if statements are processed.
+These translation units are then passed to the compiler for converting it into 
+To get the output of the preprocessor. gedit -E a.cpp -o a.ii (after -o we pass the name of the ouput)
+
+wc -c name of file --> gives the number of characters in a file
+wc -l number of lines 

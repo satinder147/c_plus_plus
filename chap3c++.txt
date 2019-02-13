@@ -1,3 +1,105 @@
+the normal return which I use is known as return by value
+int num { getValueFromUser() }; these are also possible
+
+
+A forward declaration allows us to tell the compiler about the existence of an identifier before actually defining the identifier.
+To write a forward declaration for a function, we use a declaration statement called a function prototype. 
+
+It is worth noting that function prototypes do not need to specify the names of the parameters. In the above code, you can also forward declare your function like this:
+
+
+int add(int, int); // valid function prototype
+
+
+
+suppose I have two files main.cpp and add.cpp
+both of these have identical functions 
+when compiling, both the files get compiled without any problem. But when the linker has to link the function calls to their definition then there will be a error. This problem is know as name collision
+
+these can also occur for variables
+1) Two (or more) definitions for a function (or global variable) are introduced into separate files that are compiled into the same program. This will result in a linker error, as shown above.
+2) Two (or more) definitions for a function (or global variable) are introduced into the same file (often via an #include). This will result in a compiler error
+
+variables can be protected from name collision by scope. but it does not work for functions
+
+
+Std namespace
+When C++ was originally designed, all of the identifiers in the C++ standard library (including std::cin and std::cout) were available to be used without the std:: prefix. However, this meant that any identifier in the standard library could potentially conflict with any name you picked for your own identifiers. Code that was working might suddenly have a naming conflict when you #included a new file from the standard library. Or worse, programs that would compile under one version of C++ might not compile under a future version of C++, as new identifiers introduced into the standard library could have a naming conflict with already written code. So C++ moved all of the functionality in the standard library into a special area called a namespace.
+
+In C++, a namespace is a grouping of identifiers that is used to reduce the possibility of naming collisions. It turns out that std::cout‘s name isn’t really std::cout. It’s actually just cout, and std is the name of the namespace that identifier cout is part of. In modern C++, all of the functionality in the C++ standard library is now defined inside namespace std (short for standard).
+
+
+
+
+
+Avoid using directives (such as using namespace std;) at the top of your program. They violate the reason why namespaces were added in the first place. because it removes the purpose of using namespaces. Because now suppose I want to make a function cout, I can't make it. 
+
+
+
+conditional compilation 
+#include<iostream>
+#define satinder
+using namespace std;
+int main()
+{
+#ifdef satinder
+cout<<"hello";
+#endif // satinder
+
+return 0;
+}
+
+if we use normal macros then wherever they are used they are substituted with the substitution text
+but if they are defined like #define satinder then they can be used for conditional compilation
+for eg see aboive program 
+apart from this 
+
+#define
+#include
+#ifdef
+#endif
+#elif
+#elifdef
+#elifndef
+#else 
+#endif 
+#error
+#ifndef
+#line
+#pragma
+#undef
+
+
+
+
+
+
+
+
+
+what happens if forward declare a function but do not define it.
+
+The answer is: it depends. If a forward declaration is made, but the function is never called, the program will compile and run fine. However, if a forward declaration is made and the function is called, but the program never defines the function, the program will compile okay, but the linker will complain that it can’t resolve the function call
+
+
+Forward declarations are most often used with functions. However, forward declarations can also be used with other identifiers in C++, such as variables and user-defined types. Variables and user-defined types have a different syntax for forward declaration
+
+all definitions also serve as declarations.
+
+
+Since int x is a definition, it’s a declaration too. 
+
+if we have a function that is in another file then we have to do a function prototype to tell the compiler that the definition of the function is somewhere else
+
+C++ requires that all identifiers be non-ambiguous. If two identical identifiers are introduced into the same program in a way that the compiler or linker can’t tell them apart, the compiler or linker will produce an error. This error is generally referred to as a naming collision (or naming conflict).
+
+we pass arguments to functions and these are received inside parameters in a function
+you can write void if no argument is passed --> optional
+
+arguments are first processed and then passed. Suppose we have add(x,x++) then x++ will be evaluated. so passed results will be 6,5
+
+pass by value--> when the value of arguments is passed. And these value is copied inside parameters. Any change to these parameters is not refelected in the arguments.
+
 modulus operator only works on integers
 ++x changes the value of x immediately
  int value = add(x, ++x);
@@ -24,6 +126,20 @@ conditional operator
 if the condition is true the first expression runs else the second one runs.
 
 the terenary operator has very low precendence hence if we are doing anything else than asssigning the value of result to an variable, we must put the complete operator in ();
+
+
+function variables are destroyed after the body of the function . These variables are destroyed in the oposite order of their creation
+
+scope is a compile time property 
+whereas life of a variable is a runtime property
+for local variables scope and lifetime have same definitions
+
+
+if a function becomes too long, it can be split up into may functions, this process is called refactoring
+
+The C++ compiler generally ignores whitespace, with a few minor exceptions (when processing text literals). For this reason, we say that C++ is a whitespace-independent language.
+
+One exception where the C++ compiler does pays attention to whitespace is inside quoted text, such as "Hello world!".
 
 cout << (x != 5 ? x : "x is 5");
 this does not compile as both the expressions of the terernary operator must be of same type, or the second one should be convertable into the first one
