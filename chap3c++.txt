@@ -175,4 +175,9 @@ the number is represented in binary and it's digits are shifted by the number of
 ~number inverts all the bits of the binary number
 
 apart from this we have & | and ^ operations 
+
+
+
+variables are names for memory locations
+
   

@@ -1,6 +1,9 @@
 name hiding or shadowing-----the nested variable hides the outer variable
 it means I can declare a variable in a if statement which is already declared in the main function but if the nested variable is not defined then the inner variable use refers to the outer block variable.
 
+
+global variables have static duration and file scope(or global or global namespace scope)
+
 we can have empty block as well in c++
 int main()
 {
@@ -25,7 +28,116 @@ name hiding or shadowing also occurs in case of global variables
 the same name variable defined in a block hides the global variable
 by default the local variable is used in a block, to refer to the global variable :: is used before the variable name.
 
-do chapter 4.2
+In addition to scope and duration, variables have a third property: linkage. A variable’s linkage determines whether multiple instances of an identifier refer to the same variable or not.
+
+Two local variables with the same name but defined in different functions have no linkage -- each will be considered an independent variable.
+
+A variable with internal linkage is called internal variable or static variable.Variables with internal linkage can be used anywhere within the file they are defined in, but can not be referenced outside the file they exist in.
+TO make a global variable variable internal we have to write static in front of it
+.i.e static int x;
+THis variable can be used in the file but cannot be used outside the file.
+
+
+
+A variable with external linkage is called external variable.
+TO make a global variable externl we use the keyword "extern"
+
+.i.e extern int x(20);
+For linking functions in other files we used to write forward declaration. Now for linking these externl variables also, we have to write forward declaration.
+Suppose in a.cpp we write extern int x(20);
+To use this in main.cpp we have to write extern int x;
+
+The variables has to be initialized in a.cpp, otherwise it will look like a forward declaration. So we we can't use extern for external linking where we are not initializing this variable.
+
+
+So extern is used in both the places.
+
+
+the term “file scope” is more often applied to file scope variables with internal linkage only, and “global scope” to file scope variables with external linkage.
+
+which means global variables will have default external linkage, and we only ned forward declaration to use them in other files.
+
+Now suppose I have a c.h file which consists of constants.
+Now when this file will be included in other .cpp files, there will a lot of copies of these constants. Now there is no problem with the copies, but the if c.h is changed all the other files have to compiled again. To solve this problem we have c.h will have only forward declarations of the constants, whereas c.cpp will contain the defined constants.Now to use these constants we can #include "c.h" and now we can use all those constants, and only the c.cpp has to be recompiled incase of any change. or we can define the constants in the header file as well
+
+
+// Uninitialized definition:
+int g_x;        // defines uninitialized global variable (external linkage)
+static int g_x; // defines uninitialized static variable (internal linkage)
+const int g_x;  // not allowed: const variables must be initialized
+ 
+// Forward declaration via extern keyword:
+extern int g_z;       // forward declaration for global variable defined elsewhere
+extern const int g_z; // forward declaration for const global variable defined elsewhere
+ 
+// Initialized definition:
+int g_y(1);        // defines initialized global variable (external linkage)
+static int g_y(1); // defines initialized static variable (internal linkage)
+const int g_y(1);  // defines initialized const variable (internal linkage)
+ 
+// Initialized definition w/extern keyword:
+extern int g_w(1);       // defines initialized global variable (external linkage, extern keyword is redundant in this case)
+extern const int g_w(1); 
+
+
+
+
+global static variables make the variable internal. Whereas static variables which are decalred and defined in a function behave differently
+Static variables offer some of the benefit of global variables (they don’t get destroyed until the end of the program) while limiting their visibility to block scope. This makes them much safer for use than global variables.
+
+static local variables are initialized with zero. Similarly global variables are also initiated
+ as 0
+
+
+Static variables offer some of the benefit of global variables (they don’t get destroyed until the end of the program) while limiting their visibility to block scope. This makes them much safer for use than global variables.
+meaning 
+
+namespace x{
+void sum()
+{}
+
+}
+namespace x{
+void product()
+{}
+
+}
+
+overall result is namespace x has both the functions 
+
+
+In C++17, nested namespaces can also be declared this way:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+#include <iostream>
+ 
+namespace Foo::Goo // Goo is a namespace inside the Foo namespace (C++17 style)
+{
+    const int g_x = 5;
+}
+ 
+int main()
+{
+    std::cout << Foo::Goo::g_x;
+    return 0;
+}
+
+
+
+
+Functions have default linking. So limit the use of function to only one file we write static void int add(int a,int b)
+
 
 static variable have only one copy of them .
 remember function (increment) static variables are different from the global ones in the way that they are limited to their local scope only.
@@ -197,7 +309,12 @@ enum classes
 syntax
 enum class name
 {};
-the only differnce being than the enumerators of two different enum classes cannot be compared with each other.
+the only differnce being than the enumerators of two different enum classes cannot be compared with each other.They lie in different scope
+
+Suppose I have a enum enum class color{};
+and enum class fruit {};
+in normal enums we could compare the color and fruit variables simply.
+but here we have to write color::v1==fruit::v2
 
 
 typedef 
@@ -210,7 +327,43 @@ newer version of this type alias
 using c=double;
 
 
-structs--incomplete
+structs--
+
+are defined same as classes (same semicolon at the end)
+everything is public though
+
+struct e{int age,int roll etc};
+to initalize a struct 
+we write e e1{1,3,,,,,};// these values get assigned to each variables
+but we can initiate explicitly as well by 
+
+
+
+
+nested struct
+
+struct Employee
+{
+    short id;
+    int age;
+    double wage;
+};
+ 
+struct Company
+{
+    Employee CEO; // Employee is a struct within the Company struct
+    int numberOfEmployees;
+};
+ 
+Company myCompany;
+
+to use ceo details we write mycompany.CEO.salary
+
+to initalize such a structure we write 
+
+Company myCompany = {{ 1, 42, 60000.0f }, 5 };
+
+It turns out, we can only say that the size of a struct will be at least as large as the size of all the variables it contains. But it could be larger! For performance reasons, the compiler will sometimes add gaps into structures (this is called padding).
 
 
 

@@ -11,6 +11,12 @@ void addOne(int &y) // y is a reference variable
     y = y + 1;
 }
 
+we can even pass pointers as reference
+for eg 
+void addOne(int *&y)
+{}
+
+
 addone(x)
 y is an alias to x; any change made to y will be reflected in x as both of them are pointing to the same address
 no need to return the results
@@ -40,6 +46,11 @@ return *a+*b;
 
 add(&p,&q);
 
+Pass by address is actually pass by value of address. 
+it has to be noted that although address is passed by value, changing the address will not change the original value, to change the value we have to dereference and change. 
+
+Instead of passing addresses as copy we can pass addresss as reference as well
+void setToNull(int *&tempPtr)
 
 *****************
 
@@ -72,5 +83,50 @@ the problem with return with address is that if the variable we are returning ha
 Return by address is often used to return dynamically allocated memory to the caller:
 
 3)return by reference
+study again
 
 
+
+****************inline funcctions
+if I write inline int add()
+and if the above function is small(consists of only a few lines) then it is upon the compiler to paste the code at the place the function is called.
+this is done because sometimes the overhead of calling the function is greater than the time required to execute the function. So it is better to copy the code at the place where the function is called. The only expense is that our code becomes big.
+
+
+*********************function overloading
+two functions with name are possible if they have either or mixture of these
+parameters have different data types
+number of parameters are different
+**function return type is not cosidered for uniqueness.
+
+Typedefs are not distinct
+typedef char *string;
+void print(string value);
+void print(char *value);
+
+read about the matching cases again
+
+************************default parameters
+void printValues(int x=10, int y=20, int z=30)
+{
+    std::cout << "Values: " << x << " " << y << " " << z << '\n';
+}
+
+Note that it is impossible to supply an argument for parameter z without also supplying arguments for parameters x and y. This is because C++ does not support a function call syntax such as printValues(,,3). This has two major consequences:
+
+1) All default parameters must be the rightmost parameters. The following is not allowed:
+
+1
+void printValue(int x=10, int y); // not allowed
+2) If more than one default parameter exists, the leftmost default parameter should be the one most likely to be explicitly set by the user.
+
+*******Once declared, a default parameter can not be redeclared. That means for a function with a forward declaration and a function definition, the default parameter can be declared in either the forward declaration or the function definition, but not both.
+it is recommended to provide the default parameters in the forward declaration only
+
+
+****************However, it is important to note that default parameters do NOT count towards the parameters that make the function unique. Consequently, the following is not allowed:
+
+void printValues(int x);
+void printValues(int x, int y=20);
+
+the above two are same.

@@ -1,0 +1,97 @@
+The primary purpose of a header file is to propagate declarations to code files.
+**pay attention only declration
+ std::cout is forward declared in the iostream header, but defined as part of the C++ standard library, which is automatically linked into your program during the linker phase.
+
+Header files should generally not contain function and variable definitions, so as not to violate the one definition rule. An exception is made for global constant variables (which we’ll cover in a future lesson).
+
+If a header file is paired with a code file (e.g. add.h with add.cpp), they should both have the same base name (add). (not necessary)
+
+Suppose I have add.cpp which contains a add function
+I have a main function which earlier had forward declaration of add function
+Now the forward declration is shifted in add.h
+Now we write #include "add.h" . Then the text from add.h will be copied in main.cpp during preprocessor step
+
+
+Angled brackets vs quotes
+
+You’re probably curious why we use angled brackets for iostream, and double quotes for add.h. The answer is that angled brackets are used to tell the compiler that we are including a header file that was included with the compiler, so it should look for that header file in the system directories. The double-quotes tell the compiler that this is a user-defined header file we are supplying, so it should look for that header file in the current directory containing our source code first. If it doesn’t find the header file there, it will check any other include paths that you’ve specified as part of your compiler/IDE settings. That failing, it will fall back to checking the system directories.
+
+
+
+
+Header file best practices
+
+Here are a few more recommendations for creating and using header files.
+
+Always include header guards (we’ll cover these next lesson).
+Do not define variables and functions in header files (global constants are an exception -- we’ll cover these later)
+Give your header files the same name as the source files they’re associated with (e.g. grades.h is paired with grades.cpp).
+Each header file should have a specific job, and be as independent as possible. For example, you might put all your declarations related to functionality A in A.h and all your declarations related to functionality B in B.h. That way if you only care about A later, you can just include A.h and not get any of the stuff related to B.
+Be mindful of which headers you need to explicitly include for the functionality that you are using in your code files
+Every header you write should compile on its own (it should #include every dependency it needs)
+Only #include what you need (don’t include everything just because you can).
+Do not #include .cpp files.
+Order your #includes as follow: your own user-defined headers first, then 3rd party library headers, then standard library headers. This is a minor one, but may help highlight a user-defined header file that doesn’t directly #include everything it needs.
+
+
+
+
+
+header guards
+(for functions not variables)duplication of definition is a problem, but duplication of forward declaration for function is not a problem.
+
+
+
+suppose I have 
+
+square.h
+ifndef square
+#define square
+int s()
+{}
+#endif
+
+geometry.h
+
+ifndef geo
+#define geo
+#include "square.h"
+#endif
+
+main.cpp
+#include "square.h" So after preprocessnig definition of square will be there and also square will be defined
+#include "geometry.h" After preprocessing gemetry will be included
+geo will be defined then it will try to include square.h but then as square is already defined this time the definition of sqaure will not be included
+
+
+
+
+
+One more thing
+
+square.h
+a()
+{}
+b();
+
+square.cpp
+#include"square.h"
+b()
+{}
+
+main.cpp
+#Inlcude "square.h"
+a(); function calls
+b();
+
+this will cause error even if square.h has header guards
+
+now square.cpp will have definition of both a and b
+and main.cpp will have defition of a
+which will cause problem during linking
+to prevent this we have to move the a() definition to squre.cpp
+
+
+why do we need header guards if we are not defining anything
+reason --> we will get to know when we will study classes
+

@@ -14,6 +14,21 @@ we can also write like a[]={1,2,3,4,5}
 array size is updated according to the number of elements
 enumerators can be used for indexing of array, so that we have information about the indexs(like what they represent)
 
+as arrays can have big sizes so making their copy and sending is a big task, so they are sent as it is. 
+In this process any changes which are made to the array by the function are reflected in the original array.
+
+To stop this we can pass constant array
+
+like void add(const int a[5]);
+this will prevent any changes to the array
+
+Array size in main will be the sum of sizes of all the elements, but the sizeof(array) in the function where it is passed is equal to the size of pointer.
+length of an array can be found using sizeof(a)/sizeof(a[0]);
+
+c++ lets you use indexs which are out of range for an array 
+Although it happens less often, C++ will also let you use a negative index, with similarly undesirable results.
+
+
 
 two dimensionsal array 
 initialization a[2][2]={{1,2},{3,4}}
@@ -23,7 +38,13 @@ we can write it like a[][2]={{1,2},{3,4}}
 two dimensional array can be initialized to zero using a[3][5]={0}
 
 c style string is an array of characters
+char myString[] = "string"; // ok  is perfectly fine
 
+
+When printing a C-style string, std::cout prints characters until it encounters the null terminator. If you accidentally overwrite the null terminator in a string (e.g. by assigning something to myString[6]), you’ll not only get all the characters in the string, but std::cout will just keep printing everything in adjacent memory slots until it happens to hit a 0! but not 
+
+cin.getline(a,255);
+This call to cin.getline() will read up to 254 characters into name (leaving room for the null terminator!). Any excess characters will be discarded. In this way, we guarantee that we will not overflow the array!
 
 
 ************POINTERS********************
@@ -32,6 +53,51 @@ c style string is an array of characters
 * is called the derefernece operator and gives the value at a particular addresss
 
 *&x gives the value stored in x.
+
+when returning a pointer from a function, it’s clearer to put the asterisk next to the return type:
+
+1
+int* doSomething();
+
+
+Just like normal variables, pointers are not initialized when declared. If not initialized with a value, they will contain garbage.
+
+
+Note that the following is also not legal:
+
+int *ptr = 5;
+This is because pointers can only hold addresses, and the integer literal 
+
+
+
+
+5 does not have a memory address. If you try this, the compiler will tell you it cannot convert an integer to an integer pointer.
+
+
+
+So two more unary opertors added to our list are * and &
+
+
+*** one very interesting fact I noted
+
+suppose I have apointer and I initalize with a reference
+int *x=&a
+now I can print x and *x
+now If I modify *x=b;
+then at the same address as before I can store another variables
+
+But make sure the initialization is with a reference only;
+otherwise a segmentation fault occurs
+
+
+
+
+
+
+
+
+
+************
 pointer is a variable that holds a memory location as it's value
 pointer declaration
 int *ptr declares a pointer to a int 
@@ -58,10 +124,41 @@ changes the value of x as well
 
 the sizeof pointer is constant for all datatype and is dependent upon the system architecture. so for a 32 bit machine pointer size is 4 bytes 
 
+uses of pointer 
+1) Arrays are implemented using pointers. Pointers can be used to iterate through an array (as an alternative to array indices) (covered in lesson 6.8).
+2) They are the only way you can dynamically allocate memory in C++ (covered in lesson 6.9). This is by far the most common use case for pointers.
+3) They can be used to pass a large amount of data to a function in a way that doesn’t involve copying the data, which is inefficient (covered in lesson 7.4)
+4) They can be used to pass a function as a parameter to another function (covered in lesson 7.8).
+5) They can be used to achieve polymorphism when dealing with inheritance (covered in lesson 12.1).
+6) They can be used to have one struct/class point at another struct/class, to form a chain. This is useful in some more advanced data structures, such as linked lists and trees.
+***********************************
+
+
+
 null pointers
 
+
+beside addresses the pointers can also store null value;
+
 a pointer beside storing the address,can also hold a null value.
-int *p(0), *p{0}, are null pointers
+int *p(0), *p{0} and ptr=0, are null pointers
+
+instead of 0 null macro(NULL) can also be used
+
+or nullptr should be used
+this is because if we are using 0 for as an indication for null pointer, it confuses the compiler for understanding 0 as an int instead of an pointer
+
+
+
+
+ If we want to write a function that accepts only a nullptr argument, what type do we make the parameter? The answer is std::nullptr_t.
+
+void doSomething(std::nullptr_t ptr)
+{
+    std::cout << "in doSomething()\n";
+}
+
+
 
 dereferencing a null pointer or a garbage pointer leads to undefined bahavior
 
@@ -72,8 +169,11 @@ a null pointer in c++ is represented using nullptr
 for a function to hold a null pointer variable it has to be of type 
 nullptr_t
 
-pointer and arrays
-int a[5]
+
+
+
+, when a fixed array is used in an expression, the fixed array will decay (be implicitly converted) into a pointer that points to the first element of the array. 
+so if a is an array
 cout a and "&a[0] " are same 
 
 *a will give the value of a[0]
@@ -98,6 +198,17 @@ void printSize(int *array);
 both of these operation are identical because the array is decayed into a pointer which is passed.
 
 
+pass by address we 
+
+int add(int *x, int *y)
+{
+return *x+*y;
+}
+main()
+
+
+add(&x,&y);
+
 ***********Arrays in structs and classes don’t decay
 
 Finally, it is worth noting that arrays that are part of structs or classes do not decay when the whole struct or class is passed to a function. This yields a useful way to prevent decay if desired, and will be valuable later when we write classes that utilize arrays.
@@ -107,8 +218,24 @@ if ptr points to arr[0]
 *(ptr+1) will point to arr[1]
 ptr+1 is the address of arr[1]
 
+array[n] is the same as *(array + n)
 
-6.8 is left 
+
+print an array using pointers 
+
+int a[5]={1,2,3,4,5};
+int no=5;
+for(int *ptr=a;ptr<a+no;ptr++)
+cout<<(*ptr)<<" ";
+
+
+another way to create a string
+const char *myName = "Alex";
+
+so given arr, arr[3] is converted into *(arr+3) which is the 3 index
+
+
+6.8b is left 
 
 we have 3 types of allocations available
 static --> memory is allocated only once
@@ -134,12 +261,50 @@ int *value = new (std::nothrow) int; returns a null pointer instead of a excepti
 
 null pointer is a pointer which points to address 0
 
+there is no need to do this
+if (ptr)
+    delete ptr;
+
+we can just do delete ptr;
+
+
 allocated dynamic memory has no scope, although the pointers pointing to it have a local scope.
 
 memory leak***
 when the program allocates dynamic memory and the variable which was storing the addresss of that varibale gets lost or deleted then
 that peice of memory cannot be used by anything. These memory can be reused by the system only after the program exits.
 then the system runs it routines to capture all the leaked memory
+
+
+
+
+Memory allocation
+
+stack
+heap
+uniniatialized variables
+intialized variables
+text or code segment
+
+text segment -> consist of executable instructions.
+the text segment is often read-only, to prevent a program from accidentally modifying its instructions.
+
+initialized data segment
+ A data segment is a portion of virtual address space of a program, which contains the global variables and static variables that are initialized by the programmer.
+Note that, data segment is not read-only, since the values of the variables can be altered at run time.
+
+
+uninitialized data segment
+
+Uninitialized data segment, often called the “bss” segment, named after an ancient assembler operator that stood for “block started by symbol.” Data in this segment is initialized by the kernel to arithmetic 0 before the program starts executing
+uninitialized data starts at the end of the data segment and contains all global variables and static variables that are initialized to zero or do not have explicit initialization in source code.
+For instance a variable declared static int i; would be contained in the BSS segment.
+For instance a global variable declared int j; would be contained in the BSS segment.
+
+
+refer this https://www.geeksforgeeks.org/memory-layout-of-c-program/
+https://medium.com/@nickteixeira/stack-vs-heap-whats-the-difference-and-why-should-i-care-5abc78da1a88
+https://www.youtube.com/watch?v=_8-ht2AKyH4
 
 
 dynamic allocation of array
@@ -165,13 +330,20 @@ rules of array follow here as well
 for keeping the syntax same fixed array can also be allocated in the same way -->  int fixedArray[5] { 9, 7, 5, 3, 1 };
 int c++11
 we cannot initialize a dynamically allocated character array
-like char *array = new char[14] { "Hello, world!" };-->not possible
+like char *array = new char[14] { "Hello, world!" };// can't do this
+
 but we can initialize dynamically allocated string
 
 
 dynamic array should be declared with an explicit size
 int *dynamicArray2 = new int[3] {1, 2, 3}; 
 int *dynamicArray2 = new int[] {1, 2, 3};--> not correct
+to delete this dynamically allocated array 
+delete[] dynamicArray2
+
+
+One often asked question of array delete[] is, “How does array delete know how much memory to delete?” The answer is that array new[] keeps track of how much memory was allocated to a variable, so that array delete[] can delete the proper amount. Unfortunately, this size/length isn’t accessible to the programmer.
+
 
 
 const int value = 5; // value is const
@@ -214,11 +386,16 @@ so p is called an refernce to varible value
 refernces are required to be initialized at the time of declaration
 there does not exist anything like a null refernce
 
+so we cannot make int &x;
+
+
 References to non-const values can only be initialized with non-const l-values. They can not be initialized with const l-values or r-values.
 just keep in mind one thing that only constant refernce can be reference to a constant variable
 other 2 cases are not possible
 
 references once initialized cannot be re assigned
+References are most often used as function parameters. In this context, the reference parameter acts as an alias for the argument, and no copy of the argument is made into the parameter. This can lead to better performance if the argument is large or expensive to copy.
+
 
 these references are genrally useed while passing parameters to a function 
 
@@ -226,16 +403,60 @@ viod add(int &p)
 {}
 p acts as an alias to the sent argument
 
+One of the most annoying issues with C-style arrays is that in most cases they decay to pointers when evaluated. However, if a C-style array is passed by reference, this decaying does not happen.
+void printElements(int (&arr)[4])  --> you can use this array (the only thing is that we have to pass array size;
+
+we can use references for shortcuts. 
+For eg 
+suppose I make use of a variable like a.b.v1;
+then I can do int &ref=a.b.v1
+and use ref
 
 if I have to access variables which is in one class in a second class
 so we write something like other.something.value1;
 then we can write int &ref = other.something.value1; 
 and conveniently use ref instead of the big term.
 
-have a look at 6-11a again
+
+constant references are references to constant values
+for eg cons int &ref=x
+where x is constant;
+
+if reference is constant then it can point to some constant values like a number as well. 
+For eg const int &ref=6;
+
+
+references even work in place of objects. 
+For eg Person &ref=person(person is a object)
+now same as you would have use the members of person class, you can use the members of person class using ref
+
+but pointers have to be dreferenced first
+Person *ptr = &person;
+(*ptr).age= 5;
+alternate syntax= ptr->age=5;
 
 
 for each loop in c++
+for(x:array)
+cout<<x;
+
+any change meade to this x will not get reflected in the array[]
+to make the changes get reflected we can write
+for(int &x:array)
+now any changes will be reflected 
+also &x will stop making acopy of the array element
+But suppose we did not wanted the user to change the elements
+we can write for(const int &x:array)
+this will stop the copy as well
+
+
+For-each doesn’t work with pointers to an array
+so we cannot use this loop in arrays received in a function
+
+
+void pointers can(void *ptr) can point to any datatype. But to use them (dereference them) we have to first cast them 
+this can be done using int *a=static_cast<int *>(ptr)
+
 
 void pointers
 

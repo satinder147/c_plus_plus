@@ -145,6 +145,10 @@ char16_t and char32_t were added to C++11 to provide explicit support for 16-bit
 Literals and const (2.8,2.9)
 
 
+The fast type (int_fast#_t) gives you an integer that’s the fastest type with a width of at least # bits (where # = 8, 16, 32, or 64). For example, int_fast32_t will give you the fastest integer type that’s at least 32 bits.
+
+The least type (int_least#_t) gives you the smallest integer type with a width of at least # bits (where # = 8, 16, 32, or 64). For example, int_least32_t will give you the smallest integer type that’s at least 32 bits.
+
 
 
 
