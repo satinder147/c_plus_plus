@@ -130,3 +130,18 @@ void printValues(int x);
 void printValues(int x, int y=20);
 
 the above two are same.
+
+
+
+
+
+
+
+
+*************Function pointers (skipped for now)
+
+*******************************stack and heap
+
+
+cerr is also used to print things
+

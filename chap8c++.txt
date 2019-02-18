@@ -1,0 +1,241 @@
+structure with 3 data memebers can be initialized using
+DateStruct today { 2020, 10, 14 };
+
+structs -->data members and memeber functions are public by default
+
+private--> data memebers and functions can be used only within the class
+public --> data members and function can be used outside the class using objects
+
+
+OR
+
+A private member is a member of a class that can only be accessed by other members of the class.
+wheras the latter can be accessed by anyone
+
+
+why we need private members
+this same as hiding how a combustion engine works when you are driving a car
+
+
+In object-oriented programming, Encapsulation (also called information hiding) is the process of keeping the details about how an object is implemented hidden away from users of the object. Instead, users of the object access the object through a public interface. In this way, users are able to use the object without having to understand how it is implemented.
+
+
+Note: The word encapsulation is also sometimes used to refer to the packaging of data and functions that work on that data together. We prefer to just call that object-oriented programming. or the binding of code and data
+
+
+benefits of encapsulation
+unlike global variables where we can accidently modify the value of the variables, this is not possible if the member variables are private
+subbscripting array with invalid indexes is also a problem
+apart from this suppose the data members are array and it's length, then the user can change the length of the array
+
+Another thing is that the code can be modified easily. If we were using the data member and the data member is now renamed, then at all places the the name has to be changed, but other wise we can only modify the data members
+
+direct and uniform initialization does not work, if the data members become private. So we need constructors
+constructors are called when a object is made. if not provided, default runs(which has no body)
+Syntax of a constructor--> has no return type
+and have same name as class
+
+
+If your class has no other constructors, C++ will automatically generate a public default constructor for you. This is sometimes called an implicit constructor (or implicitly generated constructor).
+it has empty body
+
+1) default constructor--> the constructor which has no parameters
+2) parameterized constructor --> takes parameters
+so we can have both the the constructors(operator overloading)
+3) copy constructor--> 
+
+
+A copy constructor is a member function which initializes an object using another object of the same class. A copy constructor has the following general function prototype:
+
+
+#include<iostream> 
+using namespace std; 
+  
+class Point 
+{ 
+private: 
+    int x, y; 
+public: 
+    Point(int x1, int y1) { x = x1; y = y1; } 
+  
+    // Copy constructor 
+    Point(const Point &p2) {x = p2.x; y = p2.y; } 
+  
+    int getX()            {  return x; } 
+    int getY()            {  return y; } 
+}; 
+  
+int main() 
+{ 
+    Point p1(10, 15); // Normal constructor is called here 
+    Point p2 = p1; // Copy constructor is called here 
+  
+    // Let us access values assigned by constructors 
+    cout << "p1.x = " << p1.getX() << ", p1.y = " << p1.getY(); 
+    cout << "\np2.x = " << p2.getX() << ", p2.y = " << p2.getY(); 
+  
+    return 0; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***********************more about constructors
+some variables like(const int x) can't be reinitalized. 
+So if we have a const in as a data member of a class, then we can't initialize this variable in the constructor, because in a constructor we can assign variables not initialize them .
+so here member insitalizer lists comes to rescue
+They are like direct and uniform initialization
+
+we modify the constructor like this for uniform intialization(name of constructor --> Something)
+public:
+    Something() : m_value1(1), m_value2(2.2), m_value3('c') // directly initialize our member variables
+    {
+    // No need for assignment here
+    }
+
+
+or you can intialize the variable with a value there itself, this is known as default initialization
+
+for parameterized constructors this works
+public:
+    Something(int value1, double value2, char value3='c')
+        : m_value1(value1), m_value2(value2), m_value3(value3) // directly initialize our member variables
+
+
+to initialize an array we will do uniform initialization
+Something() : a{1,2,4,5,6} // if a is an const array
+
+
+
+Perhaps surprisingly, variables in the initializer list are not initialized in the order that they are specified in the initializer list. Instead, they are initialized in the order in which they are declared in the class. but does not work for me
+
+
+If a default initialization value is provided and the constructor initializes the member via the member initializer list, the member initializer list will take precedence. The following example shows this:
+
+
+suppose we have two constructors one of which initializes x=0;
+and the other initializes y=user defined value then we can write one constructor which does x=0;
+and the other which calls the previous one first and then  initializes using the user defined variables
+
+for eg 
+
+class a
+{
+public:
+ int y;
+ int x;
+
+a()
+{
+x=0;
+
+}
+a(int v):a()
+{
+y=v;
+}
+};
+
+or
+
+class a
+{
+public:
+ int y;
+ int x;
+
+a()
+{
+x=0;
+
+}
+a(int v)
+{
+a();
+y=v;
+}
+
+
+
+a constructor can even call another function for initalization of values, The cherry on top is that you can declare these functions anywhere in the class, meaning a function defined on the top can make a call to the function defined below
+
+constructors which call other constructors are known as delegating constructors
+
+
+destructors
+same name as class
+ have a preceeding ~ sign
+no parameters
+only one destructor
+destructor can call other functions of a class since the variables are not detroyed till then 
+
+if exit runs, then there is no guarantee that your destructor will run.
+
+
+simple.setID(2);--> setID(&simple,2);
+
+and the function is definition is converted to 
+
+void setID(Simple* const this, int id) { this->m_id = id; }
+
+
+ if you have a constructor (or member function) that has a parameter with the same name as a member variable, you can disambiguate them by using “this”:
+
+class Something
+{
+private:
+    int data;
+ 
+public:
+    Something(int data)
+    {
+        this->data = data;
+    }
+};
+
+Chaining member functions
+suppose I want to call 3 data members one by one for an object
+
+like obj.mult(2).add(3).sub(2)
+then I can write int& mult(int x)
+			{
+			a=a*x;
+			return *this
+}
+
+Now obj.mult(2) returns obj, which can again call the other function, so chaining can take pla.
+
+
+
+Class definitions can be put in header files in order to facilitate reuse in multiple files or multiple projects. Traditionally, the class 
+definition is put in a header file of the same name as the class, and the member functions defined outside of the class are put in a .cpp file of the same name as the class.
+
+
+
+Doesn’t defining member functions in the header violate the one-definition rule?
+
+It depends. Member functions defined inside the class definition are considered implicitly inline. Inline functions are exempt from the one definition per program part of the one-definition rule. This means there is no problem defining trivial member functions (such as access functions) inside the class definition itself.
+
+Member functions defined outside the class definition are treated like normal functions, and are subject to the one definition per program part of the one-definition rule. Therefore, those functions should be defined in a code file, not inside the header. The one exception for this is for template functions, which we’ll cover in a future chapter.
+
+
+
+Libraries
+
+Separating the class definition and class implementation is very common for libraries that you can use to extend your program. Throughout your programs, you’ve #included headers that belong to the standard library, such as iostream, string, vector, array, and other. Notice that you haven’t needed to add iostream.cpp, string.cpp, vector.cpp, or array.cpp into your projects. Your program needs the declarations from the header files in order for the compiler to validate you’re writing programs that are syntactically correct. However, the implementations for the classes that belong to the C++ standard library is contained in a precompiled file that is linked in at the link stage. You never see the code.
+
+Outside of some open source software (where both .h and .cpp files are provided), most 3rd party libraries provide only header files, along with a precompiled library file. There are several reasons for this: 1) It’s faster to link a precompiled library than to recompile it every time you need it, 2) a single copy of a precompiled library can be shared by many applications, whereas compiled code gets compiled into every executable that uses it (inflating file sizes), and 3) intellectual property reasons (you don’t want people stealing your code).
+
+Having your own files separated into declaration (header) and implementation (code file) is not only good form, it also makes creating your own custom libraries easier. Creating your own libraries is beyond the scope of these tutorials, but separating your declaration and implementation is a prerequisite to doing so.
