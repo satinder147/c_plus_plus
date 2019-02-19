@@ -1,0 +1,21 @@
+*****************virtual functions
+Derived class pointer  can store address of derived class object
+derived class reference can refer to dereieved class object
+
+base class pointer  can store address of derived class object
+base class reference can refer to dereieved class object
+
+
+When the base class pointer calls a function (which is present in both the derieved and the base class) then the base class function will be called although the pointer referes to a derived class object; It is not only for the functions which are redefined. Using the pointer of base pointer refereing to the address of the derived class object cannot call functions of derived class
+
+Not sure why do we even do this
+read the last portion of 12th chapter
+
+
+A virtual function is a special type of function that, when called, resolves to the most-derived version of the function that exists between the base and derived class. This capability is known as polymorphism. A derived function is considered a match if it has the same signature (name, parameter types, and whether it is const) and return type as the base version of the function. Such functions are called overrides.
+
+To make a function virtual, simply place the “virtual” keyword before the function declaration.
+
+If I will write virtual before function declaration, then the derived will run.
+
+Because rBase is a reference to the Base portion of a Derived object, when rBase.getName() is evaluated, it would normally resolve to Base::getName(). However, Base::getName() is virtual, which tells the program to go look and see if there are any more-derived versions of the function available between Base and Derived. In this case, it will resolve to Derived::getName()!
