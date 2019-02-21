@@ -9,7 +9,7 @@ base class reference can refer to dereieved class object
 When the base class pointer calls a function (which is present in both the derieved and the base class) then the base class function will be called although the pointer referes to a derived class object; It is not only for the functions which are redefined. Using the pointer of base pointer refereing to the address of the derived class object cannot call functions of derived class
 
 Not sure why do we even do this
-read the last portion of 12th chapter
+read the last portion of 12.1
 
 
 A virtual function is a special type of function that, when called, resolves to the most-derived version of the function that exists between the base and derived class. This capability is known as polymorphism. A derived function is considered a match if it has the same signature (name, parameter types, and whether it is const) and return type as the base version of the function. Such functions are called overrides.
@@ -19,3 +19,159 @@ To make a function virtual, simply place the “virtual” keyword before the fu
 If I will write virtual before function declaration, then the derived will run.
 
 Because rBase is a reference to the Base portion of a Derived object, when rBase.getName() is evaluated, it would normally resolve to Base::getName(). However, Base::getName() is virtual, which tells the program to go look and see if there are any more-derived versions of the function available between Base and Derived. In this case, it will resolve to Derived::getName()!
+
+
+If a function is marked as virtual, all matching overrides are also considered virtual, even if they are not explicitly marked as such. However, having the keyword virtual on the derived functions does not hurt, and it serves as a useful reminder that the function is a virtual function rather than a normal one. Consequently, it’s generally a good idea to use the virtual keyword for virtualized functions in derived classes even though it’s not strictly necessary.
+
+
+Since most of the time you’ll want your functions to be virtual, why not just make all functions virtual? The answer is because it’s inefficient -- resolving a virtual function call takes longer than resolving a regular one. Furthermore, the compiler also has to allocate an extra pointer for each class object that has one or more virtual functions. We’ll talk about this more in future lessons in this chapter.
+
+
+
+Read again last few lines of 12.2 
+
+
+
+The override keyword
+To make a function virtual, the function signature should exactly match. If there is some slight mismatch also, then the base class function will run(because this function is not overridden). Sometime this leads to errors. To solve this issure override comes in place
+Override is written like this 
+virtual void func() override {}
+
+Now if func is not overriden then the compiler will flag an error
+
+**********final specifier
+Sometime we do not want classes down in the heirarchy to override virtual function 
+Suppose this is the case
+
+A
+|
+b
+|
+c
+.ie c inherits b which further inherits a 
+Now suppose I do not want c to override a function which is virtual in  A but  want b to use that facility
+
+Now while overriding function in B. The function definition will look like
+virtual void func() override final{}
+Now any further override of this function func will cause compile error 
+
+Similarly I can ban further inheritance of a class by using final keyword
+for eg
+public class b final : public a
+Now any further inheritance of class B is banned. (this inheritance has to be through B. DIrect inheritance from A is possible)
+
+
+****covaritant return types
+There is one special case in which a derived class virtual function override can have a different return type than the base class and still be considered a matching override. If the return type of a virtual function is a pointer or a reference to a class, override functions can return a pointer or a reference to a derived class. These are called covariant return types. Here is an example:
+
+
+#include<iostream>
+using namespace std;
+class a
+{
+public:
+virtual a  *ab()
+{
+cout<<"in base"<<endl;
+}
+};
+
+class b final:public a
+{
+public:
+b *ab()  {
+cout<<"in b"<<endl;
+}
+};
+
+int main()
+{
+b B;
+a *ptr=&B;
+ptr->ab();
+
+return 0;
+
+}
+
+
+Whenever we are doing inheritance(and base pointer contains derived object) we sould make the destructor virtual. Because otherwise if this is not done c++ runs the destructor of only base class. So we have to write virtual before the destructor signature of A to run the derived destructor
+
+As with normal virtual member functions, if a base class function is virtual, all derived overrides will be considered virtual regardless of whether they are specified as such. It is not necessary to create an empty derived class destructor just to mark it as virtual.
+
+
+There may be cases where you want a Base pointer to a Derived object to call Base::getName() instead of Derived::getName(). To do so, simply use the scope resolution operator:
+
+#include <iostream>
+int main()
+{
+    Derived derived;
+    Base &base = derived;
+    // Calls Base::GetName() instead of the virtualized Derived::GetName()
+    std::cout << base.Base::getName() << std::endl;
+}
+
+
+Conventional wisdom (as initially put forth by Herb Sutter, a highly regarded C++ guru) has suggested avoiding the non-virtual destructor memory leak situation as follows, “A base class destructor should be either public and virtual, or protected and nonvirtual.” A class with a protected destructor can’t be deleted via a pointer, thus preventing the accidental deleting of a derived class through a base pointer when the base class has a non-virtual destructor. Unfortunately, this also means the base class can’t be deleted through a base class pointer, which essentially means the class can’t be dynamically allocated or deleted except by a derived class. This also precludes using smart points (such as std::unique_ptr and std::shared_ptr) for such classes, which limits the usefulness of that rule (we cover smart pointers in a later chapter). It also means the base class can’t be allocated on the stack. That’s a pretty heavy set of penalties.
+
+early binding 
+late binding
+
+virtual table
+These tables are responsible for helping the compiler to link to function calls
+When we make a a function virtual then the compiler creates virtual tables for all the class which inherits this function. 
+Apart from this the compiler secretly adds a *_vptr (virtual pointer which is a real pointer in the base class eg FunctionPointer *__vptr; )
+this pointer points to the virtual table of the base class. 
+Now the virtual tables of the derived classes will point to the function calls (according to virtual function concept)
+
+Initially when the functions were not virtual then the base class pointer can only access the base part of the derived class. But when we make the function virtual, the *_vptr gets inherited to other classes as well . Now using this *_vptr compiler can access the virtual tables of other classes and can link to function calls down the line
+
+
+************pure virtual functions
+If we do not define a body to a virtual function and assign it to 0. Then that function becomes pure virtual function.
+If a class contains a or more pure virtual functions then that class becomes abstract base class. Such a class cannot be initiated(meaning object can;t be made of such a class). If the derived classes do not override such a function, then even they become abstract base class and even their object can't be made. So that their objects can be made they have to override the pure virtual function
+
+
+An body to a pure virtual function can be provided, but that does not change anything else. Classes still have to overwrite this function
+Body cannot be provided inline
+meaning the body has to be given outside the class. Do not forget to give virtual destructor
+*********interface classes
+These classes contain only pure virtual function. Any classes which want to inheirt this class has to override all of them. Otherwise even they will become abstract classes.
+
+Abstract classes still have virtual tables, as these can still be used if you have a pointer or reference to the abstract class. The virtual table entry for a pure virtual function will generally either contain a null pointer, or point to a generic function that prints an error (sometimes this function is named __purecall) if no override is provided.
+
+
+virtual base class
+In the diamond problem, the problem was that there were two copies of A and D could not tell which to call because the call was ambiguous
+To solve that issue we inherit class a virtually
+
+This is done like  class b:virtual public A
+similary class c:virtual public A
+Now only one copy of A will be made and the calls will be unambiguous. 
+But since both class b and c are sharing class A. Class D is responsible for initiating class A. It does that calling A constructor along with the class b and class c constructor
+
+The problem was arrising because d was having two copies of *_vptr which was giving dificulty in choosing which virtual table to call.
+
+
+
+
+**************object slicing
+Suppose example
+B b;
+A *a=b; if done accidently
+This will cause object slicing. Only that portion of b will be copied to a .ie is common.
+So although the functions are virtual. but base class function will run. Because it contains only the base class implementation.
+
+This problem can also occur suppose I have a vector of type *base class and I store derived in it. Then the objects get sliced.
+
+
+Franken object
+
+Derived d1(5);
+    Derived d2(6);
+    Base &b = d2;
+ 
+    b = d1; // this line is problematic
+ Read about it after words // 12.8
+
+12.9 and 12.10 left for now
