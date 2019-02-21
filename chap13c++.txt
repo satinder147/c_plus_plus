@@ -1,0 +1,42 @@
+
+****************function templates. 
+basic example
+
+#include<iostream>
+using namespace std;
+template <typename T,typename T1>
+T sum(T a, T1 b)
+{
+return a+b;
+}
+int main()
+{
+cout<<sum(4.2,2);
+return 0;
+}
+
+
+Template functions will work with both built-in types (e.g. char, int, double, etc…) and classes, with one caveat. When the compiler compiles the template instance, it compiles it just like a normal function. In a normal function, any operators or function calls that you use with your types must be defined, or you will get a compiler error. Similarly, any operators or function calls in your template function must be defined for any types the function template is instantiated for. Let’s take a look at this in more detail.
+
+
+template <class T>
+define you class here and use T as type
+Functions which are not inline need their seperate template declaration
+
+template <typename T> // member functions defined outside the class need their own template declaration
+int Array<T>::getLength() { return m_length; } // note class name is Array<T>, not Array
+
+object is made in this manner  Array<int> intArray(12);
+
+while making template classes we can even have non type parameters for eg
+
+template <class T, int size> // size is the non-type parameter
+class StaticArray
+{};
+
+here size is a integer value(non type)
+
+to make an object we write StaticArray<int,12> S
+
+not studied after 13.4
+

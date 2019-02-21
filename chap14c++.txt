@@ -1,0 +1,36 @@
+************exception handling
+three keywords are mainly used, try,throw and catch
+
+
+In C++, a throw statement is used to signal that an exception or error case has occurred (think of throwing a penalty flag). Signaling that an exception has occurred is also commonly called raising an exception
+
+In C++, we use the try keyword to define a block of statements (called a try block). The try block acts as an observer, looking for any exceptions that are thrown by any of the statements within the try block.
+
+catch (int x)
+{
+    // Handle an exception of type int here
+    std::cerr << "We caught an int exception with value" << x << '\n';
+}
+
+If no appropriate catch handlers exist, execution of the program propagates to the next enclosing try block. If no appropriate catch handlers can be found before the end of the program, the program will fail with an exception error.
+
+
+#include <iostream>
+ 
+int main()
+{
+    try
+    {
+        throw 4.5; // throw exception of type double
+        std::cout << "This never prints\n";
+    }
+    catch(double x) // handle exception of type double
+    {
+        std::cerr << "We caught a double of value: " << x << '\n';
+    }
+ 
+    return 0;
+}
+
+
+If an exception is routed to a catch block, it is considered “handled” even if the catch block is empty. However, typically you’ll want your catch blocks to do something useful. There are three common things that catch blocks do when they catch an exception:

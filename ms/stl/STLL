@@ -1,0 +1,8 @@
+vectors
+Vectors are dynamic array
+elements are stored in contiguous memory
+insertion at end can take time, because there might be a need to expand the array
+insertion or deletion in mid or beginning takes linear time
+Removing last element takes constant time
+
+

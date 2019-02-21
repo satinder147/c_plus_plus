@@ -1,0 +1,67 @@
+bubble sort
+The largest element bubbles out every time. 
+It is an comparison sort
+it is stable 
+complexity best =n. average n^2 worst =n^2
+space complexity =o(1)
+sorting in place
+
+
+selection sort
+At every iteration find the min and place it in front
+time complexity =0(n^2) for all the cases
+space complexity =o(1)
+stable --> no
+inplace sorting algorithm
+
+unstability example 4 2 3 4 1
+Selection sort can be made stable
+
+so we can make it stable by shifting elements one step at a time(like insertion sort)
+
+int key = a[min]; 
+        while (min > i)  
+        { 
+            a[min] = a[min - 1]; 
+            min--; 
+        } 
+        a[i] = key; 
+
+this logic comes inside
+
+
+insertion sort
+stable
+inplace
+worst n^2
+average n^2
+best n
+space complexity =o(1)
+
+Uses: Insertion sort is used when number of elements is small. It can also be useful when input array is almost sorted, only few elements are misplaced in complete big array.
+
+
+
+
+
+Merge sort
+We know that if we have two sorted arrays, then we can merge them in o(n). Now Merge sort utilizes this logic. It recursively splits the arrays till we have 1 element in each array. As single elements are already sorted we can merge these lists.
+Complexity o(nlogn) in all three cases
+space 0(n)
+divide and conquer algorithm
+Sorting in not in place
+it is a stable algorithm
+
+
+
+Quicksort
+complexity 0(nlogn) in best and average case
+complexity is o(n^2) in worst case
+in place
+quicksort is not stable
+pivot should be element ehich is the mdeian of first,last and the middle element, or the median of three randomally selected variables
+
+Read about iterative version of quicksort
+
+
+Why binary search is better than terenary search

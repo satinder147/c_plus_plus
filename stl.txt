@@ -1,0 +1,72 @@
+
+
+*****************************Sequence containers
+vector --> data is stored in contiguous memory
+Vector size can dynamically change
+
+
+Lists are sequence containers that allow non-contiguous memory allocation. As compared to vector, list has slow traversal, but once a position has been found, insertion and deletion are quick. Normally, when we say a List, we talk about doubly linked list. For implementing a singly linked list, we use forward list.
+
+
+Dqueue
+Double ended queues are sequence containers with the feature of expansion and contraction on both the ends. They are similar to vectors, but are more efficient in case of insertion and deletion of elements at the end, and also the beginning. Unlike vectors, contiguous storage allocation may not be guaranteed.
+
+The functions for deque are same as vector, with an addition of push and pop operations for both front and back.
+
+Array
+The introduction of array class from C++11 has offered a better alternative for C-style arrays. The advantages of array class over C-style array are :-
+
+Array classes knows its own size, whereas C-style arrays lack this property. So when passing to functions, we don’t need to pass size of Array as a separate parameter.
+With C-style array there is more risk of array being decayed into a pointer. Array classes don’t decay into pointers
+Array classes are generally more efficient, light-weight and reliable than C-style arrays.
+
+even array has function at(), get() and [].
+
+
+
+forward_list
+
+Forward list in STL implements singly linked list. Introduced from C++11, forward list are useful than other containers in insertion, removal and moving operations (like sort) and allows time constant insertion and removal of elements.
+
+It differs from list by the fact that forward list keeps track of location of only next element while list keeps track to both next and previous elements, thus increasing the storage space required to store each element. The drawback of forward list is that it cannot be iterated backwards and its individual elements cannot be accessed directly.
+
+Forward List is preferred over list when only forward traversal is required (same as singly linked list is preferred over doubly linked list) as we can save space. Some example cases are, chaining in hashing, adjacency list representation of graph, etc.
+
+*************associative containers
+ implement sorted data structures that can be quickly searched (O(log n) complexity).
+
+Set
+Sets are a type of associative containers in which each element has to be unique, because the value of the element identifies it. The value of the element cannot be modified once it is added to the set, though it is possible to remove and add the modified value of that element.
+binary search tree is the underlying data structure for set
+
+
+Multiset 
+ultisets are a type of associative containers similar to set, with an exception that multiple elements can have same values.
+It's most often implemented as a threaded red-black tree, but almost any other form of balanced tree (e.g., AVL tree, B-tree) could be used instead (and implementations using both of these have been written). Regardless of the form the balancing takes, the tree does have to be threaded (i.e., incrementing or decrementing an iterator is required to have constant complexity, so you need some way to get from one node to its predecessor/successor without traversing an arbitrary number of nodes in between.
+
+
+Maps are associative containers that store elements in a mapped fashion. Each element has a key value and a mapped value. No two mapped values can have same key values.
+red black trees are used under it because
+Probably the two most common self balancing tree algorithms are Red-Black trees and AVL trees. To balance the tree after an insertion/update both algorithms use the notion of rotations where the nodes of the tree are rotated to perform the re-balancing.
+
+While in both algorithms the insert/delete operations are O(log n), in the case of Red-Black tree re-balancing rotation is an O(1) operation while with AVL this is a O(log n) operation, making the Red-Black tree more efficient in this aspect of the re-balancing stage and one of the possible reasons that it is more commonly used.
+
+
+Multimap is similar to map with an addition that multiple elements can have same keys. Rather than each element being unique, the key value and mapped value pair has to be unique in this case.
+
+
+
+unordered_map is an associated container that stores elements formed by combination of key value and a mapped value. The key value is used to uniquely identify the element and mapped value is the content associated with the key. Both key and value can be of any type predefined or user-defined.
+Internally unordered_map is implemented using Hash Table, the key provided to map are hashed into indices of hash table that is why performance of data structure depends on hash function a lot but on an average the cost of search, insert and delete from hash table is O(1).
+
+
+unordered sets
+unordered_set is implemented using hash table where keys are hashed into indices of this hash table so it is not possible to maintain an order. All operation on unordered_set takes constant time O(1) on an average which can go up to linear time in worst case which depends on the internally used hash function but practically they perform very well and generally provide constant time lookup operation.
+The unordered-set can contain key of any type – predefined or user-defined data structure but when we define key of type user define type, we need to specify our comparison function according to which keys will be compared.
+
+set vs unordered_set
+Set set is an ordered sequence of unique keys whereas unordered_set is a set in which key can be stored in any order, so unordered.
+Set is implemented as balanced tree structure that is why it is possible to maintain an order between the elements (by specific tree traversal). Time complexity of set operations is O(Log n) while for unordered_set, it is O(1).
+
+
+
