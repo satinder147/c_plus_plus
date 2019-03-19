@@ -33,4 +33,49 @@ int main()
 }
 
 
+
+if we put the throw in a function and the functino is in a try block, then also if a exception accurs in the function, the throw is propogated back to the place from where the function is called.
+
+
+Let’s revisit for a moment what happens when an exception is raised. First, the program looks to see if the exception can be handled immediately (which means it was thrown inside a try block). If not, the current function is terminated, and the program checks to see if the function’s caller will handle the exception. If not, it terminates the caller and checks the caller’s caller. Each function is terminated in sequence until a handler for the exception is found, or until main() is terminated without the exception being handled. This process is called unwinding the stack (see the lesson on the stack and the heap if you need a refresher on what the call stack is).
+
+
+catch(...) {} can catch all the exceptions
+generally body is left empty
+
+
+exception specifier 
+int doSomething() throw(); // does not throw exceptions 
+this mean that this function cannot throw exception outside this function. Although it can handle them internally
+int doSomething() throw(int); --> this can throw exceptions of only int type.
+
+
+example #include<iostream>
+using namespace std;
+
+void add() throw(double)
+{
+throw -1;
+}
+int main()
+{
+
+try
+{
+add();
+}
+catch(...)
+{
+cout<<"heeeee"<<endl;
+}
+
+return 0;
+
+}
+void add() throw(...) this may throw anything
+{}
 If an exception is routed to a catch block, it is considered “handled” even if the catch block is empty. However, typically you’ll want your catch blocks to do something useful. There are three common things that catch blocks do when they catch an exception:
+
+
+14.5 is not done prperly
+not done properly after 14.5

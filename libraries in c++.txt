@@ -1,0 +1,32 @@
+libraries
+static library
+
+Procedure for making a static library
+1) suppose our library will contain two functions add() and sub()
+and we have two files add.cpp,sub.cpp
+then we will write the add() and sub() function in the add.cpp and sub.cpp respectively
+
+2) Then we will convert the the cpp files to object files
+using g++ -c add.cpp and g++ -c sub.cpp
+
+3) Then these codes are converted into the library
+in linux the convention is that the library's name has to start with lib and end with .a(meaning static)
+
+ar rs libbasic.a add.o sub.o 
+where name of our library is basic
+
+Now we have to make a header file which will contain all the function declarations. 
+
+So we will make a header file named basic.h
+basic.h will contain all the function prototypes
+
+now we can delete everything apart from basic.h and libbasic.a
+
+
+Now we can include basic.h in our code and we can use add() and sub()
+
+if the name of the above file is a.cpp
+then we will compile a.cpp using g++ -c a.cpp
+Now to run this we will write g++ -o a a.o libbasic.a
+as the code of the library is required only at runtime so that is why it is provided to the linker
+

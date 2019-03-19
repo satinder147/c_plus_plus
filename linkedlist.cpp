@@ -76,10 +76,13 @@ return head;
 
 void node ::display(node *head)
 {
+//cout<<(&head)<<endl;
 while(head)
 {
 cout<<head->data<<" ";
 head=head->next;
+cout<<(&(head->next));
+cout<<endl;
 
 }
 }
@@ -155,7 +158,7 @@ node *head=NULL;
 node a;
 head=a.create(head);
 a.display(head);
-cout<<endl;
+//cout<<endl;
 //cout<<a.nth(head,4);
 //node at nth position from the end --> find length and then (length -n+1) is the position of the node.
 //cout<<a.searc(head,2);
@@ -167,7 +170,7 @@ cout<<endl;
 //cout<<"**************"<<endl;
 //cout<<a.lenr(head);
 //a.delet(head);
-cout<<a.mid(head); //logic is to make two pointers, every iteration move slow pointer by 1 step and the fast pointer by two steps;
+//cout<<a.mid(head); //logic is to make two pointers, every iteration move slow pointer by 1 step and the fast pointer by two steps;
 //another method is to increment the head pointer only when a increment variable is even or odd.
 //counting the occurence of a int in a linked list--> recursive-->keep a global variable and if(head==NULL)return frequency
 //if(head-->data==x)freq++, else search(head->next,element);
