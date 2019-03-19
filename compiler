@@ -1,0 +1,22 @@
+produces object files
+
+1)preprocess the code
+2)tokenizing and parsing creates abstract syntax tree
+
+compiler compiles all the .cpp files and convert them object files
+files have no meaning, files can have other extension as well.
+
+
+preprocessing
+--------------------------------------------
+
+#include pastes whatever is inside a header file to the current file
+g++ -E f.cpp shows the preprocessed output
+
+
+object file consists of the machine code that the cpu runs
+
+
+Linking 
+goes from object file to executable files
+

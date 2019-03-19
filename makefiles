@@ -1,0 +1,23 @@
+suppose we have a lot of files which we want to compile then we can make a makefile. This file automates this task. We can keep record of how many files are compiled and how many are not 
+
+
+final: final.o
+	g++ final.o -o final
+
+final.o:final.cpp
+	g++ -c final.cpp
+
+
+clean:
+	rm *.o final
+
+above is the code
+
+The syntax is 
+
+target:input
+tab	command
+
+then we write make in terminal and commands are executed. If the files made after make are already up to date then this does not let another compilation take place.
+
+writing make clean will execute the command in clean section

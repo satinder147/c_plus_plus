@@ -30,3 +30,78 @@ then we will compile a.cpp using g++ -c a.cpp
 Now to run this we will write g++ -o a a.o libbasic.a
 as the code of the library is required only at runtime so that is why it is provided to the linker
 
+
+
+
+static linking 
+
+Static Linking and Static Libraries is the result of the linker making copy of all used library functions to the executable file. Static Linking creates larger binary files, and need more space on disk and main memory. Examples of static libraries (libraries which are statically linked) are, .a files in Linux and .lib files in Windows.
+
+
+1. For a static library, the actual code is extracted from the library by the linker and used to build the final executable at the point you compile/build your application.So executable file size is large
+
+ Since library code is connected at compile time, the final executable has no dependencies on the the library at run time i.e. no additional run-time loading costs, it means that you don’t need to carry along a copy of the library that is being used and you have everything under your control and there is no dependency.
+
+ In static libraries, once everything is bundled into your application, you don’t have to worry that the client will have the right library (and version) available on their system.
+
+One drawback of static libraries is, for any change(up-gradation) in the static libraries, you have to recompile the main program every time.
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------
+Dynamic linking
+Dynamic linking and Dynamic Libraries Dynamic Linking doesn’t require the code to be copied, it is done by just placing name of the library in the binary file. The actual linking happens when the program is run, when both the binary file and the library are in memory. Examples of Dynamic libraries (libraries which are linked at run-time) are, .so in Linux and .dll in Windows.
+
+
+In a typical system, a number of programs will be running. Each program relies on a number of functions, some of which will be “standard” C library functions, like printf(), malloc(), write(), etc.
+
+If every program uses the standard C library, it follows that each program would normally have a unique copy of this particular library present within it. Unfortunately, this results in wasted resources. Since the C library is common, it makes more sense to have each program reference the common instance of that library, instead of having each program contain a copy of the library. This approach yields several advantages, not the least of which is the savings in terms of total system memory required.
+
+binding between the program and the shared object is done at runtime—before the program starts, the appropriate shared objects are found and bound.
+
+So everytime linking happens binding is performed.
+
+This type of program is called a partially bound executable, because it isn't fully resolved—the linker, at link time, didn't cause all the referenced symbols in the program to be associated with specific code from the library. Instead, the linker simply said: “This program calls some functions within a particular shared object, so I'll just make a note of which shared object these functions are in, and continue on.” 
+
+
+
+
+Dynamic linking
+Again twe will have two files add.cpp and sub.cpp
+But we have to convert them to object files int a position independent code to allow this piece of code to exist in any part of the memory;
+For this we have to pass another flag named -fPIC
+
+To make object code we will write g++ -fPIC -c add.c
+
+Now we will create the library 
+To create the library we will write the following command
+g++ -shared libbasic.so add.o sub.o (where basic will be the name of the library and so means shared object)
+
+Now we will create a header file
+and a run.cpp which will use the library
+
+Now we will create object files of run.cpp
+using g++ -c run.cpp 
+
+now we will make a executable file of run.o
+g++ -o run run.o libbasic.so
+
+After this our run.cpp has linking with a dynamic library
+To now use this library in c++ 
+file we have to install libbasic.so in our system.
+
+For that we have to move libbasic.so to /usr/lib by writing
+sudo mv libbasic.so /usr/lib/
+
+now we write sudo ldconfig
+
+NOw I can modify the implemenration of add.cpp again convert it to add.o and then make the libbasic.so, move this library to /usr/lib and type dconfig and without compiling the run.cpp code again we can use new add.cpp implemenration
+
