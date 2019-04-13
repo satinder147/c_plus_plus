@@ -1,0 +1,221 @@
+code lies in the below block
+
+<?php
+
+?>
+echo "" used to print things on the terminal
+statements end with a semicolon
+
+comments are like c++  and single line comment can also be in like python way
+
+variables are defined like $x=10;
+
+keywords are not case sensitive but variables are
+
+concatination is done using "."
+
+
+Rules for PHP variables:
+
+A variable starts with the $ sign, followed by the name of the variable
+A variable name must start with a letter or the underscore character
+A variable name cannot start with a number
+A variable name can only contain alpha-numeric characters and underscores (A-z, 0-9, and _ )
+Variable names are case-sensitive ($age and $AGE are two different variables)
+
+The PHP echo statement is often used to output data to the screen.
+
+
+PHP is a Loosely Typed Language
+meaning we do not tell the type of the variable
+
+
+functions in php are like java script
+variables can be local,static and global
+locals are local to a function
+
+
+global variables can not be used inside a function
+to used them inside a function they have declared global like python 
+php stores are the global variables in a global array
+and they can be modififed using $GLOBALS['var name'] modification
+
+
+static variables do not die till program execution
+static can be written like static $x;
+
+php datatypes
+int
+float
+bool $x=true, $x=false;
+array  $cars = array("Volvo","BMW","Toyota");
+
+
+object is made by declaring a class
+for eg
+
+class car
+{
+function car()
+{
+$this->model="satinder"
+} //constructor
+
+}
+
+
+$obj=new car();
+
+echo $obj->model;
+
+
+
+strlen is used to give string length
+
+str_word_count()--> gives word count
+
+strrev() reverses the provided string
+
+echo strpos("Hello world!", "world"); // outputs 6
+searches for a given string
+if not found returns null;
+
+echo str_replace("world", "Dolly", "Hello world!"); // outputs Hello Dolly!
+
+
+
+Constants in php
+
+To create a constant, use the define() function.
+
+Syntax
+define(name, value, case-insensitive)
+Parameters:
+
+name: Specifies the name of the constant
+value: Specifies the value of the constant
+case-insensitive: Specifies whether the constant name should be case-insensitive. Default is false
+
+define("greeting","welcome");
+
+constants are used without $ sign
+
+global constants can be used inside functions also without making them global
+
+
+1=="1" in php so, that the type also matches we have to use ===
+
+if,else,elseif,switch works similar to other languages
+php has while,do while,for and foreach loop.
+
+foreach ($array as $value) {
+    code to be executed;
+}
+
+Function names are NOT case-sensitive
+
+
+echo "$x lives in kolkata"; is a valid statement
+
+php has default arguments and can even have have return values.
+
+
+array elements are indexed like $arr[0];
+
+count($arr) returns the number of elements in the array
+
+
+associative arrays in php == dictionary in python
+$age= array("satinder"=>"17","mandy"=>"20");
+elements can be acessed using $age["satinder"];
+
+foreach($age as $x=>$x_value)
+echo x and x_value;
+
+
+SORTING ARRAYs
+sort() - sort arrays in ascending order
+rsort() - sort arrays in descending order
+asort() - sort associative arrays in ascending order, according to the value
+ksort() - sort associative arrays in ascending order, according to the key
+arsort() - sort associative arrays in descending order, according to the value
+krsort() - sort associative arrays in descending order, according to the key
+
+
+multi dimensional arrays are made like array(array("1",2),array(2,4))
+
+
+It is possible to insert the content of one PHP file into another PHP file (before the server executes it), with the include or require statement.
+
+The include and require statements are identical, except upon failure:
+
+require will produce a fatal error (E_COMPILE_ERROR) and stop the script
+include will only produce a warning (E_WARNING) and the script will continue
+
+eg include 'filename'
+
+readfile(filename) returns the content of the file + the number of characters printed.
+
+
+
+A better method to open a file is using fopen(it gives us more options)
+
+eg 
+
+
+<?php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+echo fread($myfile,filesize("webdictionary.txt"));
+fclose($myfile);
+?>
+
+this will output the content of the file.
+
+fgets(filepointer) reads one file at a time. it works line getline() in c++;
+pointer shifts to next line after one suc operation.
+
+
+feof gives enf of file.
+while(!feof($myfile)) {
+  echo fgets($myfile) . "<br>";
+
+fgetc() reads one character and moves to the other.
+
+
+<?php
+$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+$txt = "John Doe\n";
+fwrite($myfile, $txt);
+$txt = "Jane Doe\n";
+fwrite($myfile, $txt);
+fclose($myfile);
+?>
+
+the above code is used to write text to file
+
+**file uploads
+incomplete --Do some other time
+
+
+
+******cookies
+setcookie(name, value, expire, path, domain, secure, httponly);
+Only the name parameter is required. All other parameters are optional.
+
+
+The following example creates a cookie named "user" with the value "John Doe". The cookie will expire after 30 days (86400 * 30). The "/" means that the cookie is available in entire website (otherwise, select the directory you prefer).
+
+We then retrieve the value of the cookie "user" (using the global variable $_COOKIE). We also use the isset() function to find out if the cookie is set:
+
+$cookie_name = "user";
+$cookie_value = "John Doe";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
+To reset the value of cookie we again use the setcookie function
+to delete the cookie we give a expired duration in setcookie
+
+All the cookies get stored in $_COOKIE[name of cookie to access the particular cookie from array of cookies]
+
+continue study from cookies again
+
+

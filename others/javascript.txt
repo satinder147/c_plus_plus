@@ -1,0 +1,286 @@
+.innerHTML gives the content of a tag
+document.getElementById("demo").innerHTML = "Hello JavaScript";
+
+it means look in the document for a tag having id =demo and change it's inner html to helo javascript
+
+.src will give the value of src
+
+javascript code is written in between <script></script>
+A JavaScript function is a block of JavaScript code, that can be executed when "called" for.
+
+For example, a function can be called when an event occurs, like when the user clicks a button.
+we can have any number of script tags in a html document. the script tags can be between head and body or both
+
+we can write the above code in a function as well 
+for eg 
+<script>
+function myfunction()
+{
+document.getElementById("demo").innerHTML = "Hello JavaScript";
+}
+</script>
+
+
+we can even lik it to an external js file 
+like <script src="name.js"></script>
+all the function can be in name.js
+ 
+
+window.alert("image changed") will give an alert 
+console.log("hello")
+
+var var_name can be used to declare variables of 
+
+
+
+
+any data type
+fixed variables are called literals
+
+coments are like c++
+
+naming of variables is same as c++ , and they can start with dollar sign as well
+
+js is case senstitive
+
+hyphens between names is not allowed in js
+
+avaScript uses the Unicode character set.
+
+variables can be redeclared but they will hold the previous value only
+
+var x = "5" + 2 + 3;
+this will convert 2 and 3 to strings and concatenate all 3
+
+typeof returns type of variable
+instanceof returns true if the object is an instance of it
+
+
+var x = {firstName:"John", lastName:"Doe"};    // Object
+
+
+function definition can even include parameters 
+
+
+When an event occurs (when a user clicks a button)
+When it is invoked (called) from JavaScript code
+Automatically (self invoked)
+
+if a function is used without (), then it will returns the complete definition(code)
+
+
+objects can be accessed in 2 ways 
+objectName.propertyName
+or
+objectName["propertyName"]
+
+
+some events
+onchange	An HTML element has been changed
+onclick	The user clicks an HTML element
+onmouseover	The user moves the mouse over an HTML element
+onmouseout	The user moves the mouse away from an HTML element
+onkeydown	The user pushes a keyboard key
+onload	The browser has finished loading the page
+
+
+
+string.length gives the length
+
+we can continue with our line of code until the line ends or until we put a semicolon
+
+strings can be defined in two ways
+var x="satinder"
+var y=new String("karan")
+
+x==y is true because both have same value
+but x===y is false because it accepts similar datatype and value
+because typeof(y) returns object where as typeof(x) returns string
+
+
+objects can be compared
+var x=new String("satinder")
+var y=new String("satinder")
+x==y is false because objects can't be compared
+
+  var x="problem"
+  window.alert(x.indexOf("lem"))
+
+it is used to find the position of string "lem" in "problem"
+
+x.lastIndexOf("lem")
+finds the last occurence
+x.search("lem") finds the occurence of string lem in x
+
+
+\' is used to insert a quote 
+\\ is used to insert a backslash
+
+
+x.slice(start, end) returns the sliced string
+negative indexing is from backwards starting from 1
+
+var res = str.slice(7); this slics the string from 7 till end
+
+
+substring() is similar to slice().
+
+The difference is that substring() cannot accept negative indexes.
+
+
+substr() is similar to slice().
+
+The difference is that the second parameter specifies the length of the extracted part.
+
+
+str = "Please visit Microsoft!";
+var n = str.replace("Microsoft", "W3Schools");
+
+will replace microsof by w3school
+
+
+
+var text1 = "Hello World!";       // String
+var text2 = text1.toUpperCase(); 
+
+var text1 = "Hello World!";       // String
+var text2 = text1.toLowerCase(); 
+
+
+var text2 = "World";
+var text3 = text1.concat(" ", text2);
+
+
+var str = "       Hello World!        ";
+alert(str.trim());
+trim trims off the whitespace from both the sides
+
+
+
+
+var str = "HELLO WORLD";
+str.charAt(0);
+str[0] works as well
+
+this will return the str[0]
+str.charCodeAt(0); --> returns the ascii of 0th index of string
+
+
+str[0] = "A";  --> this does not work
+
+
+var txt = "a,b,c,d,e";   // String
+txt.split(",");          // Split on commas
+txt.split(" ");          // Split on spaces
+txt.split("|"); 
+
+this is used for splitting 
+
+
+var txt = "Hello";       // String
+txt.split("");  
+
+this splits in characters
+
+
+
+numbers can be declared as var y = 123e-5; 
+
+
+for (i = 0; i < arr.length; i++) {
+  text += arr[i] + "<br>"
+}
+
+Integers (numbers without a period or exponent notation) are accurate up to 15 digits.
+The maximum number of decimals is 17, but floating point arithmetic is not always 100% accurate:
+
+The JavaScript compiler works from left to right.
+
+that is why result of this 
+ar x = 10;
+var y = 20;
+var z = "The result is: " + x + y
+is 1020
+
+
+var x = 10;
+var y = 20;
+var z = "30";
+var result = x + y + z;
+
+and result of above is 3030
+
+
+var x = "100";
+var y = "10";
+var z = x / y;       // z will be 10
+
+java script will try converting the string into numbers if there are mathematical operations
+
+
+NAN --> not a number
+it will be the output if the operation is illegal
+for 10/"apple"
+will result in NAN
+isNAN(10/"apple")
+will return true
+
+The result is shown as NaN
+isNaN(10/"apple") --> will output true
+
+
+If mathematical operation is applied between NaN  and int then the result is NaN and if NaN applied with string result is concatenation
+typeof(NaN) always return number
+
+
+Infinity--> It is a keyword representative of infinity
+
+typeof(inifinity) returns number
+
+
+JavaScript interprets numeric constants as hexadecimal if they are preceded by 0x.
+eg var x = 0xFF;
+
+numbers can be declared as objects as well
+var x =new number(5)
+
+(100 + 23).toString();   // returns 123 from expression 100 + 23
+x=9.656
+x.toExponential(6);     // returns 9.656000e+0
+
+toFixed() returns a string, with the number written with a specified number of decimals:
+var x = 9.656;
+x.toFixed(0);           // returns 10
+x.toFixed(2);           // returns 9.66
+
+
+toPrecision() returns a string, with a number written with a specified length:
+x.toPrecision(2);       // returns 9.7
+empty parameter returns the same number
+
+
+Number()	Returns a number, converted from its argument.
+parseFloat()	Parses its argument and returns a floating point number
+parseInt()	Parses its argument and returns an integer
+
+Property	Description
+MAX_VALUE	Returns the largest number possible in JavaScript
+MIN_VALUE	Returns the smallest number possible in JavaScript
+POSITIVE_INFINITY	Represents infinity (returned on overflow)
+NEGATIVE_INFINITY	Represents negative infinity (returned on overflow)
+NaN	Represents a "Not-a-Number" value
+
+
+array
+var cars = new Array("Saab", "Volvo", "BMW");
+
+Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
+
+objects
+var person = {firstName:"John", lastName:"Doe", age:46};
+
+avaScript variables can be objects. Arrays are special kinds of objects.
+
+var y = cars.sort();
+elements in the arrray can be added using push() and it can be added using arra[6]="sak" if the index used is greater than the number of elements earlier then this can create holes in the array
+
