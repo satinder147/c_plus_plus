@@ -1,0 +1,127 @@
+VIVA
+
+System calls 
+FORK
+It creates two processes out of one which run simultaneously. One is called parent and the other is called child.
+A child process uses the same pc(program counter), same CPU registers, same open files which use in the parent process.
+
+ fork is an operation whereby a process creates a copy of itself. It is usually a system call, implemented in the kernel. Fork is the primary (and historically, only) method of process creation on Unix-like operating systems.
+
+
+In multitasking operating systems, processes (running programs) need a way to create new processes, e.g. to run other programs. Fork and its variants are typically the only way of doing so in Unix-like systems. For a process to start the execution of a different program, it first forks to create a copy of itself. Then, the copy, called the "child process", calls the exec system call to overlay itself with the other program: it ceases execution of its former program in favor of the other.
+
+x=fork()
+x==negative (child creation process was unsucessfull);
+x==0  returned to the child process.
+returned to parent or caller
+
+
+Join is used to combine files
+file 1
+1. 48
+2. 40
+3. 21
+4. 18
+
+file 2
+1. Darshan singh
+2. Kamaljit kaur
+3. Satinder Singh
+4. Karanjot Singh
+
+writing join file1 file2 will combine both the files after pairing
+Fields which are extra in file1 are not there in the final result
+That's because unpairable lines are left out in the output
+
+but if I write join file1 file2 -a filenumber
+then the extra fields in the file(filenumber) will also be present there
+
+
+writing join -i file1 file2 ensures that you do not need to have your keys sorted
+
+
+wait waits for a process to complete
+
+
+
+
+Cache
+It is present between the ram and cpu. It is generally on the cpu.
+It is way faster than ram. The reasons being
+1)It is on the processor
+2) it is SRAM(Static ram) instead of Dynamic ram in normal RAMS. DRAMS store data in memory cells which are made of a transistor and a capacitor. The capacitor is responsible for storing the data. Since capacitors have this property of loosing charge which makes them vulnerable to loose the data. To prevent this DRAM takes additional cycles to charge those capacitors again. Which makes it slow.
+SRAM on the other hand has 6 transistors. So no loosing od charge till it is powered up. But since there are 6 transistors so the density of the chip is high which leads to heating problems, that is why we will need heat sink for processor. This is only the reason why we can't have bigger cache.And due to the density , the prices of making a sram is also very high.
+
+SRAM can;t be used as normal memory since it is very expensive to make and also make a huge sram would reduce it's speed.
+
+
+
+also it's more expensive. It's about 6 times the price for SRAM of the same capacity as DRAM. Of course, that only applies where SRAM can actually be manufactured in the same size. Die size for SRAM also grows quite large at higher capacities. It also consumes far more power.
+
+If SRAM were used as the main memory of a PC, aside from the higher cost, the RAM that get's installed would be large enough that cases would need to be designed specifically to hold each SRAM Shelf that get's installed. Each SRAM shelf would need an effective cooling solution, equivalent to perhaps the air-channel-cowling used on graphics cards to keep the SRAM cool. It would also require a much more powerful power supply than is typically found in a PC.
+
+it simply isn't worth the requirement to re-engineer a standard to accomodate RAM shelves rather than RAM sticks, and the added price of the power usage and cooling to use the higher speed SRAM as main memory. 
+
+Also much of the performance advantage from SRAM on the CPU die itself is a result of literally being physically close to the processor core. If the CPU had to reach across the bus for every memory access, it wouldn't matter how fast the memory is because the distance would impair performance below what the on-chip cache's currently have, and since a large majority of CPU memory access 
+is able to access cached data acquired from main memory via the prefetcher, it would likely result in a net slowdown in performance.
+
+
+
+
+
+
+Cache replacement policies
+fifo
+lifo
+lru
+random
+mru and others
+
+
+
+LRU
+least recently used
+advantages I know 
+disadvantages. Memory requirements
+
+
+Cache holds data which is know as page frame
+
+
+optimal page replacement
+This algorithm cannot be implemented in a general purpose operating system because it is impossible to compute reliably how long it will be before a page is going to be used, except when all software that will run on a system is either known beforehand and is amenable to static analysis of its memory reference patterns, or only a class of applications allowing run-time analysis. Despite this limitation, algorithms exist[citation needed] that can offer near-optimal performance 
+
+
+
+Bankers algorithm
+It is a resouce allocation and deadlock avoidance algorithm
+
+The Banker's Algorithm derives its name from the fact that this algorithm could be used in a banking system to ensure that the bank does not run out of resources, because the bank would never allocate its money in such a way that it can no longer satisfy the needs of all its customers
+A state (as in the above example) is considered safe if it is possible for all processes to finish executing (terminate). 
+
+Like the other algorithms, the Banker's algorithm has some limitations when implemented. Specifically, it needs to know how much of each resource a process could possibly request. In most systems, this information is unavailable, making it impossible to implement the Banker's algorithm. 
+
+Moreover, the requirement that a process will eventually release all its resources (when the process terminates) is sufficient for the correctness of the algorithm, however it is not sufficient for a practical system. Waiting for hours (or even days) for resources to be released is usually not acceptable.
+
+
+difference between thread and process
+A process is an executing instance of an application and A thread is a path of execution within a process. ... Another difference between a thread and a process is that threads within the same process share the same address space, whereas different processes do not.
+
+deadlock recovery methods
+killing the process
+
+
+Bankers even has a subset which is know as the resource requesting algorithm. It states like can a request of (a,b,c) resources be catered right now.
+So it works like
+request should be less than the need(because need is the resource which the program can ask for at most.)else error
+request shoudl be less than available(resource with system).
+if the above two conditions are right then
+allocation is modified as old+ new request
+need =need - request
+and system=system-request.
+If still the process is safe then that reqest can be cateres without harming the safety of the algorithm.
+
+ostrich algorithm 
+if the deadlock come in a very long time or is very rare then preventition steps against it can be prevented because the resources we spend in prevention  are more than restarting the complete system.
+
+In computer science, the ostrich algorithm is a strategy of ignoring potential problems on the basis that they may be exceedingly rare. It is named for the ostrich effect which is defined as "to stick one's head in the sand and pretend there is no problem". It is used when it is more cost-effective to allow the problem to occur than to attempt its prevention.

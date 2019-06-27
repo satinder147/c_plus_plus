@@ -1,0 +1,67 @@
+compile and go loader
+steps of loading are 
+compilation
+assembling
+linking
+relocating 
+reloading
+
+earlier all these steps produces their own output file which was written in the memory and the next step would reload the earlier file for it's exectuion which would reduce the ececution time.
+
+So this load combined all these steps into one.
+for this the assembler,program and the loader all of them have to be in memory
+also modularity is at stake
+and each time all the steps would take place which is not good
+the only benefit is it is easy to use.
+
+***************************************
+general loader
+The assembler converts the code into object files
+and this loader loads these objects files into their desired location.
+
+problems solved are
+no recompilation is needed
+modular programs can be made
+execution time is reduced.
+assembler does not reside in memory so memeory is also saved(although loader does).
+
+*****************************************
+absolute loader 
+in this loader following steps are performed by
+allocation -programmer
+linking -programmer
+relocating - assembler 
+loading- loader
+
+in this loader the assembler assembles the code and it is the duty of the programmer to put the address of all the modules. and the programmer also does the linking
+
+
+The absolute loader is a kind of loader in which relocated object files are created, loader accepts these files and places them at a specified location in the memory.
+This type of loader is called absolute loader because no relocating information is needed, rather it is obtained from the programmer or assembler.
+The starting address of every module is known to the programmer, this corresponding starting address is stored in the object file then the task of loader becomes very simple that is to simply place the executable form of the machine instructions at the locations mentioned in the object file.
+In this scheme, the programmer or assembler should have knowledge of memory management. The programmer should take care of two things:
+Specification of starting address of each module to be used. If some modification is done in some module then the length of that module may vary. This causes a change in the starting address of immediate next modules, it's then the programmer's duty to make necessary changes in the starting address of respective modules.
+While branching from one segment to another the absolute starting address of respective module is to be known by the programmer so that such address can be specified at respective JMP instruction.
+
+
+refer diagram on https://techblogmu.blogspot.com/2018/05/absolute-loader.html
+
+
+
+
+Advantages:
+It is simple to implement.
+This scheme allows multiple programs or the source programs written in different languages. If there are multiple programs written in different languages then the respective language assembler will convert it to the language and common object file can be prepared with all the ad resolution.
+The task of loader becomes simpler as it simply obeys the instruction regarding where to place the object code to the main memory.
+The process of execution is efficient.
+Disadvantages:
+In this scheme, it's the programmer's duty to adjust all the inter-segment addresses and manually do the linking activity. For that, it is necessary for a programmer to know the memory management.
+If at all any modification is done to some segment the starting address of immediate next segments may get changed the programmer has to take care of this issue and he/she needs to update the corresponding starting address on any modification in the source.
+
+
+******************************
+
+relocating loader
+To avoid possible reassembling of all the subroutines when a single subroutine is changed and to perform the task of allocation and linking for the programmer relocating loader is used.
+
+

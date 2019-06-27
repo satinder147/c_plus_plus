@@ -29,3 +29,8 @@ A link to a good tutorial https://medium.com/coinmonks/run-raspberry-pi-in-a-tru
 ip address finding https://raspberrypi.stackexchange.com/questions/13936/find-raspberry-pi-address-on-local-network
 
 
+or install nmap in ubunutu 
+enter hostname -I 
+and then using nmap -sn your ipaddress/24 to scan all the devices connected to your pc.
+then ssh into that device
+
