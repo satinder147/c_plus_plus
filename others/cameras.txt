@@ -1,0 +1,135 @@
+Camera basics
+
+DSLR --> digital single lens reflex
+why DSLR have huge lenses
+Because they have a number of lens inside one lens.
+the need of so many lenses are
+
+What happens is that a single convex lens would also have been sufficient, but with only convex lens the light rays refract differently in different parts of the lens.
+The point where parallel light rays converge is called the focal point.
+The focal point at which the light rays from the center converge differ from the focal point point at which the light rays from the ends converge, this is called spherical abbreviation.
+
+The amount of refraction reduces as we move towards the edges, this leads to light rays not properly focussing the point at which they are intended to. Since the direction in which spherical abbreviation accurs for spherical lens is opposite from spherical abbreviation in concave, the spherical abbreviation of convex lens can be corrected by using concave lens.
+
+
+
+Also as refractive index is inversely proportional to wavelength
+wavelength R>G>B
+which means refraction for red is least and most for blue. This leads to spllitting of a light rays into it's constituents. which is called chromatic abbreviation.
+
+To prevent this a series of lenses are utilized to resolve the errors of one lens. That is why the lens size is large.
+
+focal length is measured in millimeters,
+it is distance between the point where the light rays converge inside the lens, to the image sensor 
+Video link --> https://www.youtube.com/watch?v=EL9J3Km6wxI
+
+
+Wide angle lenses have short focal length
+
+
+Auto focus works by
+the camera keeps on changing the focus until the images is blurred out, or the spot we have touched is blurred out. The blur will keep on reducing. Once the blur starts to increse again, that is point of right focus.
+
+
+
+
+SHALLOW depth of field
+great video
+https://www.youtube.com/watch?v=o5thzx1JVvk
+
+changing the focus, changes the plane of focus of camera. Plane of focus is plane parallel to the camera sensor. This is region which is most in focus, Everything near or far from it is out of focus. 
+But the plane of focus is very small and sometimes we can't get the entire subject focussed. TO help with this we have the aperture. The aperture decides the depth of the field. A higher valuer of aperture means a larger depth of field and visa versa. The depth of field is 2/3 after  and 1/3 before plane of focus. So to take higher field of photos like landscape we should focus roughly at 1/3 distance and then click the photo
+
+Images captures are inverted. 
+
+
+
+Earlier cameras used to have a view finder and a camera lens. The view finder was used to see what the camera see's. But the view from the viewfinder was slightly shifted in focus. 
+why single lens reflex camera
+
+A single-lens reflex camera (SLR) is a camera that typically uses a mirror and prism system (hence "reflex" from the mirror's reflection) that permits the photographer to view through the lens and see exactly what will be captured. With twin lens reflex and rangefinder cameras, the viewed image could be significantly different from the final image. When the shutter button is pressed on most SLRs, the mirror flips out of the light path, allowing light to pass through to the light receptor and the image to be captured.
+
+The mirror is placed at 45 degrees on the main path of light. When the click button is pressed the mirror flips, blocking the view finder for a very small amount of time. There is a prism at the top used to invert the image
+
+Series of action
+button pressed->mirror flips out of the way of the sensor->shutter opens and exposes the film.-->shutter closes and then the mirror comes down 
+
+large shutter time gives bright images but leads to motion blur.
+
+Actually the shutter moves at the same rate, but the difference between the blades is reduced. 
+As the blades move over the image, which means that the top of the image is slightly older than the bottom of the picture by fraction of second
+This also leads to the images being slightly tilted when filming from the window of a moving car. because the top portion is a little tilted
+
+great video https://www.youtube.com/watch?v=CmjeCchGRQo
+
+----------------Difference between DSLR vs mirrorless camera
+mirrorless cameras don't have the 45 degree lens, instead the image is directly recorded by the sensor which is passed on to the digital viewfinder or digital screen. This makes these cameras small and size 
+
+
+
+small focal length means wider lens
+
+
+---------------------Aperture
+it is the hole in the lens
+Controls the amount of light entering into the cameras sensor
+pupil is analogus to aperture
+
+unit is f-number of f-stop
+
+f-number is inversely proportional to diameter
+
+Aperture has direct effect or depth of field
+
+aperture is directly proportional to depth of field
+
+
+aperture with small f-number is a fast lens
+eg f1.4 , f2.8 used in night photgraphy
+
+max aperture of a lens decreases(increase in f number) as we zoom in. These lenses are called 
+variable aperture lenses
+
+
+larger aperture lets in more light allowing us to use
+small iso and faster shutter speed which reduces motion blur
+more iso means more noise
+
+there are two types of shutters
+1) rolling --> physical (read above)
+2)electronic shutter--> used during video recording
+
+electronic shutters does not have any moving parts
+sensor is read line by line
+they are silent
+faster shutter speed
+
+cons
+ rolling shutter --> distortion while recording from car
+ banding--> tube lights and tv(but mechanical shutters also have this)
+ 
+ 
+ 
+ ISO
+ it is the senstivity of the sensor
+ 
+ so for night shots and sports events where fast
+ shutter speed is required, photographer pump up the ISO
+ But it has it's own drawbacks
+ 
+ Now suppose we had a microphone and  we wanted to record a very faint sound. To do this we increase the senstivity of the microphone. Although now my faint noise can be listened but other unwanted noise also gets amplified leading to a lot of noise
+ same things happens with increasing the iso of the camera
+ Low iso will yield best image quality
+ 
+ 
+ ----------shutter speed
+ 
+length of time the sensor is exposed to light
+
+depth of field nice video 
+https://www.youtube.com/watch?v=34jkJoN8qOI
+
+
+how focus works
+https://www.bhphotovideo.com/explora/photography/tips-and-solutions/how-focus-works
+
