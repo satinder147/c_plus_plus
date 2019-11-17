@@ -153,5 +153,11 @@ echoFunction;
 
 
 
+***********************************************
+zipping without including some directories
+
+zip -r myarchive.zip dir1 -x dir1/ignoreDir1/**\* dir1/ignoreDir2/**\*
+
+
 
    

@@ -1,0 +1,75 @@
+It is argument parsing
+automaticall generates the usage
+Has inbuilt help functions
+auto formats output for the console
+
+Uses the python system module
+
+3 main lines
+parser=argparse.ArgumentParser()
+parser.add_argument("num",help="help text",type=int) //positional arguments are compulsory
+
+**help and type were optional variables,but if type not defined bydefault arguments are treated as strings
+
+args=parser.parse_args()
+
+args.num is the first argument
+
+python t.py -h gives help
+
+
+Optional Arguments
+Any variable name added with - or -- is a optional parameter
+eg parser.add_argument("--verbose",help="help")
+if --verbose is not specified than args.verbose is None
+
+
+if written parser.add_argument("--ver",help="help",action="store_true")
+then --ver acts as a flag, it is false if not mentioned else true.
+now we don't have to provide a value after --ver
+
+shot option 
+parser.add_argument("--ver",help="help",action="store_true")
+can be written as
+parser.add_argument("-v","--ver",help="help",action="store_true")
+now -v can be used instead of writing --ver
+
+if we write --v then we have to mention --v
+
+While providing multiple positional arguments we have ensure that the order remains the same. In between this order we can add optional arguments
+
+
+We can also provide choices a variable can have
+for eg
+parser.add_argument("-v","--ver",help="help",type=int,choices=[0,1,2])
+
+
+
+different approach of playing with verbosity, which is pretty common. It also matches the way the CPython executable handles its own verbosity argument 
+
+Like when I used keras, verbose had values like 0,1,2 increasing the number would show more information of the training process.
+
+we can add
+parser.add_argument("-v","--ver",action="count",help="increase output")
+args=parser.parse_args()
+
+
+if args.v==2:
+	more verbose output
+elif args.v==1
+	lesser verbose
+else args.v
+	least verbose
+	
+count counts the number of times v is provided 
+like -vv is 2 
+-v is 1
+-vvv is 3
+
+if -v is not provided then args.v is None, which can lead to 
+exceptions. Because args.v>=2 is not correct if args.v is None
+
+to help with this we can provide a default value to -v 
+eg parser.add_argument("-v","--verbose",action="count",default=0)
+
+
