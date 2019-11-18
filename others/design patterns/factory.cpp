@@ -32,7 +32,7 @@ class mac: public os
 
 class factories
 {
-    public:
+    public: //If I did not have this interface, then it would be simpleFactory, but it is Factory Method
     virtual os *getInstance(int x)=0;
 };
 class factory:public factories
