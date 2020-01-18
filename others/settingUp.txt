@@ -1,3 +1,5 @@
+
+
 Installing anaconda is more beneficial
 
 
@@ -23,8 +25,65 @@ So you have to use
 <hash>  <filename>
 with two blanks after the hash: One blank that separates the hash from the filename and one blank for text mode.
 
+
+***********************************
+If internet connect disconnects after some time-> the reason can be that the power saving mode is on 
+open /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+and set wifi.powersave=2
 --------------------------------------------------------------------------------------------------------------------------------------------
 *************Anaconda************
+
+Why using anaconda instead of pip
+Misconceptions
+
+* Anaconda is a distribution, not a package manager. Conda is like a 
+  package manager. A software distribution is a prebuilt and preconfigured
+  collection of packages that can be installed and used on a system
+  
+  whereas a package manager is a tool that automates the process of 
+  installing, updating and removing packages. 
+
+  conda is a not a python package manager, it is a general purpose package
+  management system, designed to build and manage software of any type
+  from any language. It is not like pip but like a cross platform version
+  of apt or yum
+
+  pip stands for Pip Installs Packages.
+  
+  pip installs packages within any environment whereas conda install
+  packages in conda env's
+  
+  
+Wheel. A built-package format for Python. A wheel is a ZIP-format 
+archive with a specially formatted filename and the . whl extension.
+ It is designed to contain all the files for a PEP 376 
+compatible install in a way that is very close to the on-disk format.
+
+
+ Packages are maintained in the open via github, with binaries
+ automatically built using free CI tools like TravisCI for Mac OSX
+ builds, AppVeyor for Windows builds, and CircleCI for Linux builds.
+ All the metadata for each package lives in a Github repository, and
+ package updates are accomplished through merging a Github pull
+ request (here is an example of what a package update looks like
+ in conda-forge).
+
+Conda-forge is entirely community-founded and community-led, and 
+while conda-forge is probably not yet mature enough to completely
+ replace the default conda channel, Continuum's founders have 
+publicly stated that this is a direction they would support. 
+You can read more about the promise of conda-forge in Wes McKinney's
+ recent blog post, conda-forge and PyData's CentOS moment.
+
+
+currently most Python packages can be loaded to conda-forge with just a few steps:
+
+Post a public code release somewhere on the web (on github, bitbucket, PyPI, etc.)
+Create a recipe/metadata file that points to this code and lists dependencies
+Open a pull request on conda-forge/staged-recipes
+
+link https://jakevdp.github.io/blog/2016/08/25/conda-myths-and-misconceptions/
+
 
 (base) always shows up in the terminal
 conda config --show | grep auto_activate_base --> it is set to true
@@ -32,7 +91,136 @@ be have to set it false
 conda config --set auto_activate_base False
 source ~/.bashrc
 
-conda create --name env_name python=3.7 (self explanatory)
+we have to also add the path to anaconda in .bashrc file
+or run using cd anaconda3/bin
+./jupyter-notebook
+conda create --name env_name python=3.7 (self explanatory) -y can be added in
+the end which will say yes to all the prompts
+This will create a folder of env_name in anaconda3/envs
+
+
+If you didn’t want to create the environment from the command line
+ for those reasons or others, you could create a YAML 
+(YAML Ain’t Markup Language) file, which acts like a configuration file.
+
+conda env create -f environment.yml -f is the file name
+
+ But what if you had an existing environment that you would like to duplicate? Perhaps you’d like to duplicate
+ the application onto another server and want the exact same setup for
+ consistency. If that’s the case, then you can run the command below.
+
+conda env export > my_environment.yml
+
+conda info --envs --> prints out all the environments
+
 conda activate env_name
-deactivate
+conda deactivate
 conda list --> lists all the installed packages 
+remove a environment conda remove --name your_env_name --all
+To use jupyter notebook in a environment. Activate a environment and
+$ pip install jupyter
+$ jupyter notebook 
+
+
+**************Managing Environment
+
+By default environments are installed in envs directory
+
+1. conda create --name env_name -> this will create an environment with same python version as we are currently using
+
+2. conda create -n env_name python=3.5
+
+To create env with specific package
+
+3. conda create -n env_name scipy
+
+ or 
+4.conda create -n env_name python
+  conda install -n env_name scipy
+
+5. conda create -n env_name python=3.4 scipy=0.15.0 astroid keras
+
+we have a file named ./condarc in the home directory
+it is like bashrc
+
+The conda configuration file, .condarc, is an optional runtime configuration file that allows advanced users to configure various aspects of conda, such as which channels it searches for packages, proxy settings, and environment directories. 
+
+
+environments can also be created using .yml files
+e
+6. conda env create -f environment.yml
+
+7. conda env list --> prints name of all the packages present 
+
+
+we can specify the location of the evironment
+conda create --prefix ./envs python=3.5
+this will create a environment in the current directory
+
+one think to note
+Conda can no longer find your environment with the --name flag.
+ You’ll generally need to pass the --prefix flag
+ along with the environment’s full path to find the environment. 
+
+cloning a environment
+8. conda create --name myclone --clone myenv
+
+9. conda info --envs --> lists all the environments
+
+10. conda list --explicit>spec.txt creates a list of all the packages
+
+To use a spec file to install its listed packages
+conda install --name myenv --file spec-file.txt
+
+
+Sharing a environment
+A environment can be shared by sharing the .yml file
+
+after activating the environment
+conda env export> env_name.yml --> exports the .yml file
+
+
+removing an environment
+
+conda remove --name myenv --all
+
+************************READ ABOUT CIRCLECI
+Circleci is used for testing and continous integration
+
+For any project in which for each commit I require it to be tested automatically 
+then we can use circle ci
+
+*******************little about ubuntu
+ubuntu is dependent on debian linux and debian linux
+uses a dpkg packaging system
+dpkg is the software at the base of the package managment system 
+in the free operating system debian and its numberous derivatives. dpkg is used to install, remove and provide information aout .deb packages
+dpkg is a low level tool. APT, is a higer lvel tool, is more commonly used than
+dpkg as it can fetch packages from remote locations and deal with complex package relations, such as dependency resolution.
+It manages dependencies effectively, maintains large configuration files and properly handles upgrades and downgrades to ensure system stability.
+apt requires super user priveleges
+
+
+difference between apt-get update and apt-get upgrade
+update --> updates the list of availablepackages and their version, but it does not install or upgrade any packages
+upgrade --> it actually installs newer versions ofthe packages you have. After updating the lists, the package managerknows about avaible updates for the software you have to installed. This why you first want to update
+
+we see 3 types of lines during update
+
+1)hit: this signifies that no new package is available
+2)Get: This means that there is a new version of the package and will download
+the details of this update, but not the package itself
+3) ign : this means that the package has been ignored
+
+do-release-upgrade --> system update (16 -18)
+apt-get upgrade --> install whatever is in the  the list
+apt-get dist-upgrade --> can add or delete packages automatically
+The apt-get dist-upgrade command intelligently handles changing dependencies with new versions of packages and will attempt to upgrade the most important packages at the expense of less important ones if necessary. Thus unlike apt-get upgrade , the apt-get dist-upgrade command may actually remove some packages in necessary instances.
+
+
+
+apt-cache search <package-name> search for a package
+list is in /etc/apt/sources.list.d/
+
+****************************virtual environments
+

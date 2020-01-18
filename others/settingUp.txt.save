@@ -1,0 +1,44 @@
+Installing anaconda is more beneficial
+
+
+Download files can be checked for checksum
+sha256sum returns the checksum of any file. This checksum can be matched with 
+the checksum provided
+
+echo "hash <space>*filename" | shasum -a 256 --check  (-a is for algorithm, --check checks the checksum of the two file provided)
+prints OK if the hash and the hash of the filename matched
+
+alternatively 
+shasum -a 256 config.sh >config.sha
+this produces a config.sha file --> the file contains what we have written in echo state (but it does not have a star)
+this can be verified by shasum -a 256 -c config.sha
+
+
+Putting an asterisk before the file name tells shasum to treat the file as binary if the system supports this. Id the file should be treated as text file you use a single blank instead.
+
+Linux doesn't make a difference between binary and text files so it doesn't matter which one you use, but you can't leave it out.
+
+So you have to use
+
+<hash>  <filename>
+with two blanks after the hash: One blank that separates the hash from the filename and one blank for text mode.
+
+
+***********************************
+If internet connect disconnects after some time-> the reason can be that the power saving mode is on 
+open /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+and set wifi.powersave=2
+--------------------------------------------------------------------------------------------------------------------------------------------
+*************Anaconda************
+
+(base) always shows up in the terminal
+conda config --show | grep auto_activate_base --> it is set to true
+be have to set it false
+conda config --set auto_activate_base False
+source ~/.bashrc
+
+conda create --name env_name python=3.7 (self explanatory)
+conda activate env_name
+deactivate
+conda list --> lists all the installed packages 
+

@@ -907,3 +907,20 @@ del works in the similar way with lists as well
 
 1)	ex 17 why the file had t obe closed
 20 DICTIONARY GET()
+
+
+
+public,protected and private
+class variables are public by default
+
+variables whose name precede with a "_" are protected variables
+though these variables can be acessed from outside using their name, it is
+upon the programmer to mke sure these variables are not used
+
+private variables
+variables whose names are prefixed with "__"(double underscore) are private
+if we try to access them from the outside attribute error exception is raised
+because python performs name mangling(name changing)--> __satinder-->
+_satinder__
+
+it can be accessed using the above name though
