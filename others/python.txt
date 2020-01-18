@@ -921,6 +921,50 @@ private variables
 variables whose names are prefixed with "__"(double underscore) are private
 if we try to access them from the outside attribute error exception is raised
 because python performs name mangling(name changing)--> __satinder-->
-_satinder__
-
+_classname__satinder
 it can be accessed using the above name though
+
+
+
+class person:
+    def __init__(self):
+        self.__name=''
+    @property
+    def name(self):
+        return self.__name
+    @name.setter
+    def name(self, value):
+        self.__name=value
+    @name.deleter
+    def name(self, value):
+        print('Deleting..')
+        del self.__name
+
+
+
+
+@classmethod
+The @classmethod decorator can be applied on any method of a class. This decorator will allow us to call that 
+method using the class name instead of the object.
+The method now can be called using both the object and the class
+
+a method defined under @classmethod takes the class as the parameter. This class is used to use the class variable
+
+class person:
+    totalObjects=0
+    def __init__(self):
+        person.totalObjects=person.totalObjects+1
+
+    @classmethod
+    def showcount(cls):
+        print("Total objects: ",cls.totalObjects)
+
+
+The @staticmethod is a built-in decorator in Python which defines a static method. A static method doesn't receive any reference argument whether it is called by
+ an instance of a class or by the class itself. The following notation is used to declare a static method in a class:
+class person:
+    @staticmethod
+    def greet():
+        print("Hello!")
+
+@staticmethod does not take self as paramter
