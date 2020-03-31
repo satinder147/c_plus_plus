@@ -1,0 +1,14 @@
+one import per line
+
+two lines between function definitions
+
+one line between function definintions within a class
+
+imports should be grouped
+standard
+third party
+your imports each should be seperated by a line
+
+imports like -> from face import * should be avoided as name clashing can happen
+
+ "dunders" (i.e. names with two leading and two trailing underscores) 
