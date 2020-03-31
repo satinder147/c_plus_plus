@@ -1,0 +1,67 @@
+standard convolution
+
+input =dfxdfxm
+shape of kernal =dkxdkxm
+suppose we have n such filters then 
+output =dgxdgxn(if f-k+1==g)
+
+total cost
+It is estimated by the number of multiplications
+
+for 1 convolution--> mult once=dkxdkxm
+but we stride the filter dg times in the width and dg times in the height
+so multiplications per kernal (complete stride)==dgxdgxdkxdkxm
+Now we have n such kernals so total number of calculations
+dgxdgxdkxdkxmxn
+
+Depth wise separable Convolution
+
+Breaks the above operation into two steps
+1. Depthwise Convolution(filtering stage)
+2. Pointwise convolution: combination stage
+
+Depthwise convolutions
+applies convoloution to a single input channel at once
+
+input=dfxdfxm
+kernals are of shape dkxdkx1
+since we apply kernal to only one channel we will require
+m dkxdkx1 kernals
+for each of the kernals the output is dgxdgx1
+stacking these outputs from all the kernals together
+results in dgxdgxm output volume
+
+
+Second phase--point wise convolution
+input =dgxdgxm
+filter has shape 1x1xm
+we will have n such filters
+so output volume =dgxdgxn
+
+number of multiplications in first phase
+
+dkxdkxdgxdgxm
+
+for second phase(point phase convolution)
+multiplications =1x1xdgxdgxm=dgxdgxm
+for n kernal dgxdgxmxn 
+total =sum of both the phases
+mxdgxdg(dkxdk+n)
+
+comparision of both tthe covolutions
+
+no. of multilication in depthwise /no . mult in standard conv=1/n+1/(dkxdk)
+
+number of parameters comparision
+=dkxdkxm+mxn/dkxdkxmxn
+=1/n+1/(dkxdk) 
+
+So depth wise convolution reduce number of calculations and number of multliplications
+
+
+Applications
+1) multimodal networks
+2)xception is based on depth wise convolution
+3)Mobile net for mobile devices
+
+
