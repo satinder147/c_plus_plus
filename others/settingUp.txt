@@ -224,3 +224,17 @@ list is in /etc/apt/sources.list.d/
 
 ****************************virtual environments
 
+
+
+update command updates the list
+apt-get also updates the packages when unintended, at that time we can freeze the updates
+using
+eg
+
+echo "mongodb-org hold" | sudo dpkg --set-selections
+echo "mongodb-org-server hold" | sudo dpkg --set-selections
+echo "mongodb-org-shell hold" | sudo dpkg --set-selections
+echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
+echo "mongodb-org-tools hold" | sudo dpkg --set-selections
+
+
