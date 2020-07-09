@@ -238,3 +238,11 @@ echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
 echo "mongodb-org-tools hold" | sudo dpkg --set-selections
 
 
+Systemctl is a systemd utility which is responsible for Controlling the systemd system and service manager.
+sudo systemctl start mongod
+s
+check status of service
+sudo systemctl status mongod
+
+
+

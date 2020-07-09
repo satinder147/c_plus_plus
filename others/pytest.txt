@@ -1,0 +1,60 @@
+pytest***************************
+
+boilerplate code
+
+In computer programming, boilerplate code or just boilerplate are sections of code that have to be included in many places with little or no alteration.
+
+pythons unit test module has a lot of boiler plate code.
+
+Most functional tests follow the Arrange-Act-Assert model:
+
+Arrange, or set up, the conditions for the test
+Act by calling some function or method
+Assert that some end condition is true
+and predefined assert statements. 
+
+pytest
+
+we can just write the tests in functions, name of function should be
+"test_"+name
+
+it also returns platform used, rootdir of file and collected item(number of test_* named functions inside tester file.
+
+pytest
+executes all the file of format test_*.py or *_test.py
+pytest -q --> quiet mode. .i.e less verbose
+
+
+function names of type test_* and class name of Test*
+are executed. If the class does not follow the naming convention, then
+the functions inside will not be executed.
+
+Grouping tests in classes can be beneficial for the following reasons:
+
+Test organization
+Sharing fixtures for tests only in that particular class
+Applying marks at the class level and having them implicitly apply to all tests
+
+
+Having each test share the same class instance would be very detrimental to test isolation and would promote poor test practices
+
+
+pytest -x stops after first fail
+pytest --maxfail=2 stops after 2 fails
+
+we can run a test file explicitly also
+pytest test_mod.py
+or run in a directory
+pytest testing/
+
+run some tests
+pytest test_mod.py::TestClass::test_method
+
+or pytest test_mod.py::test_method
+
+
+pytest -m slow
+runs tests with decorator @pytest.mark.slow
+
+profiling test execution 
+pytest --durations=10
