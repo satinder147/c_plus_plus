@@ -1,0 +1,86 @@
+SNAP
+Snap is a software packaging and deployment system developed
+by canonical(company--> ubuntu also developed by them)
+Packages are called snaps and the tool for using them is snapd, work across
+a range of linux distributions and allow upstream software developers to
+distribute their applications directly to users.
+
+Snap are self-contained applications running in a sandbox with mediated 
+access to the host system.Snap was originally designed for IOT but later 
+was ported to work for cloud, desktop and applications
+
+Ubuntu market place  = snap store allows developers to publish their applications
+directly to users.
+
+With traditional Linux package management approaches like APT and YUM, the applications are packages
+and distributed as part of the operating system. This creates a delay between application development
+and it's deployment for end-users. In contrast application developers can publich their applications
+in the snap store and get them directly to users without any interventions from distribution maintainers
+
+
+All apps in the snapstore are maintained by the user, snapstore does not enforce anything onto them,
+timely updates, security updates to name a few.
+Snap store automatically performs a malware check and also tests the applications.
+
+Snaps can be downloaded without the snapstore from the developer website
+
+Snaps are self contained packages that work across a range od Linux distributions. This is unlike
+traditional Linux package management approaches, which require specifically adapted packages
+for each linux distributions.
+
+Snap file formate is a single compressed filesystem. 
+snaps have extension .snap
+
+
+Add more---
+
+
+Automatic and atomic updates:
+Snapd checks if snaps have update available, and installs them in the background using atomic operations
+
+Automatic operations-->
+
+These updates can be reverted and use delta encoding to reduce their download size.
+Delta encoding --> storing and transmitting data in the forms differences between sequential 
+data rather than rather than complete files.
+
+Snapcraft is a tool for developers to packages their programs in the Snap format. Runs on almost all 
+different distributions, snapcraft builds the packages in a virtual machine using multipass(pata karna kya hai)
+in order to ensure the result is same. Snap craft supports a lot od build tools and programming
+languages.
+
+Snapd not loading packages, solutions --> 
+snap changes
+sudo snap abort PID 
+
+
+Snap vs apt:
+1. Apt is easier for user, snap is easier for package creators
+2. Apt is executed way fast
+3. With apt we have complete controll over when we want to update, snap follows windows 10 like updates
+
+Snap contains all the required files, where .deb packages have dependencies to other packages.
+so snappy is larger in size, so snap does not have any external dependencies, so ok.
+
+Why this split in the linux community why make snapy when we have apt package manager
+Snapy is an attempt to solve package availability and package distribution.
+It is not here to completely replace deb
+
+Problem is deb packages for one version of ubuntu does not work for any other version of 
+ubuntu. ubuntu debs --> made for each version. 
+This means if I want to release a new version of an application and not wait on distro 
+maintainers to include it in the repository(which takes a lot of time) then I have to provide
+over 20 packages to cover the majority of Linux distros and still that does not cover everything
+
+Snaps can be integrated into other distros, so no longer distor specific.
+
+Flatpaks and AppImages also solve these issues.
+
+1. FLAPTAK
+2. LINUX FILE SYSTEM.
+3. APT
+4. Bashrc
+5. Pipes
+6. Make your own snap package
+7. .deb
+8. what is distro
