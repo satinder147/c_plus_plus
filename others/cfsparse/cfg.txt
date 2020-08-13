@@ -1,0 +1,7 @@
+[person1]
+name = satinder
+age = 22
+
+[person2]
+name = karan
+age = 20
